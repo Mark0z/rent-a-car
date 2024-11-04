@@ -1,8 +1,10 @@
 package mk.server.rentacar.model;
 
 import jakarta.persistence.*;
-import lombok.*;
-import mk.server.rentacar.model.enums.Roles;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -14,7 +16,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Users {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -24,21 +26,18 @@ public class Users {
     private String email;
     @Column(nullable = false)
     private String password;
-    @Column(nullable = false)
-    private Enum<Roles> role;
+    private String role;
     @Column(name = "first_name", nullable = false)
     private String firstName;
     @Column(name = "last_name", nullable = false)
     private String lastName;
     @Column(nullable = false)
     private String phone;
-    @Column(name = "date_joined", nullable = false)
+    @Column(name = "date_joined")
     private Date dateJoined;
-    @Column(name = "is_active", nullable = false)
-    private Boolean isActive;
-    @Column(name = "loyalty_points", nullable = false)
+    @Column(name = "loyalty_points")
     private Integer loyaltyPoints;
 
-    @OneToMany(mappedBy = "users")
-    private Set<Reservations> reservations = new HashSet<>();
+    @OneToMany(mappedBy = "user")
+    private Set<Reservation> reservations = new HashSet<>();
 }
