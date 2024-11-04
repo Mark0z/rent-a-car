@@ -5,11 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import mk.server.rentacar.model.enums.FuelTypes;
-import mk.server.rentacar.model.enums.TransmissionTypes;
 
-import java.text.DecimalFormat;
-import java.time.Year;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,7 +16,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cars {
+public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -28,20 +25,20 @@ public class Cars {
     @Column(nullable = false)
     private String model;
     @Column(nullable = false)
-    private Year year;
-    @Column(name = "fuel_type",nullable = false)
-    private Enum<FuelTypes> fuelType;
-    @Column(name = "price_per_day",nullable = false)
-    private DecimalFormat pricePerDay;
+    private Integer year;
+    @Column(name = "fuel_type", nullable = false)
+    private String fuelType;
+    @Column(name = "price_per_day", nullable = false)
+    private BigDecimal pricePerDay;
     @Column(nullable = false)
     private Integer mileage;
-    @Column(nullable = false)
-    private Enum<TransmissionTypes> transmission;
+    @Column(name = "transmission_types", nullable = false)
+    private String transmission;
     @Column(name = "image_url")
     private String imageUrl;
     @Column(name = "registration_number", nullable = false)
     private String registrationNumber;
 
-    @OneToMany(mappedBy = "cars")
-    private Set<Reservations> reservations = new HashSet<>();
+    @OneToMany(mappedBy = "car")
+    private Set<Reservation> reservations = new HashSet<>();
 }
