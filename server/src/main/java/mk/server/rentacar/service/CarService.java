@@ -16,6 +16,10 @@ public class CarService {
         this.carRepository = carRepository;
     }
 
+    private void preprocessCar(Car car) {
+        car.setAvailability(true);
+    }
+
     public List<Car> getAllCars() {
         return carRepository.findAll();
     }
@@ -25,10 +29,12 @@ public class CarService {
     }
 
     public Car saveCar(Car car) {
+        preprocessCar(car);
         return carRepository.save(car);
     }
 
     public List<Car> saveListOfCars(List<Car> listOfCars) {
+        listOfCars.forEach(this::preprocessCar);
         return carRepository.saveAll(listOfCars);
     }
 

@@ -28,6 +28,9 @@ public class UserService {
         if (user.getLoyaltyPoints() == null) {
             user.setLoyaltyPoints(0);
         }
+        if (user.getRole() == null) {
+            user.setRole("USER");
+        }
     }
 
     public List<User> getAllUsers() {
