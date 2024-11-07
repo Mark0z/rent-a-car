@@ -1,13 +1,13 @@
 package mk.server.rentacar.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import mk.server.rentacar.model.enums.StatusTypes;
 
-import java.text.DecimalFormat;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -16,22 +16,24 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Reservations {
+public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private Users users;
+    @JsonIgnoreProperties({"reservations"})
+    private User user;
     @ManyToOne
     @JoinColumn(name = "car_id", referencedColumnName = "id")
-    private Cars cars;
+    @JsonIgnoreProperties({"reservations"})
+    private Car car;
 
-    @Column(name = "start_date",nullable = false)
+    @Column(name = "start_date", nullable = false)
     private Date startDate;
-    @Column(name = "end_date",nullable = false)
+    @Column(name = "end_date", nullable = false)
     private Date endDate;
-    private Enum<StatusTypes> status;
-    @Column(name = "total_price",nullable = false)
-    private DecimalFormat totalPrice;
+    private String status;
+    @Column(name = "total_price")
+    private BigDecimal totalPrice;
 }
