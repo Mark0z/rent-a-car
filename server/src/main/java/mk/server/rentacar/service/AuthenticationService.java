@@ -5,6 +5,7 @@ import mk.server.rentacar.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -18,6 +19,23 @@ public class AuthenticationService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    private void preprocessUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        if (user.getDateJoined() == null) {
+            user.setDateJoined(new Date());
+        }
+        if (user.getLoyaltyPoints() == null) {
+            user.setLoyaltyPoints(0);
+        }
+        if (user.getRole() == null) {
+            user.setRole("USER");
+        }
+    }
+
+    public User register(User user) {
+        preprocessUser(user);
+        return userRepository.save(user);
+    }
 
     public Optional<User> login(String username, String password) {
         Optional<User> optionalUser = userRepository.findByUsername(username);

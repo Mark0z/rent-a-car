@@ -24,8 +24,13 @@ public class ReservationController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Reservation> getReservationById(@PathVariable Long id) {
-        return reservationService.getReservationById(id);
+    public ResponseEntity<?> getReservationById(@PathVariable Long id) {
+        try {
+            Optional<Reservation> reservation = reservationService.getReservationById(id);
+            return ResponseEntity.ok(reservation);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping("/")

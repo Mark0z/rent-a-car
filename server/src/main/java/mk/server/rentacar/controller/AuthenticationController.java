@@ -1,10 +1,12 @@
 package mk.server.rentacar.controller;
 
+import mk.server.rentacar.model.User;
 import mk.server.rentacar.service.AuthenticationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -19,6 +21,12 @@ public class AuthenticationController {
 
     public AuthenticationController(AuthenticationService authenticationService) {
         this.authenticationService = authenticationService;
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<User> register(@RequestBody User user) {
+        User savedUser = authenticationService.register(user);
+        return ResponseEntity.ok(savedUser);
     }
 
     @PostMapping("/login")
