@@ -38,7 +38,6 @@ public class Car {
     private String imageUrl;
     @Column(name = "registration_number", nullable = false)
     private String registrationNumber;
-    private Boolean availability;
 
     @OneToMany(mappedBy = "car")
     private Set<Reservation> reservations = new HashSet<>();

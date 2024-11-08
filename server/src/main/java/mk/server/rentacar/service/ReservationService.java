@@ -27,47 +27,46 @@ public class ReservationService {
     }
 
     private void preprocessReservation(Reservation reservation) {
-        Long carId = reservation.getCar().getId();
-        Long userId = reservation.getUser().getId();
+        Car car = getCarOrThrow(reservation.getCar().getId());
+        User user = getUserOrThrow(reservation.getUser().getId());
 
-        Optional<Car> carOpt = carService.getCarById(carId);
-        Optional<User> userOpt = userService.getUserById(userId);
-
-        if (carOpt.isEmpty()) {
-            throw new IllegalArgumentException("Car with ID " + carId + " does not exist.");
-        }
-        if (userOpt.isEmpty()) {
-            throw new IllegalArgumentException("User with ID " + userId + " does not exist.");
-        }
-
-        Car car = carOpt.get();
-
-        if (!checkAvailability(reservation)) {
-            throw new IllegalArgumentException("Car is not available!!!");
-        }
-
-        if (!car.getAvailability()) {
-            throw new IllegalArgumentException("Car is not available");
-        }
+        validateAvailability(car, reservation);
 
         reservation.setStatus("CREATED");
-        Date startDate = reservation.getStartDate();
-        Date endDate = reservation.getEndDate();
+        BigDecimal totalCost = calculateTotalCost(reservation.getStartDate(), reservation.getEndDate(), car.getPricePerDay());
+        reservation.setTotalPrice(totalCost);
+    }
 
-        LocalDate localStart = startDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        LocalDate localEnd = endDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    private Car getCarOrThrow(Long carId) {
+        return carService.getCarById(carId)
+                .orElseThrow(() -> new IllegalArgumentException("Car with ID " + carId + " does not exist."));
+    }
+
+    private User getUserOrThrow(Long userId) {
+        return userService.getUserById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User with ID " + userId + " does not exist."));
+    }
+
+    private void validateAvailability(Car car, Reservation reservation) {
+        if (!checkAvailability(reservation)) {
+            throw new IllegalArgumentException("Car is not available.");
+        }
+    }
+
+    private BigDecimal calculateTotalCost(Date startDate, Date endDate, BigDecimal pricePerDay) {
+        LocalDate localStart = convertToLocalDate(startDate);
+        LocalDate localEnd = convertToLocalDate(endDate);
 
         BigDecimal diffInDays = BigDecimal.valueOf(ChronoUnit.DAYS.between(localStart, localEnd));
-
         if (diffInDays.intValue() < 1) {
             throw new IllegalArgumentException("Wrong date");
         }
 
-        BigDecimal carPrice = car.getPricePerDay();
-        BigDecimal totalCost = carPrice.multiply(diffInDays);
+        return pricePerDay.multiply(diffInDays);
+    }
 
-        reservation.setTotalPrice(totalCost);
-        car.setAvailability(false);
+    private LocalDate convertToLocalDate(Date date) {
+        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
     private boolean checkAvailability(Reservation reservationDto) {

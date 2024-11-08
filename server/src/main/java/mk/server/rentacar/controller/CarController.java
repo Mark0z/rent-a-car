@@ -30,11 +30,6 @@ public class CarController {
         return selectedCar.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/fuelType/{fuelType}")
-    public List<Car> getCarsByFuelType(@PathVariable String fuelType) {
-        return carService.getCarsByFuelType(fuelType);
-    }
-
     @PostMapping("/")
     public ResponseEntity<Car> addCar(@RequestBody Car car) {
         Car savedCarList = carService.saveCar(car);

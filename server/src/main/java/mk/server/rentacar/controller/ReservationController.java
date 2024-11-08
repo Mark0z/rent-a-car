@@ -51,8 +51,7 @@ public class ReservationController {
             try {
                 Reservation reservations = reservationService.addReservation(reservation);
                 successfulReservations.add(reservations);
-            } catch (IllegalArgumentException e) {
-                System.out.println("Failed to add reservation: " + e.getMessage());
+            } catch (IllegalArgumentException ignored) {
             }
         }
 
