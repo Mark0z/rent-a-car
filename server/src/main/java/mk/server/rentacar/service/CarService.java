@@ -2,10 +2,16 @@ package mk.server.rentacar.service;
 
 import mk.server.rentacar.model.Car;
 import mk.server.rentacar.repository.CarRepository;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class CarService {
@@ -14,6 +20,41 @@ public class CarService {
 
     public CarService(CarRepository carRepository) {
         this.carRepository = carRepository;
+    }
+
+    private void preprocessCar(Car car) {
+        String link = getCarImage(car.getBrand(), car.getModel());
+        String linkToImage = extractImageFromString(link);
+        car.setImageUrl(linkToImage);
+    }
+
+    private String extractImageFromString(String link) {
+        String regex = "<string[^>]*>(.*?)</string>";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(link);
+
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+        return null;
+    }
+
+    private String getCarImage(String brand, String model) {
+        String API_URL = "https://www.carimagery.com/api.asmx/GetImageUrl?searchTerm=";
+        String carBrandAndModel = prepareStringToApi(brand) + "+" + prepareStringToApi(model);
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> exchange = restTemplate.exchange(
+                API_URL + carBrandAndModel,
+                HttpMethod.GET,
+                HttpEntity.EMPTY,
+                String.class
+        );
+        return exchange.getBody();
+    }
+
+    private String prepareStringToApi(String string) {
+        return string.trim().replace(" ", ",");
     }
 
     public List<Car> getAllCars() {
@@ -25,10 +66,12 @@ public class CarService {
     }
 
     public Car saveCar(Car car) {
+        preprocessCar(car);
         return carRepository.save(car);
     }
 
     public List<Car> saveListOfCars(List<Car> listOfCars) {
+        listOfCars.forEach(this::preprocessCar);
         return carRepository.saveAll(listOfCars);
     }
 
