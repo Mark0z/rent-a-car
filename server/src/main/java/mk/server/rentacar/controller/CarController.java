@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/cars")
+@CrossOrigin
 public class CarController {
 
     private final CarService carService;
@@ -22,6 +23,11 @@ public class CarController {
     @GetMapping("/")
     public List<Car> getAllCars() {
         return carService.getAllCars();
+    }
+
+    @GetMapping("/top/{limit}")
+    public List<Car> getTopNCarsWithMostReservations(@PathVariable Integer limit) {
+        return carService.getTopNCarsWithMostReservations(limit);
     }
 
     @GetMapping("/{id}")
