@@ -1,0 +1,64 @@
+@import "values/colors";
+
+header {
+  background-color: $COLOR-BEIGE;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 4px auto;
+  max-width: 80%;
+}
+
+.logo {
+  img {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  &-info {
+    text-align: right;
+
+    &--p {
+      margin: 4px 0;
+
+      &__title {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 8px 0;
+        color: $COLOR-ORANGE;
+      }
+
+      &__small {
+        font-size: 12px;
+        font-weight: bold;
+      }
+    }
+  }
+
+  &-banner {
+    padding: 4px 16px;
+    border: 2px solid $COLOR-ORANGE;
+    border-radius: 8px;
+
+    &__email {
+      font-style: italic;
+      text-decoration: underline;
+    }
+
+    &__phone {
+      font-weight: bold;
+    }
+
+    svg {
+      font-size: 18px;
+      margin-right: 4px;
+    }
+  }
+}
