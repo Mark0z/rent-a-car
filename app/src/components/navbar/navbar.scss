@@ -1,0 +1,42 @@
+@import "values/colors";
+
+.navbar-menu {
+  display: flex;
+
+  &--auth {
+    padding: 0 8px;
+  }
+}
+
+.navbar {
+  display: flex;
+  height: 60px;
+  background-color: $COLOR-BEIGE;
+  justify-content: space-between;
+  margin: 4px auto;
+  max-width: 80%;
+  align-items: center;
+
+  a {
+    color: $COLOR-BLACK;
+    text-decoration: none;
+  }
+
+  &--link {
+    padding: 0 10px;
+    text-align: center;
+    line-height: 60px;
+    font-weight: lighter;
+    font-size: 18px;
+
+    &:hover {
+      background-color: $COLOR-ORANGE;
+      color: $COLOR-WHITE;
+    }
+
+    &__icon {
+      width: 50px;
+      font-size: 24px;
+    }
+  }
+}
