@@ -2,6 +2,8 @@ package mk.server.rentacar.service;
 
 import mk.server.rentacar.model.Car;
 import mk.server.rentacar.repository.CarRepository;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -63,6 +65,11 @@ public class CarService {
 
     public Optional<Car> getCarById(Long id) {
         return carRepository.findById(id);
+    }
+
+    public List<Car> getTopNCarsWithMostReservations(Integer limit) {
+        Pageable pageable = PageRequest.of(0, limit);
+        return carRepository.findCarWithMostReservations(pageable);
     }
 
     public Car saveCar(Car car) {
