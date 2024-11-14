@@ -1,0 +1,16 @@
+.content {
+  width: 80%;
+  margin: 2px auto;
+  display: flex;
+  gap: 4px;
+
+  &-left {
+    background-color: white;
+    flex: 1;
+  }
+
+  &-right {
+    background-color: white;
+    flex: 2;
+  }
+}
