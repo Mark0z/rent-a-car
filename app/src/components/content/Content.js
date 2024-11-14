@@ -2,18 +2,17 @@ import './content.scss';
 import { ContentBox } from 'components/content-box/Content-box';
 import { RentACarForm } from 'components/rent-a-car-form/Rent-a-car-form';
 import { FaRegCheckSquare } from 'react-icons/fa';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useAxios } from 'hooks/useAxios';
 
 export const Content = () => {
-  const [listOfCars, setListOfCars] = useState([]);
-
-  useEffect(() => {
-    axios.get('http://localhost:8080/cars/top/').then(({ data }) => {
-      console.log(data);
-      setListOfCars(data);
-    });
-  }, []);
+  const {
+    data: listOfCars,
+    loading,
+    error
+  } = useAxios({
+    url: 'http://localhost:8080/cars/',
+    method: 'GET'
+  });
 
   return (
     <div className="content">
@@ -40,11 +39,16 @@ export const Content = () => {
       </div>
       <div className="content-right">
         <ContentBox title="Najpopularniejsze">
-          {listOfCars.map((car, index) => (
-            <p key={index}>
-              {car.brand} {car.model}
-            </p>
-          ))}
+          {listOfCars ? (
+            listOfCars.map((car, index) => (
+              <p key={index}>
+                {car.brand} {car.model}
+              </p>
+            ))
+          ) : (
+            <p>{loading}</p>
+          )}
+          {error ? error : null}
         </ContentBox>
       </div>
     </div>
