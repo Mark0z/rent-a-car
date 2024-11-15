@@ -1,7 +1,12 @@
 @import "values/colors";
+@import "values/mixins";
 
 header {
+  width: 100%;
   background-color: $COLOR-BEIGE;
+}
+
+.header-content {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -19,20 +24,17 @@ header {
 .contact {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 16px;
 
   &-info {
     text-align: right;
 
     &--p {
-      margin: 4px 0;
+      margin: 2px 0;
 
       &__title {
-        font-size: 24px;
-        font-weight: bold;
-        margin: 8px 0;
-        color: $COLOR-ORANGE;
+        @include styled-title;
+        margin: 2px 0;
       }
 
       &__small {
@@ -44,8 +46,7 @@ header {
 
   &-banner {
     padding: 4px 16px;
-    border: 2px solid $COLOR-ORANGE;
-    border-radius: 8px;
+    @include styled-border;
 
     &__email {
       font-style: italic;
