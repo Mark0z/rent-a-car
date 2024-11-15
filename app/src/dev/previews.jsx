@@ -1,6 +1,6 @@
 import { ComponentPreview, Previews } from '@react-buddy/ide-toolbox';
 import { PaletteTree } from './palette';
-import { CarItem } from 'components/car-item/Car-item';
+import { CarItem } from 'components/car-item/CarItem';
 
 const ComponentPreviews = () => {
   return (

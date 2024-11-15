@@ -1,4 +1,4 @@
-import 'components/ReservationDatePicker/ReservationDatePicker.scss';
+import 'components/reservation-date-picker/ReservationDatePicker.scss';
 import { useForm } from 'react-hook-form';
 import { BRANCHES_LIST } from 'data/branches-companies';
 

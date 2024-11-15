@@ -1,0 +1,30 @@
+@import "values/mixins";
+@import "values/colors";
+
+.content-box {
+  padding: 16px 16px;
+  background-color: $COLOR-WHITE;
+
+  &--title {
+    @include styled-title;
+  }
+
+  &--line {
+    display: block;
+    height: 2px;
+    border: 0;
+    width: 160px;
+    border-top: 2px solid $COLOR-ORANGE;
+    margin-bottom: 1em;
+  }
+
+  &--data {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+
+    &__center {
+      justify-content: center;
+    }
+  }
+}
