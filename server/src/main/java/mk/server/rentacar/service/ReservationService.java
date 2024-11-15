@@ -20,10 +20,10 @@ public class ReservationService {
     private final CarService carService;
     private final UserService userService;
 
-    public ReservationService(ReservationRepository reservationRepository, CarService carService, UserService userService, UserService userService1) {
+    public ReservationService(ReservationRepository reservationRepository, CarService carService, UserService userService) {
         this.reservationRepository = reservationRepository;
         this.carService = carService;
-        this.userService = userService1;
+        this.userService = userService;
     }
 
     private void preprocessReservation(Reservation reservation) {
@@ -88,11 +88,6 @@ public class ReservationService {
     public Reservation addReservation(Reservation reservation) {
         preprocessReservation(reservation);
         return reservationRepository.save(reservation);
-    }
-
-    public List<Reservation> addListOfReservations(List<Reservation> reservationList) {
-        reservationList.forEach(this::preprocessReservation);
-        return reservationRepository.saveAll(reservationList);
     }
 
     public Optional<Reservation> getReservationById(Long id) {
