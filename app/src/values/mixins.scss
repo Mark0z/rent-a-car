@@ -1,0 +1,18 @@
+@import "./colors";
+
+@mixin styled-border {
+  border: 2px solid $COLOR-ORANGE;
+  border-radius: 8px;
+}
+
+@mixin styled-title {
+  font-size: 26px;
+  font-weight: bold;
+  padding: 4px 0;
+  color: $COLOR-ORANGE;
+}
+
+@mixin styled-input {
+  border: 2px solid $COLOR-SAGE;
+  border-radius: 4px;
+}
