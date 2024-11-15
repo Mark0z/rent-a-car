@@ -1,0 +1,19 @@
+@import "values/mixins";
+
+.rent-a-car-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &--input {
+    @include styled-input;
+  }
+
+  &--submit {
+    margin-top: 16px;
+  }
+
+  &--label {
+    margin: 4px 0;
+  }
+}
