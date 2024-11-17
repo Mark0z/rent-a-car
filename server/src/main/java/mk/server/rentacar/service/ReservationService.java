@@ -20,17 +20,19 @@ public class ReservationService {
     private final CarService carService;
     private final UserService userService;
 
-    public ReservationService(ReservationRepository reservationRepository, CarService carService, UserService userService, UserService userService1) {
+    public ReservationService(ReservationRepository reservationRepository, CarService carService, UserService userService) {
         this.reservationRepository = reservationRepository;
         this.carService = carService;
-        this.userService = userService1;
+        this.userService = userService;
     }
 
     private void preprocessReservation(Reservation reservation) {
         Car car = getCarOrThrow(reservation.getCar().getId());
         User user = getUserOrThrow(reservation.getUser().getId());
 
-        validateAvailability(car, reservation);
+        if (!checkAvailability(reservation)) {
+            throw new IllegalArgumentException("Car is not available.");
+        }
 
         reservation.setStatus("CREATED");
         BigDecimal totalCost = calculateTotalCost(reservation.getStartDate(), reservation.getEndDate(), car.getPricePerDay());
@@ -45,12 +47,6 @@ public class ReservationService {
     private User getUserOrThrow(Long userId) {
         return userService.getUserById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("User with ID " + userId + " does not exist."));
-    }
-
-    private void validateAvailability(Car car, Reservation reservation) {
-        if (!checkAvailability(reservation)) {
-            throw new IllegalArgumentException("Car is not available.");
-        }
     }
 
     private BigDecimal calculateTotalCost(Date startDate, Date endDate, BigDecimal pricePerDay) {
@@ -72,15 +68,18 @@ public class ReservationService {
     private boolean checkAvailability(Reservation reservationDto) {
         List<Reservation> reservationList =
                 reservationRepository.getReservationsByCarId(reservationDto.getCar().getId());
-        Date checkedDate = reservationDto.getStartDate();
+        Date checkedStartDate = reservationDto.getStartDate();
+        Date checkedEndDate = reservationDto.getEndDate();
 
         for (Reservation reservation : reservationList) {
             Date startDate = reservation.getStartDate();
             Date endDate = reservation.getEndDate();
 
-            if ((checkedDate.after(startDate) && checkedDate.before(endDate))
-                    || checkedDate.equals(startDate)) {
-                throw new IllegalArgumentException("Error start date");
+            if (checkedStartDate.after(startDate) && checkedStartDate.before(endDate)
+                    || checkedEndDate.after(startDate) && checkedEndDate.before(endDate)
+                    || startDate.after(checkedStartDate) && endDate.before(checkedEndDate)
+                    || checkedStartDate.equals(startDate) || checkedEndDate.equals(endDate)) {
+                throw new IllegalArgumentException("Error reservation date");
             }
         }
         return true;
@@ -89,11 +88,6 @@ public class ReservationService {
     public Reservation addReservation(Reservation reservation) {
         preprocessReservation(reservation);
         return reservationRepository.save(reservation);
-    }
-
-    public List<Reservation> addListOfReservations(List<Reservation> reservationList) {
-        reservationList.forEach(this::preprocessReservation);
-        return reservationRepository.saveAll(reservationList);
     }
 
     public Optional<Reservation> getReservationById(Long id) {
