@@ -2,15 +2,12 @@ import './content.scss';
 import { ContentBox } from 'components/content-box/ContentBox';
 import { ReservationDatePicker } from 'components/reservation-date-picker/ReservationDatePicker';
 import { useAxios } from 'hooks/useAxios';
-import { CarItem } from 'components/car-item/CarItem';
 import { AdvantagesList } from 'components/advantages-list/AdvantagesList';
+import { CarItem } from 'components/car-item/CarItem';
+import { Spinner } from 'components/spinner/Spinner';
 
 export const Content = () => {
-  const {
-    data: listOfCars,
-    loading,
-    error
-  } = useAxios({
+  const { loading, data, error } = useAxios({
     url: 'http://localhost:8080/cars/top/12',
     method: 'GET'
   });
@@ -26,21 +23,23 @@ export const Content = () => {
         </ContentBox>
       </div>
       <div className="content-right">
-        <ContentBox title="Najpopularniejsze" center>
-          {listOfCars ? (
-            listOfCars.map((car, index) => (
-              <CarItem
-                key={index}
-                price={car.pricePerDay}
-                brand={car.brand}
-                model={car.model}
-                imageUrl={car.imageUrl}
-              />
-            ))
+        <ContentBox title="Najpopularniejsze" center={loading}>
+          {!loading ? (
+            <>
+              {data.map((car, index) => (
+                <CarItem
+                  key={index}
+                  price={car.pricePerDay}
+                  brand={car.brand}
+                  model={car.model}
+                  imageUrl={car.imageUrl}
+                />
+              ))}
+            </>
           ) : (
-            <p>{loading}</p>
+            <Spinner />
           )}
-          {error ? error : null}
+          {error ? <p className="error">{error.message}</p> : null}
         </ContentBox>
       </div>
     </div>
