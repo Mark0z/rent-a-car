@@ -1,0 +1,17 @@
+@import "values/colors";
+
+.advantages-list {
+  &--item {
+    font-size: large;
+    font-style: italic;
+    display: inline-flex;
+    gap: 4px;
+    align-items: center;
+
+    svg {
+      font-size: larger;
+      color: $COLOR-ORANGE;
+    }
+
+  }
+}

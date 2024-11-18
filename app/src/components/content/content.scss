@@ -1,12 +1,17 @@
+@import "values/colors";
+
 .content {
   width: 80%;
-  margin: 2px auto;
+  margin: -40px auto 0 auto;
   display: flex;
   gap: 4px;
 
   &-left {
-    background-color: white;
     flex: 1;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
 
   &-right {

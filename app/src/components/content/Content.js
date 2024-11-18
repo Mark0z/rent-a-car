@@ -1,8 +1,9 @@
 import './content.scss';
-import { ContentBox } from 'components/content-box/Content-box';
-import { RentACarForm } from 'components/rent-a-car-form/Rent-a-car-form';
-import { FaRegCheckSquare } from 'react-icons/fa';
+import { ContentBox } from 'components/content-box/ContentBox';
+import { ReservationDatePicker } from 'components/reservation-date-picker/ReservationDatePicker';
 import { useAxios } from 'hooks/useAxios';
+import { CarItem } from 'components/car-item/CarItem';
+import { AdvantagesList } from 'components/advantages-list/AdvantagesList';
 
 export const Content = () => {
   const {
@@ -10,40 +11,31 @@ export const Content = () => {
     loading,
     error
   } = useAxios({
-    url: 'http://localhost:8080/cars/',
+    url: 'http://localhost:8080/cars/top/12',
     method: 'GET'
   });
 
   return (
     <div className="content">
       <div className="content-left">
-        <div className="form-rental">
-          <ContentBox title="Rezerwuj samochód">
-            <RentACarForm />
-          </ContentBox>
-          <ContentBox title="Zalety RentDrive">
-            <div>
-              <FaRegCheckSquare /> Wygoda i dostępność
-            </div>
-            <div>
-              <FaRegCheckSquare /> Różnorodność pojazdów
-            </div>
-            <div>
-              <FaRegCheckSquare /> Brak długoterminowych zobowiązań
-            </div>
-            <div>
-              <FaRegCheckSquare /> Ubezpieczenie i serwis w cenie
-            </div>
-          </ContentBox>
-        </div>
+        <ContentBox title="Rezerwuj samochód">
+          <ReservationDatePicker />
+        </ContentBox>
+        <ContentBox title="Zalety RentDrive">
+          <AdvantagesList />
+        </ContentBox>
       </div>
       <div className="content-right">
-        <ContentBox title="Najpopularniejsze">
+        <ContentBox title="Najpopularniejsze" center>
           {listOfCars ? (
             listOfCars.map((car, index) => (
-              <p key={index}>
-                {car.brand} {car.model}
-              </p>
+              <CarItem
+                key={index}
+                price={car.pricePerDay}
+                brand={car.brand}
+                model={car.model}
+                imageUrl={car.imageUrl}
+              />
             ))
           ) : (
             <p>{loading}</p>
