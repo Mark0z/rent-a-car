@@ -5,17 +5,6 @@
   margin: -40px auto 0 auto;
   display: flex;
   gap: 4px;
-
-  &-left {
-    flex: 1;
-    max-width: 350px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  &-right {
-    background-color: white;
-    flex: 2;
-  }
+  min-height: 500px;
+  background-color: $COLOR-WHITE;
 }

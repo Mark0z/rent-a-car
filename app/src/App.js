@@ -1,11 +1,25 @@
 import './App.css';
 import { Main } from 'pages/main/Main';
+import { Header } from 'components/header/Header';
+import { Navbar } from 'components/navbar/Navbar';
+import { Slider } from 'components/slider/Slider';
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Cars } from 'pages/cars/Cars';
 
 function App() {
   return (
-    <div className="App">
-      <Main />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Header />
+        <Navbar />
+        <Slider />
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/cars" element={<Cars />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
