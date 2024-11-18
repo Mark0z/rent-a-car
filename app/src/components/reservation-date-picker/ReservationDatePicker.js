@@ -1,4 +1,4 @@
-import 'components/reservation-date-picker/ReservationDatePicker.scss';
+import './reservation-date-picker.scss';
 import { useForm } from 'react-hook-form';
 import { BRANCHES_LIST } from 'data/branches-companies';
 
@@ -6,11 +6,15 @@ export const ReservationDatePicker = () => {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors }
   } = useForm();
 
   const onSubmit = (data) => {
     //temporarily
+    if (data.startDate >= data.endDate) {
+      setError('errorDate', { message: 'Błędna data' });
+    }
     console.log(data);
   };
 
@@ -22,8 +26,8 @@ export const ReservationDatePicker = () => {
       <input
         className="rent-a-car-form--input"
         type="date"
-        required
         name="startDate"
+        required
         {...register('startDate', { required: true })}
       />
       {errors.startDate && <span>This field is required</span>}
@@ -34,6 +38,7 @@ export const ReservationDatePicker = () => {
         name="startAgencyName"
         className="rent-a-car-form--input"
         defaultValue={'default'}
+        required
         {...register('startAgencyName', { required: true })}>
         <option key="default" value="" hidden>
           Wybierz miejsce odbioru
@@ -62,6 +67,7 @@ export const ReservationDatePicker = () => {
         name="endAgencyName"
         className="rent-a-car-form--input"
         defaultValue={'default'}
+        required
         {...register('endAgencyName', { required: true })}>
         <option key="default" value="" hidden>
           Wybierz miejsce zwrotu
@@ -73,6 +79,7 @@ export const ReservationDatePicker = () => {
         ))}
       </select>
 
+      {errors.errorDate && <p className="rent-a-car-form--error">{errors.errorDate.message}</p>}
       <input className="rent-a-car-form--submit" type="submit" value="Rezerwuj" />
     </form>
   );
