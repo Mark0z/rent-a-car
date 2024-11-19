@@ -1,0 +1,15 @@
+@import 'values/colors';
+
+.main {
+  &-left {
+    flex: 1;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &-right {
+    flex: 2;
+  }
+}

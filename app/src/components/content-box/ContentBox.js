@@ -2,9 +2,9 @@ import './content-box.scss';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-export const ContentBox = ({ title, children, center }) => {
+export const ContentBox = ({ title, children, center, className }) => {
   return (
-    <div className="content-box">
+    <div className={clsx('content-box', className)}>
       <div className="content-box--title">{title}</div>
       <div className="content-box--line" />
       <div className={clsx('content-box--data', center && 'content-box--data__center')}>
@@ -17,5 +17,6 @@ export const ContentBox = ({ title, children, center }) => {
 ContentBox.propTypes = {
   title: PropTypes.string,
   children: PropTypes.node,
-  center: PropTypes.bool
+  center: PropTypes.bool,
+  className: PropTypes.string
 };

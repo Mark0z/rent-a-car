@@ -9,6 +9,12 @@
     @include styled-input;
   }
 
+  &--error {
+    color: $COLOR-RED;
+    text-align: center;
+    font-weight: bold;
+  }
+
   &--submit {
     margin-top: 16px;
     font-size: medium;

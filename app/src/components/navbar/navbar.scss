@@ -39,7 +39,12 @@
 
       &__icon {
         width: 50px;
-        font-size: 24px;
+        font-size: 18px;
+      }
+
+      &.active {
+        background-color: $COLOR-SAGE;
+        color: $COLOR-ORANGE;
       }
     }
   }
