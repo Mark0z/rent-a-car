@@ -8,11 +8,12 @@ import java.io.IOException;
 
 public class CarImageScraper {
     public static String getImageLink(String brand, String model) {
-        String searchUrl = "https://unsplash.com/s/photos/" + brand + "-" + model + "?license=free&orientation=landscape";
+        String carName = (brand + "+" + model).trim().replace(" ", "+");
+        String searchUrl = "https://commons.wikimedia.org/w/index.php?search=" + carName + "&title=Special:MediaSearch&go=Go&type=image";
 
         try {
             Document document = Jsoup.connect(searchUrl).get();
-            Element imageElement = document.getElementsByClass("I7OuT DVW3V L1BOa").get(0);
+            Element imageElement = document.getElementsByClass("sd-image").get(0);
 
             return imageElement.absUrl("src");
         } catch (IndexOutOfBoundsException | IOException e) {

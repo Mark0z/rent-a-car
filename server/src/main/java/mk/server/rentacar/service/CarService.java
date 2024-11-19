@@ -20,7 +20,6 @@ public class CarService {
 
     private void preprocessCar(Car car) {
         String link = CarImageScraper.getImageLink(car.getBrand(), car.getModel());
-
         car.setImageUrl(link);
     }
 

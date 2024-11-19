@@ -34,7 +34,7 @@ public class Car {
     private Integer mileage;
     @Column(name = "transmission_types", nullable = false)
     private String transmission;
-    @Column(name = "image_url")
+    @Column(name = "image_url", columnDefinition = "TEXT")
     private String imageUrl;
     @Column(name = "registration_number", nullable = false)
     private String registrationNumber;
