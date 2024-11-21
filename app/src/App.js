@@ -6,6 +6,7 @@ import { Slider } from 'components/slider/Slider';
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Cars } from 'pages/cars/Cars';
+import { Rules } from 'pages/rules/Rules';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/cars" element={<Cars />} />
+          <Route path="/rules" element={<Rules />} />
         </Routes>
       </div>
     </BrowserRouter>
