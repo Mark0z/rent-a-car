@@ -9,13 +9,20 @@
   &--image {
     height: 150px;
     width: 100%;
-    object-fit: fill;
+    object-fit: cover;
     border-radius: 6px 6px 0 0;
   }
 
   &--title {
     font-size: 18px;
     font-weight: bold;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+
+    &:hover {
+      white-space: wrap;
+    }
   }
 
   &--price {

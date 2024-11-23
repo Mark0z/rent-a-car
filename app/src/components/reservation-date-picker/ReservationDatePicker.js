@@ -1,85 +1,66 @@
 import './reservation-date-picker.scss';
 import { useForm } from 'react-hook-form';
 import { BRANCHES_LIST } from 'data/branches-companies';
+import { TextInput } from 'components/inputs/text-input/TextInput';
+import { SelectInput } from 'components/inputs/select-input/SelectInput';
 
 export const ReservationDatePicker = () => {
   const {
     register,
     handleSubmit,
-    setError,
+    watch,
     formState: { errors }
   } = useForm();
 
   const onSubmit = (data) => {
     //temporarily
-    if (data.startDate >= data.endDate) {
-      setError('errorDate', { message: 'Błędna data' });
-    }
     console.log(data);
   };
 
   return (
     <form className="rent-a-car-form" onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="startDate" className="rent-a-car-form--label">
-        Data odbioru:
-      </label>
-      <input
+      <TextInput
+        textLabel="Data odbioru:"
+        name="startDate"
         className="rent-a-car-form--input"
         type="date"
-        name="startDate"
+        errors={errors.startDate}
         required
         {...register('startDate', { required: true })}
       />
-      {errors.startDate && <span>This field is required</span>}
-      <label htmlFor="startAgencyName" className="rent-a-car-form--label">
-        Miejsce odbioru:
-      </label>
-      <select
+      <SelectInput
+        className="rent-a-car-form--input"
+        defaultValue="Wybierz miejsce odbioru"
         name="startAgencyName"
-        className="rent-a-car-form--input"
-        defaultValue={'default'}
-        required
-        {...register('startAgencyName', { required: true })}>
-        <option key="default" value="" hidden>
-          Wybierz miejsce odbioru
-        </option>
-        {BRANCHES_LIST.map((value) => (
-          <option key={value} value={value}>
-            {value}
-          </option>
-        ))}
-      </select>
-      <label htmlFor="endDate" className="rent-a-car-form--label">
-        Data zwrotu:
-      </label>
-      <input
-        className="rent-a-car-form--input"
+        errors={errors.startAgencyName}
+        textLabel="Miejsce odbioru:"
+        optionList={BRANCHES_LIST}
+        {...register('startAgencyName', { required: true })}
+      />
+      <TextInput
+        textLabel="Data zwrotu:"
         type="date"
         name="endDate"
+        errors={errors.endDate}
         required
-        {...register('endDate', { required: true })}
+        {...register('endDate', {
+          required: true,
+          min: {
+            value: watch('startDate'),
+            message: 'Błędna data zwrotu'
+          }
+        })}
       />
-      {errors.endDate && <span>This field is required</span>}
-      <label htmlFor="endAgencyName" className="rent-a-car-form--label">
-        Miejsce zwrotu:
-      </label>
-      <select
-        name="endAgencyName"
+      <SelectInput
         className="rent-a-car-form--input"
-        defaultValue={'default'}
-        required
-        {...register('endAgencyName', { required: true })}>
-        <option key="default" value="" hidden>
-          Wybierz miejsce zwrotu
-        </option>
-        {BRANCHES_LIST.map((value) => (
-          <option key={value} value={value}>
-            {value}
-          </option>
-        ))}
-      </select>
+        defaultValue="Wybierz miejsce zwrotu"
+        name="endAgencyName"
+        errors={errors.endAgencyName}
+        textLabel="Miejsce zwrotu:"
+        optionList={BRANCHES_LIST}
+        {...register('endAgencyName', { required: true })}
+      />
 
-      {errors.errorDate && <p className="rent-a-car-form--error">{errors.errorDate.message}</p>}
       <input className="rent-a-car-form--submit" type="submit" value="Rezerwuj" />
     </form>
   );

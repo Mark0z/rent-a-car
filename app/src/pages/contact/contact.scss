@@ -1,0 +1,16 @@
+.contact {
+  &--map {
+  }
+
+  &--content-box {
+    width: 100%;
+  }
+
+  &--iframe {
+    border: 0;
+    overflow: hidden;
+    margin: 0;
+    height: 500px;
+    width: 100%;
+  }
+}

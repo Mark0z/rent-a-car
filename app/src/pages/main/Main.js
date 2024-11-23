@@ -25,7 +25,7 @@ export const Main = () => {
           </ContentBox>
         </div>
         <div className="main-right">
-          <ContentBox title="Najpopularniejsze" center={loading}>
+          <ContentBox title="Najpopularniejsze" center>
             {!loading ? (
               <>
                 {data.map((car, index) => (

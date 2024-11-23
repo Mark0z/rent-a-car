@@ -1,9 +1,52 @@
 @import "values/colors";
 @import "values/mixins";
 
-header {
+.header {
   width: 100%;
   background-color: $COLOR-BEIGE;
+
+  &-contact {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    &-info {
+      text-align: right;
+
+      &--p {
+        margin: 2px 0;
+
+        &__title {
+          @include styled-title;
+          margin: 2px 0;
+        }
+
+        &__small {
+          font-size: 12px;
+          font-weight: bold;
+        }
+      }
+    }
+
+    &-banner {
+      padding: 4px 16px;
+      @include styled-border;
+
+      &__email {
+        font-style: italic;
+        text-decoration: underline;
+      }
+
+      &__phone {
+        font-weight: bold;
+      }
+
+      &__svg {
+        font-size: 18px;
+        margin-right: 4px;
+      }
+    }
+  }
 }
 
 .header-content {
@@ -15,51 +58,9 @@ header {
 }
 
 .logo {
-  img {
+  &--img {
     width: 200px;
     height: 200px;
   }
 }
 
-.contact {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-
-  &-info {
-    text-align: right;
-
-    &--p {
-      margin: 2px 0;
-
-      &__title {
-        @include styled-title;
-        margin: 2px 0;
-      }
-
-      &__small {
-        font-size: 12px;
-        font-weight: bold;
-      }
-    }
-  }
-
-  &-banner {
-    padding: 4px 16px;
-    @include styled-border;
-
-    &__email {
-      font-style: italic;
-      text-decoration: underline;
-    }
-
-    &__phone {
-      font-weight: bold;
-    }
-
-    svg {
-      font-size: 18px;
-      margin-right: 4px;
-    }
-  }
-}
