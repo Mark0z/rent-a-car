@@ -17,4 +17,8 @@
       border: 2px solid $COLOR-ORANGE;
     }
   }
+
+  &--error {
+    color: $COLOR-RED;
+  }
 }

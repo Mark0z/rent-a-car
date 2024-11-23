@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import React from 'react';
 
 export const TextInput = React.forwardRef(
-  ({ name, textLabel, className, type = 'text', required = false, ...props }, ref) => {
+  ({ name, textLabel, className, type = 'text', errors, required = false, ...props }, ref) => {
     return (
       <div className="text-input">
         <label htmlFor={name} className="text-input--label">
@@ -18,6 +18,7 @@ export const TextInput = React.forwardRef(
           ref={ref}
           {...props}
         />
+        {errors && <span className="text-input--error">{errors.message}</span>}
       </div>
     );
   }
@@ -30,5 +31,6 @@ TextInput.propTypes = {
   textLabel: PropTypes.string,
   className: PropTypes.string,
   type: PropTypes.string,
+  errors: PropTypes.object,
   required: PropTypes.bool
 };
