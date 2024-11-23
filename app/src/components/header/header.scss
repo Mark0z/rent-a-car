@@ -41,7 +41,7 @@
         font-weight: bold;
       }
 
-      svg {
+      &__svg {
         font-size: 18px;
         margin-right: 4px;
       }
@@ -58,7 +58,7 @@
 }
 
 .logo {
-  img {
+  &--img {
     width: 200px;
     height: 200px;
   }

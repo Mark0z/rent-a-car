@@ -9,7 +9,7 @@ export const Header = () => {
     <header className="header">
       <div className="header-content">
         <a className="logo" href="/">
-          <img src={logo || ''} alt="" />
+          <img className="logo--img" src={logo || ''} alt="" />
         </a>
         <div className="header-contact">
           <div className="header-contact-info">
@@ -35,11 +35,11 @@ export const Header = () => {
           </div>
           <div className="header-contact-banner">
             <p className="header-contact-banner__email">
-              <CiMail />
+              <CiMail className="header-contact-banner__svg" />
               rentdrive@rentdrive.pl
             </p>
             <p className="header-contact-banner__phone">
-              <SlPhone />
+              <SlPhone className="header-contact-banner__svg" />
               +48 123 66 55 88
             </p>
           </div>
