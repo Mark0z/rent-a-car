@@ -1,10 +1,11 @@
-import './reservation-date-picker.scss';
+import './reservation-date-picker-form.scss';
 import { useForm } from 'react-hook-form';
 import { BRANCHES_LIST } from 'data/branches-companies';
 import { TextInput } from 'components/inputs/text-input/TextInput';
 import { SelectInput } from 'components/inputs/select-input/SelectInput';
+import { Button } from 'components/inputs/button/Button';
 
-export const ReservationDatePicker = () => {
+export const ReservationDatePickerForm = () => {
   const {
     register,
     handleSubmit,
@@ -25,7 +26,6 @@ export const ReservationDatePicker = () => {
         className="rent-a-car-form--input"
         type="date"
         errors={errors.startDate}
-        required
         {...register('startDate', { required: true })}
       />
       <SelectInput
@@ -42,7 +42,6 @@ export const ReservationDatePicker = () => {
         type="date"
         name="endDate"
         errors={errors.endDate}
-        required
         {...register('endDate', {
           required: true,
           min: {
@@ -61,7 +60,9 @@ export const ReservationDatePicker = () => {
         {...register('endAgencyName', { required: true })}
       />
 
-      <input className="rent-a-car-form--submit" type="submit" value="Rezerwuj" />
+      <Button className="rent-a-car-form--submit" type="submit" value="rezerwuj">
+        Rezerwuj
+      </Button>
     </form>
   );
 };
