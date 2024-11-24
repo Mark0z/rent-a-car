@@ -1,0 +1,9 @@
+.contact-mail-form {
+  display: flex;
+  flex-direction: column;
+
+  &__row {
+    display: inherit;
+    gap: 8px;
+  }
+}
