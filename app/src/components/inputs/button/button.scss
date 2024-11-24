@@ -1,0 +1,27 @@
+@import 'values/colors';
+
+.button{
+  text-align: center;
+  margin: 8px;
+
+  &-input {
+    color: $COLOR-WHITE;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    background: #C16A30;
+    background: linear-gradient(0deg, #C16A30 0%, #DF7B38 100%);
+    border: none;
+
+    &:hover {
+      background: #A45A29;
+      background: linear-gradient(0deg, #A45A29 0%, #DF7B38 100%);
+    }
+
+    &__submit {
+      margin-top: 16px;
+    }
+  }
+}
