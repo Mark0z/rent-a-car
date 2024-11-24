@@ -2,12 +2,12 @@ import './App.css';
 import { Main } from 'pages/main/Main';
 import { Header } from 'components/header/Header';
 import { Navbar } from 'components/navbar/Navbar';
-import { Slider } from 'components/slider/Slider';
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Rules } from 'pages/rules/Rules';
 import { Contact } from 'pages/contact/Contact';
 import { Footer } from 'components/footer/Footer';
+import { Cars } from 'pages/cars/Cars';
 
 function App() {
   return (
@@ -15,11 +15,12 @@ function App() {
       <div className="App">
         <Header />
         <Navbar />
-        <Slider />
         <Routes>
           <Route path="/" element={<Main />} />
+          <Route path="/cars" element={<Cars />} />
           <Route path="/rules" element={<Rules />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <Footer />
       </div>

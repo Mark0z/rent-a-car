@@ -1,11 +1,12 @@
 import './main.scss';
 import { Content } from 'components/content/Content';
 import { ContentBox } from 'components/content-box/ContentBox';
-import { ReservationDatePicker } from 'components/reservation-date-picker/ReservationDatePicker';
+import { ReservationDatePickerForm } from 'components/reservation-date-picker-form/ReservationDatePickerForm';
 import { AdvantagesList } from 'components/advantages-list/AdvantagesList';
 import { CarItem } from 'components/car-item/CarItem';
 import { Spinner } from 'components/spinner/Spinner';
 import { useAxios } from 'hooks/useAxios';
+import { Slider } from 'components/slider/Slider';
 
 export const Main = () => {
   const { loading, data, error } = useAxios({
@@ -15,10 +16,11 @@ export const Main = () => {
 
   return (
     <div className="main">
-      <Content className="main-content">
+      <Slider />
+      <Content isContentAbove={true} className="main-content">
         <div className="main-left">
           <ContentBox title="Rezerwuj samochód">
-            <ReservationDatePicker />
+            <ReservationDatePickerForm />
           </ContentBox>
           <ContentBox title="Zalety RentDrive">
             <AdvantagesList />
