@@ -2,8 +2,12 @@
 
 .content {
   width: 80%;
-  margin: -40px auto -20px auto;
+  margin: 0 auto;
   display: flex;
   gap: 4px;
   min-height: 500px;
+
+  &__covered {
+    margin: -40px auto -20px auto;
+  }
 }

@@ -1,6 +1,7 @@
 import './contact.scss';
 import { ContentBox } from 'components/content-box/ContentBox';
 import { Content } from 'components/content/Content';
+import { ContactMailForm } from 'components/contact-mail-form/ContactMailForm';
 
 export const Contact = () => {
   return (
@@ -12,8 +13,10 @@ export const Contact = () => {
           <a href="https://www.gps.ie/">gps systems</a>
         </iframe>
       </div>
-      <Content>
-        <ContentBox title="Kontakt" className="contact--content-box"></ContentBox>
+      <Content isContentAbove={true}>
+        <ContentBox title="Kontakt" className="contact--content-box">
+          <ContactMailForm />
+        </ContentBox>
       </Content>
     </div>
   );

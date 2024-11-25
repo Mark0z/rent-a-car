@@ -2,6 +2,7 @@ import { ComponentPreview, Previews } from '@react-buddy/ide-toolbox';
 import { PaletteTree } from './palette';
 import { CarItem } from 'components/car-item/CarItem';
 import { Spinner } from 'components/spinner/Spinner';
+import { Button } from 'components/inputs/button/Button';
 
 const ComponentPreviews = () => {
   return (
@@ -11,6 +12,9 @@ const ComponentPreviews = () => {
       </ComponentPreview>
       <ComponentPreview path="/Spinner">
         <Spinner />
+      </ComponentPreview>
+      <ComponentPreview path="/Button">
+        <Button />
       </ComponentPreview>
     </Previews>
   );

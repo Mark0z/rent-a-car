@@ -1,0 +1,22 @@
+@import 'values/mixins';
+@import 'values/colors';
+
+.text-area {
+  display: flex;
+  flex-direction: column;
+
+  &--label {
+    margin: 4px 0;
+  }
+
+  &--input {
+    @include styled-input;
+    min-height: 100px;
+    resize: vertical;
+
+    &:focus {
+      outline: none;
+      border: 2px solid $COLOR-ORANGE;
+    }
+  }
+}

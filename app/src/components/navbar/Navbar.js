@@ -17,9 +17,6 @@ export const Navbar = () => {
           <NavLink className="navbar-content--link" to="cars">
             Samochody
           </NavLink>
-          <NavLink className="navbar-content--link" to="price-list">
-            Cennik
-          </NavLink>
           <NavLink className="navbar-content--link" to="rules">
             Zasady wynajmu
           </NavLink>
