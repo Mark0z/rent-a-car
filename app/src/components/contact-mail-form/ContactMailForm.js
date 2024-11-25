@@ -3,40 +3,49 @@ import { useForm } from 'react-hook-form';
 import { TextInput } from 'components/inputs/text-input/TextInput';
 import { TextArea } from 'components/inputs/text-area/TextArea';
 import { Button } from 'components/inputs/button/Button';
+import { useRef, useState } from 'react';
+import ReCAPTCHA from 'react-google-recaptcha';
 import emailjs from 'emailjs-com';
-import { useRef } from 'react';
 
 export const ContactMailForm = () => {
-  const form = useRef();
+  const formRef = useRef();
+  const recaptchaRef = useRef(null);
+  const [isCaptchaSolved, setIsCaptchaSolved] = useState(true);
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm();
 
-  const onSubmit = (e) => {
-    console.log('data');
-    console.log(e);
+  const onSubmit = () => {
+    const captchaData = recaptchaRef.current.getValue();
+    setIsCaptchaSolved(true);
 
-    emailjs
-      .sendForm(
-        process.env.REACT_APP_EMAILJS_SERVICE_ID,
-        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
-        form.current,
-        process.env.REACT_APP_EMAILJS_PUBLIC_KEY
-      )
-      .then(
-        () => {
-          console.log('SUCCESS!');
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
+    if (captchaData) {
+      emailjs
+        .sendForm(
+          process.env.REACT_APP_EMAILJS_SERVICE_ID,
+          process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+          formRef.current,
+          process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+        )
+        .then(
+          () => {
+            alert('Wiadomość wysłana!');
+            console.log('SUCCESS!');
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
+      recaptchaRef.current.reset();
+    } else {
+      setIsCaptchaSolved(false);
+    }
   };
 
   return (
-    <form ref={form} className="contact-mail-form" onSubmit={handleSubmit(onSubmit)}>
+    <form ref={formRef} className="contact-mail-form" onSubmit={handleSubmit(onSubmit)}>
       <div className="contact-mail-form__row">
         <TextInput
           className="contact-mail-form--input"
@@ -81,6 +90,14 @@ export const ContactMailForm = () => {
         errors={errors.textarea}
         {...register('textarea', { required: true })}
       />
+      <div className="contact-mail-form--captcha">
+        <ReCAPTCHA sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY} ref={recaptchaRef} />
+        {!isCaptchaSolved && (
+          <p className="contact-mail-form--captcha__error">
+            Aby kontynuować, rozwiąż proszę CAPTCHA
+          </p>
+        )}
+      </div>
       <Button className="contact-mail-form--submit" type="submit">
         Wyślij
       </Button>
