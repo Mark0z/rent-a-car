@@ -1,23 +1,42 @@
-import 'components/contact-mail-form/contact-mail-form.scss';
+import './contact-mail-form.scss';
 import { useForm } from 'react-hook-form';
 import { TextInput } from 'components/inputs/text-input/TextInput';
 import { TextArea } from 'components/inputs/text-area/TextArea';
 import { Button } from 'components/inputs/button/Button';
+import emailjs from 'emailjs-com';
+import { useRef } from 'react';
 
 export const ContactMailForm = () => {
+  const form = useRef();
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = (e) => {
     console.log('data');
-    console.log(data);
+    console.log(e);
+
+    emailjs
+      .sendForm(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+        form.current,
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+      )
+      .then(
+        () => {
+          console.log('SUCCESS!');
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
   };
 
   return (
-    <form className="contact-mail-form" onSubmit={handleSubmit(onSubmit)}>
+    <form ref={form} className="contact-mail-form" onSubmit={handleSubmit(onSubmit)}>
       <div className="contact-mail-form__row">
         <TextInput
           className="contact-mail-form--input"
@@ -41,7 +60,7 @@ export const ContactMailForm = () => {
           textLabel="Telefon"
           type="tel"
           placeholder="123-456-789"
-          pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}"
+          pattern="[0-9]{9,11}"
           errors={errors.telephone}
           {...register('telephone', { required: true })}
         />
