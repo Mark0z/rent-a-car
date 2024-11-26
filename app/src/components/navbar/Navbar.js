@@ -25,7 +25,7 @@ export const Navbar = () => {
             Kontakt
           </NavLink>
         </div>
-        <NavLink className={clsx('navbar-content--link', 'navbar-content--link__icon')} to="login">
+        <NavLink className={clsx('navbar-content--link', 'navbar-content--link__icon')} to="auth">
           <IoMdLogIn />
         </NavLink>
       </div>

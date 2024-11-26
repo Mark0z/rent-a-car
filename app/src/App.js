@@ -21,7 +21,7 @@ function App() {
           <Route path="/cars" element={<Cars />} />
           <Route path="/rules" element={<Rules />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/login" element={<Auth />} />
+          <Route path="/auth" element={<Auth />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <Footer />

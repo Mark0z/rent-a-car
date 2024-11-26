@@ -68,7 +68,7 @@ export const ContactMailForm = () => {
           name="telephone"
           textLabel="Telefon"
           type="tel"
-          placeholder="123-456-789"
+          placeholder="123456789"
           pattern="[0-9]{9,11}"
           errors={errors.telephone}
           {...register('telephone', { required: true })}

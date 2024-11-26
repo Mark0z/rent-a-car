@@ -16,6 +16,10 @@
       outline: none;
       border: 2px solid $COLOR-ORANGE;
     }
+
+    &__medium {
+      font-size: x-large;
+    }
   }
 
   &--error {

@@ -27,14 +27,17 @@ export const LoginForm = ({ setIsLoginPage }) => {
       <TextInput
         className="login-form--input"
         name="username"
-        textLabel="Username"
+        textLabel="Nazwa użytkownika"
+        size="medium"
         errors={errors.username}
         {...register('username', { required: true })}
       />
       <TextInput
         className="login-form--input"
         name="password"
-        textLabel="Password"
+        textLabel="Hasło"
+        size="medium"
+        type="password"
         errors={errors.password}
         {...register('password', { required: true })}
       />

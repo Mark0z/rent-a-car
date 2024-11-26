@@ -29,6 +29,7 @@ export const RegisterForm = ({ setIsLoginPage }) => {
         name="email"
         textLabel="Email"
         type="email"
+        size="medium"
         errors={errors.email}
         {...register('email', { required: true })}
       />
@@ -36,6 +37,7 @@ export const RegisterForm = ({ setIsLoginPage }) => {
         className="register-form--input"
         name="username"
         textLabel="Nazwa użytkownika"
+        size="medium"
         errors={errors.username}
         {...register('username', { required: true })}
       />
@@ -44,6 +46,7 @@ export const RegisterForm = ({ setIsLoginPage }) => {
         name="password"
         type="password"
         textLabel="Hasło"
+        size="medium"
         errors={errors.password}
         {...register('password', { required: true })}
       />
@@ -51,6 +54,7 @@ export const RegisterForm = ({ setIsLoginPage }) => {
         className="register-form--input"
         name="firstName"
         textLabel="Imię"
+        size="medium"
         errors={errors.firstName}
         {...register('firstName', { required: true })}
       />
@@ -58,6 +62,7 @@ export const RegisterForm = ({ setIsLoginPage }) => {
         className="register-form--input"
         name="lastName"
         textLabel="Nazwisko"
+        size="medium"
         errors={errors.lastName}
         {...register('lastName', { required: true })}
       />
@@ -66,8 +71,9 @@ export const RegisterForm = ({ setIsLoginPage }) => {
         name="phone"
         textLabel="Telefon"
         type="tel"
-        placeholder="123-456-789"
+        placeholder="123456789"
         pattern="[0-9]{9,11}"
+        size="medium"
         errors={errors.phone}
         {...register('phone', { required: true })}
       />
