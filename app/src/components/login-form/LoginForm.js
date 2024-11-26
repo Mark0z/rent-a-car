@@ -28,7 +28,7 @@ export const LoginForm = ({ setIsLoginPage }) => {
         className="login-form--input"
         name="username"
         textLabel="Nazwa użytkownika"
-        size="medium"
+        mediumSize
         errors={errors.username}
         {...register('username', { required: true })}
       />
@@ -36,15 +36,15 @@ export const LoginForm = ({ setIsLoginPage }) => {
         className="login-form--input"
         name="password"
         textLabel="Hasło"
-        size="medium"
         type="password"
         errors={errors.password}
+        mediumSize
         {...register('password', { required: true })}
       />
       <Button className="login-form--button" type="submit">
         Zaloguj
       </Button>
-      <p>
+      <p className="login-form--p">
         Nie masz konta?
         <b onClick={() => setIsLoginPage(false)} className="login-form--link">
           Zarejestruj się

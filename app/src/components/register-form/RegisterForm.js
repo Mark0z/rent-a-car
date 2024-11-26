@@ -29,7 +29,7 @@ export const RegisterForm = ({ setIsLoginPage }) => {
         name="email"
         textLabel="Email"
         type="email"
-        size="medium"
+        mediumSize
         errors={errors.email}
         {...register('email', { required: true })}
       />
@@ -37,7 +37,7 @@ export const RegisterForm = ({ setIsLoginPage }) => {
         className="register-form--input"
         name="username"
         textLabel="Nazwa użytkownika"
-        size="medium"
+        mediumSize
         errors={errors.username}
         {...register('username', { required: true })}
       />
@@ -46,7 +46,7 @@ export const RegisterForm = ({ setIsLoginPage }) => {
         name="password"
         type="password"
         textLabel="Hasło"
-        size="medium"
+        mediumSize
         errors={errors.password}
         {...register('password', { required: true })}
       />
@@ -54,7 +54,7 @@ export const RegisterForm = ({ setIsLoginPage }) => {
         className="register-form--input"
         name="firstName"
         textLabel="Imię"
-        size="medium"
+        mediumSize
         errors={errors.firstName}
         {...register('firstName', { required: true })}
       />
@@ -62,7 +62,7 @@ export const RegisterForm = ({ setIsLoginPage }) => {
         className="register-form--input"
         name="lastName"
         textLabel="Nazwisko"
-        size="medium"
+        mediumSize
         errors={errors.lastName}
         {...register('lastName', { required: true })}
       />
@@ -73,7 +73,7 @@ export const RegisterForm = ({ setIsLoginPage }) => {
         type="tel"
         placeholder="123456789"
         pattern="[0-9]{9,11}"
-        size="medium"
+        mediumSize
         errors={errors.phone}
         {...register('phone', { required: true })}
       />
@@ -81,9 +81,9 @@ export const RegisterForm = ({ setIsLoginPage }) => {
       <Button className="register-form--button" type="submit">
         Zarejestruj
       </Button>
-      <p>
+      <p className="register-form--p">
         Masz już konto?
-        <b onClick={() => setIsLoginPage(true)} className="login-form--link">
+        <b onClick={() => setIsLoginPage(true)} className="register-form--link">
           Zaloguj się
         </b>
       </p>

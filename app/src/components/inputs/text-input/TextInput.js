@@ -4,7 +4,10 @@ import clsx from 'clsx';
 import React from 'react';
 
 export const TextInput = React.forwardRef(
-  ({ name, textLabel, className, type = 'text', errors, required = true, size, ...props }, ref) => {
+  (
+    { name, textLabel, className, type = 'text', errors, required = true, mediumSize, ...props },
+    ref
+  ) => {
     return (
       <div className="text-input">
         <label htmlFor={name} className="text-input--label">
@@ -14,7 +17,7 @@ export const TextInput = React.forwardRef(
           className={clsx(
             'text-input--input',
             className,
-            size === 'medium' && 'text-input--input__medium'
+            mediumSize && 'text-input--input__medium'
           )}
           type={type}
           name={name}
@@ -36,6 +39,6 @@ TextInput.propTypes = {
   className: PropTypes.string,
   type: PropTypes.string,
   errors: PropTypes.object,
-  size: PropTypes.string,
+  mediumSize: PropTypes.bool,
   required: PropTypes.bool
 };

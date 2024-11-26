@@ -1,7 +1,12 @@
 .register-form {
+  &--p {
+    text-align: center;
+  }
+
   &--link {
     color: darkblue;
     font-style: italic;
     cursor: pointer;
+    margin-left: 4px;
   }
 }
