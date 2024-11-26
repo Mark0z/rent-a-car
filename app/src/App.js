@@ -8,6 +8,7 @@ import { Rules } from 'pages/rules/Rules';
 import { Contact } from 'pages/contact/Contact';
 import { Footer } from 'components/footer/Footer';
 import { Cars } from 'pages/cars/Cars';
+import { Auth } from 'pages/auth/Auth';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/cars" element={<Cars />} />
           <Route path="/rules" element={<Rules />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/auth" element={<Auth />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <Footer />

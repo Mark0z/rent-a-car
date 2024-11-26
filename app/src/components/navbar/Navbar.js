@@ -2,6 +2,7 @@ import './navbar.scss';
 import { FaHome } from 'react-icons/fa';
 import { IoMdLogIn } from 'react-icons/io';
 import { NavLink } from 'react-router-dom';
+import clsx from 'clsx';
 
 export const Navbar = () => {
   return (
@@ -24,9 +25,9 @@ export const Navbar = () => {
             Kontakt
           </NavLink>
         </div>
-        <div className="navbar-content--link navbar-content--link__icon">
+        <NavLink className={clsx('navbar-content--link', 'navbar-content--link__icon')} to="auth">
           <IoMdLogIn />
-        </div>
+        </NavLink>
       </div>
     </nav>
   );
