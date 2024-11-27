@@ -6,6 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +35,10 @@ public class CarService {
     public List<Car> getTopNCarsWithMostReservations(Integer limit) {
         Pageable pageable = PageRequest.of(0, limit);
         return carRepository.findCarWithMostReservations(pageable);
+    }
+
+    public List<Car> getAvailableCars(Timestamp startDate, Timestamp endDate) {
+        return carRepository.findAvailableCars(startDate, endDate);
     }
 
     public Car saveCar(Car car) {

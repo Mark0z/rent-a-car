@@ -6,6 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +37,22 @@ public class CarController {
     public ResponseEntity<Car> getCarById(@PathVariable Long id) {
         Optional<Car> selectedCar = carService.getCarById(id);
         return selectedCar.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/available")
+    public List<Car> getAvailableCars(@RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate) {
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date parsedStartDate = dateFormat.parse(startDate);
+            Date parsedEndDate = dateFormat.parse(endDate);
+            Timestamp timestampStartDate = new java.sql.Timestamp(parsedStartDate.getTime());
+            Timestamp timestampEndDate = new java.sql.Timestamp(parsedEndDate.getTime());
+
+            return carService.getAvailableCars(timestampStartDate, timestampEndDate);
+        } catch (Exception e) { //this generic but you can control another types of exception
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 
     @PostMapping("/")
