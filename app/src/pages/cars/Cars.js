@@ -63,6 +63,7 @@ export const Cars = () => {
                 <input
                   type="checkbox"
                   value={type}
+                  id={type}
                   name={type}
                   {...register('transmissionTypes')}
                 />

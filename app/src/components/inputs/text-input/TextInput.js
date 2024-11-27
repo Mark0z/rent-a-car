@@ -17,10 +17,12 @@ export const TextInput = React.forwardRef(
           className={clsx(
             'text-input--input',
             className,
-            mediumSize && 'text-input--input__medium'
+            mediumSize && 'text-input--input__medium',
+            errors && 'text-input--input__error'
           )}
           type={type}
           name={name}
+          id={name}
           required={required}
           ref={ref}
           {...props}
