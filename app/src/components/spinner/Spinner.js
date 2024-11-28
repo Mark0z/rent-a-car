@@ -1,3 +1,4 @@
+import './spinner.scss';
 import { BounceLoader } from 'react-spinners';
 import PropTypes from 'prop-types';
 
