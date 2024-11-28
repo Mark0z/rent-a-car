@@ -14,7 +14,7 @@ export const ReservationCarPicker = () => {
   return (
     <div className="reservation-car-picker">
       {loading ? <Spinner /> : <TableOfCars carList={data} />}
-      {error && <p>{error}</p>}
+      {error && <p>{error.message}</p>}
     </div>
   );
 };

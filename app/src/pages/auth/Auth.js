@@ -12,11 +12,11 @@ export const Auth = () => {
     <div className="auth">
       <Content className="auth-content">
         {isLoginPage ? (
-          <ContentBox className="auth-content-box" title="Login" center>
+          <ContentBox className="auth-content-box" title="Logowanie" center>
             <LoginForm setIsLoginPage={setIsLoginPage} />
           </ContentBox>
         ) : (
-          <ContentBox className="auth-content-box" title="Register" center>
+          <ContentBox className="auth-content-box" title="Rejestracja" center>
             <RegisterForm setIsLoginPage={setIsLoginPage} />
           </ContentBox>
         )}
