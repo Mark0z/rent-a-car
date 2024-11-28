@@ -82,7 +82,6 @@ export const Reservation = () => {
                   </h5>
                 </>
               )}
-
               <p>Counter {storedState.reservationFormStep}</p>
             </div>
           </ContentBox>

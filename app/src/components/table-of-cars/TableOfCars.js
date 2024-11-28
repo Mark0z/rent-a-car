@@ -29,7 +29,7 @@ export const TableOfCars = ({ carList = mockedCar, ...props }) => {
     return Math.round(pricePerDay * useCountDaysOfReservation(state.data));
   }
 
-  function handleOnClick({ id, model, brand, pricePerDay }) {
+  function handleOnCarSelect({ id, model, brand, pricePerDay }) {
     actions.updateAction({
       id: id,
       model: model,
@@ -45,7 +45,7 @@ export const TableOfCars = ({ carList = mockedCar, ...props }) => {
         <div className="car-list-item" key={car.id}>
           <div className="car-list-item--left">
             <img className="car-list-item--left--image" src={carImg} alt="" />
-            <Button onClick={() => handleOnClick(car)} className="car-list-item--left--button">
+            <Button onClick={() => handleOnCarSelect(car)} className="car-list-item--left--button">
               wybieram
             </Button>
           </div>
