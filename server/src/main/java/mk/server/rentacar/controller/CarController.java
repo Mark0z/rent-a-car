@@ -36,6 +36,12 @@ public class CarController {
         return selectedCar.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/available")
+    public ResponseEntity<List<Car>> getAvailableCars(@RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate) {
+        List<Car> availableCars = carService.getAvailableCars(startDate, endDate);
+        return new ResponseEntity<>(availableCars, HttpStatus.FOUND);
+    }
+
     @PostMapping("/")
     public ResponseEntity<Car> addCar(@RequestBody Car car) {
         Car savedCarList = carService.saveCar(car);

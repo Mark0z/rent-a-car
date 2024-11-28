@@ -6,6 +6,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +38,19 @@ public class CarService {
     public List<Car> getTopNCarsWithMostReservations(Integer limit) {
         Pageable pageable = PageRequest.of(0, limit);
         return carRepository.findCarWithMostReservations(pageable);
+    }
+
+    public List<Car> getAvailableCars(String startDate, String endDate) {
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date parsedStartDate = dateFormat.parse(startDate);
+            Date parsedEndDate = dateFormat.parse(endDate);
+            Timestamp timestampStartDate = new java.sql.Timestamp(parsedStartDate.getTime());
+            Timestamp timestampEndDate = new java.sql.Timestamp(parsedEndDate.getTime());
+            return carRepository.findAvailableCars(timestampStartDate, timestampEndDate);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public Car saveCar(Car car) {
