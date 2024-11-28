@@ -20,6 +20,10 @@
     &__medium {
       font-size: x-large;
     }
+
+    &__error {
+      border: 2px solid $COLOR-RED;
+    }
   }
 
   &--error {

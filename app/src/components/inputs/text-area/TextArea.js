@@ -13,6 +13,7 @@ export const TextArea = React.forwardRef(
         <textarea
           className={clsx('text-area--input', className)}
           name={name}
+          id={name}
           required={required}
           ref={ref}
           {...props}

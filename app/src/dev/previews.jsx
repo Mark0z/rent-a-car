@@ -3,6 +3,7 @@ import { PaletteTree } from './palette';
 import { CarItem } from 'components/car-item/CarItem';
 import { Spinner } from 'components/spinner/Spinner';
 import { Button } from 'components/inputs/button/Button';
+import { TableOfCars } from 'components/table-of-cars/TableOfCars';
 
 const ComponentPreviews = () => {
   return (
@@ -15,6 +16,9 @@ const ComponentPreviews = () => {
       </ComponentPreview>
       <ComponentPreview path="/Button">
         <Button />
+      </ComponentPreview>
+      <ComponentPreview path="/TableOfCars">
+        <TableOfCars />
       </ComponentPreview>
     </Previews>
   );

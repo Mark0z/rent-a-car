@@ -43,8 +43,9 @@
       }
 
       &.active {
-        background-color: $COLOR-SAGE;
-        color: $COLOR-ORANGE;
+        background: $COLOR-RUSTY-ORANGE;
+        background: linear-gradient(0deg, $COLOR-RUSTY-ORANGE 0%, $COLOR-ORANGE 100%);
+        color: $COLOR-WHITE;
       }
     }
   }

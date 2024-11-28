@@ -15,6 +15,7 @@ export const SelectInput = React.forwardRef(
         </label>
         <select
           name={name}
+          id={name}
           className={clsx('select-input--select', className)}
           defaultValue={'default'}
           required={required}

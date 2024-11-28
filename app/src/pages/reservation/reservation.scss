@@ -1,0 +1,34 @@
+@import "values/colors";
+
+.reservation {
+
+  &--content-box {
+
+    &--h5 {
+      margin: 4px 0;
+      color: $COLOR-ORANGE;
+      cursor: pointer;
+    }
+
+    &--info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &--h4 {
+      margin: 0;
+    }
+
+    &--p {
+      margin: 4px 0;
+    }
+  }
+
+  &--content-left {
+    flex: 3;
+  }
+
+  &--content-right {
+    flex: 1;
+  }
+}
