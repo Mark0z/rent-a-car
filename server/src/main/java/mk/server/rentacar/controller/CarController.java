@@ -37,8 +37,9 @@ public class CarController {
     }
 
     @GetMapping("/available")
-    public List<Car> getAvailableCars(@RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate) {
-        return carService.getAvailableCars(startDate, endDate);
+    public ResponseEntity<List<Car>> getAvailableCars(@RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate) {
+        List<Car> availableCars = carService.getAvailableCars(startDate, endDate);
+        return new ResponseEntity<>(availableCars, HttpStatus.FOUND);
     }
 
     @PostMapping("/")
