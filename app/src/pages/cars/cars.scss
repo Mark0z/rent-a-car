@@ -1,3 +1,5 @@
+@import "values/colors";
+
 .cars {
   &--content-box {
     width: 100%;
@@ -6,6 +8,22 @@
   &--filters {
     display: inline-flex;
     align-items: center;
+    justify-content: space-around;
     width: 100%;
+
+    &--container {
+      display: inline-flex;
+    }
+
+    &--price {
+      background: none;
+      color: $COLOR-BLACK;
+      font-size: 16px;
+      font-weight: 500;
+
+      &:hover {
+        background: none;
+      }
+    }
   }
 }

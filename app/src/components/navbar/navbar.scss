@@ -32,6 +32,7 @@
       font-size: 18px;
 
       &:hover {
+        transition: all 0.3s ease;
         background: $COLOR-RUSTY-ORANGE;
         background: linear-gradient(0deg, $COLOR-RUSTY-ORANGE 0%, $COLOR-ORANGE 100%);
         color: $COLOR-WHITE;
