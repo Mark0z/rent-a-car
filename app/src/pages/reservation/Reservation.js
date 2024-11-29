@@ -55,7 +55,7 @@ export const Reservation = () => {
                     {storedState.endAgencyName}
                   </p>
                   <h5 className="reservation--content-box--h5" onClick={() => handleChangeDate()}>
-                    popraw
+                    zmiana daty wynajmu
                   </h5>
                 </>
               )}
@@ -78,7 +78,7 @@ export const Reservation = () => {
                         brand: ''
                       })
                     }>
-                    popraw
+                    zmiana samochodu
                   </h5>
                 </>
               )}
