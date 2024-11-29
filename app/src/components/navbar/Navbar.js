@@ -12,7 +12,7 @@ export const Navbar = () => {
           <NavLink className="navbar-content--link navbar-content--link__icon" to="/">
             <FaHome />
           </NavLink>
-          <NavLink className="navbar-content--link" to="rent-a-car">
+          <NavLink className="navbar-content--link" to="reservation">
             Rezerwuj samochód
           </NavLink>
           <NavLink className="navbar-content--link" to="cars">

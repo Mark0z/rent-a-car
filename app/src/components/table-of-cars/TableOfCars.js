@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Button } from 'components/inputs/button/Button';
 import { useStateMachine } from 'little-state-machine';
 import carImg from 'assets/mistery-car.jpg';
-import { useCountDaysOfReservation } from 'hooks/useCountDaysOfReservation';
 import { updateAction } from 'utils/updateAction';
+import { useCountTotalAmount } from 'hooks/useCountTotalAmount';
 
 const mockedCar = [
   {
@@ -23,13 +23,9 @@ const mockedCar = [
 ];
 
 export const TableOfCars = ({ carList = mockedCar, ...props }) => {
-  const { state, actions } = useStateMachine({ updateAction });
+  const { actions } = useStateMachine({ updateAction });
 
-  function useCountTotalAmount(pricePerDay) {
-    return Math.round(pricePerDay * useCountDaysOfReservation(state.data));
-  }
-
-  function handleOnCarSelect({ id, model, brand, pricePerDay }) {
+  const handleOnCarSelect = ({ id, model, brand, pricePerDay }) => {
     actions.updateAction({
       id: id,
       model: model,
@@ -37,7 +33,7 @@ export const TableOfCars = ({ carList = mockedCar, ...props }) => {
       pricePerDay: pricePerDay,
       reservationFormStep: 3
     });
-  }
+  };
 
   return (
     <div className="table-of-cars" {...props}>
