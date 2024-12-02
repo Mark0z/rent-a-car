@@ -5,10 +5,11 @@ import { Spinner } from 'components/spinner/Spinner';
 import { ContentBox } from 'components/content-box/ContentBox';
 import { CarItem } from 'components/car-item/CarItem';
 import React, { useEffect, useState } from 'react';
-import { FaArrowDown, FaArrowUp } from 'react-icons/fa';
 import { sortArray } from 'utils/sortArray';
 import { useForm } from 'react-hook-form';
 import { Button } from 'components/inputs/button/Button';
+import { HorizontalDropdown } from 'components/hotizontal-dropdown/HorizontalDropdown';
+import { BiSolidDownArrow, BiSolidUpArrow } from 'react-icons/bi';
 
 const filters = {
   transmissionTypes: ['AUTOMATIC', 'MANUAL'],
@@ -58,26 +59,22 @@ export const Cars = () => {
       <Content>
         <ContentBox title="Samochody" className="cars--content-box" center>
           <div className="cars--filters">
-            {filters.transmissionTypes.map((type, index) => (
-              <div key={index}>
-                <input
-                  type="checkbox"
-                  value={type}
-                  id={type}
-                  name={type}
-                  {...register('transmissionTypes')}
-                />
-                <label htmlFor={type}>{type}</label>
-              </div>
-            ))}
-            {filters.fuelTypes.map((type, index) => (
-              <div key={index}>
-                <input type="checkbox" value={type} name={type} {...register('fuelTypes')} />
-                <label htmlFor={type}>{type}</label>
-              </div>
-            ))}
-            <Button onClick={() => handSortByPrice()}>
-              Cena {isSortByPrice ? <FaArrowUp /> : <FaArrowDown />}
+            <div className="cars--filters--container">
+              <HorizontalDropdown
+                array={filters.fuelTypes}
+                value="fuelTypes"
+                title="Silnik"
+                register={register}
+              />
+              <HorizontalDropdown
+                array={filters.transmissionTypes}
+                value="transmissionTypes"
+                title="Skrzynia biegów"
+                register={register}
+              />
+            </div>
+            <Button onClick={() => handSortByPrice()} className="cars--filters--price">
+              Cena {isSortByPrice ? <BiSolidUpArrow /> : <BiSolidDownArrow />}
             </Button>
           </div>
           {!loading ? (

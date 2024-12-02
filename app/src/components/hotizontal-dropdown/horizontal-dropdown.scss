@@ -1,0 +1,70 @@
+@import "values/colors";
+
+ol {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+ol > li {
+  cursor: default;
+  position: relative;
+  display: inline-block;
+  width: 150px;
+  margin-left: 1px;
+  color: $COLOR-BLACK;
+  font-weight: 500;
+  height: 2em;
+  line-height: 2em;
+}
+
+ol > li:hover > ul {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: $COLOR-BEIGE;
+  border: 2px solid $COLOR-ORANGE;
+  border-radius: 4px;
+  z-index: 10;
+  width: 100%;
+}
+
+ol > li > ul {
+  cursor: pointer;
+  display: none;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  text-align: start;
+}
+
+ol > li > ul > li {
+  padding: 8px;
+}
+
+ol > li > ul > li:hover {
+  transition: all 0.1s ease;
+  background-color: $COLOR-ORANGE;
+  color: $COLOR-BEIGE;
+}
+
+.checkbox {
+  &--label {
+    cursor: pointer;
+  }
+
+  &--input {
+    cursor: pointer;
+    accent-color: $COLOR-ORANGE;
+    color: white;
+    transform: scale(1.2);
+  }
+}

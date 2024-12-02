@@ -1,4 +1,5 @@
 @import 'values/colors';
+@import 'values/mixins';
 
 .button{
   text-align: center;
@@ -18,6 +19,19 @@
     &:hover {
       background: $COLOR-SUNNY-COPPER;
       background: linear-gradient(0deg, $COLOR-SUNNY-COPPER 0%, $COLOR-ORANGE 100%);
+    }
+
+    &--secondary {
+      color: $COLOR-ORANGE;
+      font-weight: 600;
+      @include styled-border;
+      background: none;
+
+      &:hover {
+        color: white;
+        background: $COLOR-SUNNY-COPPER;
+        background: linear-gradient(0deg, $COLOR-SUNNY-COPPER 0%, $COLOR-ORANGE 100%);
+      }
     }
 
     &__submit {
