@@ -5,7 +5,7 @@ import { TextArea } from 'components/inputs/text-area/TextArea';
 import { Button } from 'components/inputs/button/Button';
 import { useRef, useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
-import emailjs from 'emailjs-com';
+import { sendMail } from 'utils/sendMail';
 
 export const ContactMailForm = () => {
   const formRef = useRef();
@@ -22,22 +22,7 @@ export const ContactMailForm = () => {
     setIsCaptchaSolved(true);
 
     if (captchaData) {
-      emailjs
-        .sendForm(
-          process.env.REACT_APP_EMAILJS_SERVICE_ID,
-          process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
-          formRef.current,
-          process.env.REACT_APP_EMAILJS_PUBLIC_KEY
-        )
-        .then(
-          () => {
-            alert('Wiadomość wysłana!');
-            console.log('SUCCESS!');
-          },
-          (error) => {
-            console.log(error.text);
-          }
-        );
+      sendMail(formRef.current);
       recaptchaRef.current.reset();
     } else {
       setIsCaptchaSolved(false);

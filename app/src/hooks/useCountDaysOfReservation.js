@@ -1,8 +1,12 @@
-export const useCountDaysOfReservation = (storedDate) => {
-  const startDate = new Date(storedDate.startDate);
-  const endDate = new Date(storedDate.endDate);
+export const useCountDaysOfReservation = ({ startDate, endDate }) => {
+  const start = setFormattedDate(startDate);
+  const end = setFormattedDate(endDate);
 
   const oneDay = 1000 * 60 * 60 * 24;
 
-  return Math.round((endDate - startDate) / oneDay) || null;
+  return Math.round((end - start) / oneDay) || null;
+};
+
+const setFormattedDate = (date) => {
+  return new Date(date.slice(0, 10));
 };

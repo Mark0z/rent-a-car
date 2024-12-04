@@ -27,7 +27,7 @@ export const TableOfCars = ({ carList = mockedCar, ...props }) => {
 
   const handleOnCarSelect = ({ id, model, brand, pricePerDay }) => {
     actions.updateAction({
-      id: id,
+      carId: id,
       model: model,
       brand: brand,
       pricePerDay: pricePerDay,
