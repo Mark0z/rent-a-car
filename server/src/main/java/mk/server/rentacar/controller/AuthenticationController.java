@@ -39,9 +39,12 @@ public class AuthenticationController {
         return authenticationService.login(username, password)
                 .map(user -> {
                     Map<String, String> response = new HashMap<>();
-                    response.put("message", "Login successful");
                     response.put("username", user.getUsername());
-                    response.put("user_role", user.getRole());
+                    response.put("firstName", user.getFirstName());
+                    response.put("lastName", user.getLastName());
+                    response.put("email", user.getEmail());
+                    response.put("phone", user.getPhone());
+                    response.put("userId", String.valueOf(user.getId()));
 
                     return ResponseEntity.ok(response);
                 })
