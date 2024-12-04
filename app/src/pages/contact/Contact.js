@@ -14,7 +14,7 @@ export const Contact = () => {
         </iframe>
       </div>
       <Content isContentAbove={true}>
-        <ContentBox title="Kontakt" className="contact--content-box">
+        <ContentBox title="Kontakt" className="contact--content-box" center>
           <ContactMailForm />
         </ContentBox>
       </Content>

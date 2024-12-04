@@ -2,26 +2,16 @@
 
 .reservation {
 
-  &--content-box {
+  &--form {
+    background-color: $COLOR-WHITE;
+  }
 
-    &--h5 {
-      margin: 4px 0;
-      color: $COLOR-ORANGE;
-      cursor: pointer;
-    }
-
-    &--info {
-      display: flex;
-      flex-direction: column;
-    }
-
-    &--h4 {
-      margin: 0;
-    }
-
-    &--p {
-      margin: 4px 0;
-    }
+  &--captcha{
+    margin-top: 16px;
+    display: inline-flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
   }
 
   &--content-left {
@@ -29,6 +19,6 @@
   }
 
   &--content-right {
-    flex: 1;
+    min-width: 300px;
   }
 }

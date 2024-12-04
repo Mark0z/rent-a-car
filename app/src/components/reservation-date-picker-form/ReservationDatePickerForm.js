@@ -6,8 +6,9 @@ import { SelectInput } from 'components/inputs/select-input/SelectInput';
 import { Button } from 'components/inputs/button/Button';
 import { useStateMachine } from 'little-state-machine';
 import { updateAction } from 'utils/updateAction';
-import useFormPersist from 'react-hook-form-persist';
 import { useNavigate } from 'react-router-dom';
+import useFormPersist from 'react-hook-form-persist';
+import { pickedCarState } from 'data/little-state-machine-default-state';
 
 export const ReservationDatePickerForm = () => {
   const { actions } = useStateMachine({ updateAction });
@@ -16,8 +17,8 @@ export const ReservationDatePickerForm = () => {
     register,
     handleSubmit,
     watch,
-    setValue,
     reset,
+    setValue,
     formState: { errors }
   } = useForm();
 
@@ -25,9 +26,16 @@ export const ReservationDatePickerForm = () => {
 
   const onSubmit = (data) => {
     actions.updateAction(data);
+    actions.updateAction(pickedCarState);
     actions.updateAction({ reservationFormStep: 2 });
     reset();
     navigate('/reservation');
+  };
+
+  const validateEndDate = (startDate) => {
+    const date = new Date(startDate);
+    date.setDate(date.getDate() + 1);
+    return date.toISOString().split('T')[0] + 'T00:00';
   };
 
   return (
@@ -36,10 +44,10 @@ export const ReservationDatePickerForm = () => {
         textLabel="Data odbioru:"
         name="startDate"
         className="rent-a-car-form--input"
-        type="date"
-        min={new Date().toJSON().slice(0, 10)}
+        type="datetime-local"
+        min={new Date().toJSON().slice(0, 16)}
         errors={errors.startDate}
-        {...register('startDate', { required: true, min: new Date().toJSON().slice(0, 10) })}
+        {...register('startDate', { required: true, min: new Date().toJSON().slice(0, 16) })}
       />
       <SelectInput
         className="rent-a-car-form--input"
@@ -52,14 +60,14 @@ export const ReservationDatePickerForm = () => {
       />
       <TextInput
         textLabel="Data zwrotu:"
-        type="date"
+        type="datetime-local"
         name="endDate"
-        min={watch('startDate')}
+        min={validateEndDate(watch('startDate') || 0)}
         errors={errors.endDate}
         {...register('endDate', {
           required: true,
           min: {
-            value: watch('startDate'),
+            value: validateEndDate(watch('startDate') || 0),
             message: 'Błędna data zwrotu'
           }
         })}

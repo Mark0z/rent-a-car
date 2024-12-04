@@ -25,6 +25,10 @@
       display: inline-block;
     }
 
+    &--logged {
+      display: inline-flex;
+    }
+
     &--link {
       padding: 0 10px;
       text-align: center;
@@ -33,19 +37,20 @@
 
       &:hover {
         transition: all 0.3s ease;
-        background: $COLOR-RUSTY-ORANGE;
-        background: linear-gradient(0deg, $COLOR-RUSTY-ORANGE 0%, $COLOR-ORANGE 100%);
+        background: $COLOR-SUNNY-COPPER;
+        background: linear-gradient(0deg, $COLOR-SUNNY-COPPER 0%, $COLOR-ORANGE 100%);
         color: $COLOR-WHITE;
       }
 
       &__icon {
         width: 50px;
         font-size: 18px;
+        cursor: pointer;
       }
 
       &.active {
-        background: $COLOR-RUSTY-ORANGE;
-        background: linear-gradient(0deg, $COLOR-RUSTY-ORANGE 0%, $COLOR-ORANGE 100%);
+        background: $COLOR-SUNNY-COPPER;
+        background: linear-gradient(0deg, $COLOR-SUNNY-COPPER 0%, $COLOR-ORANGE 100%);
         color: $COLOR-WHITE;
       }
     }
