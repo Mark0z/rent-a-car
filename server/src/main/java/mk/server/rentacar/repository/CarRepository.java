@@ -18,7 +18,7 @@ public interface CarRepository extends JpaRepository<Car, Long> {
     @Query("""
              SELECT c
              FROM Car c
-             WHERE c.id IN (
+             WHERE c.id NOT IN (
                  SELECT r.car.id
                  FROM Reservation r
                  WHERE (:startDate BETWEEN r.startDate AND r.endDate)

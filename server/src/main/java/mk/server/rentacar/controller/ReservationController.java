@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/reservations")
 public class ReservationController {
     private final ReservationService reservationService;
