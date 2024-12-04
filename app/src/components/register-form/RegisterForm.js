@@ -6,10 +6,13 @@ import { Button } from 'components/inputs/button/Button';
 import { TextInput } from 'components/inputs/text-input/TextInput';
 import { useState } from 'react';
 import { Spinner } from 'components/spinner/Spinner';
+import { useStateMachine } from 'little-state-machine';
+import { updateAction } from 'utils/updateAction';
 
 export const RegisterForm = ({ setIsLoginPage }) => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const { actions } = useStateMachine({ updateAction });
   const {
     register,
     handleSubmit,
@@ -21,7 +24,14 @@ export const RegisterForm = ({ setIsLoginPage }) => {
     axios
       .post('http://localhost:8080/auth/register', data)
       .then((response) => {
-        console.log(response);
+        actions.updateAction({
+          email: response.data.email,
+          firstName: response.data.firstName,
+          lastName: response.data.lastName,
+          phone: response.data.phone,
+          userId: response.data.id.toString(),
+          username: response.data.username
+        });
       })
       .catch((error) => setError(error.message))
       .finally(() => setLoading(false));
