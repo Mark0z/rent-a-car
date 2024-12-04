@@ -38,13 +38,13 @@ export const RegisterForm = ({ setIsLoginPage }) => {
   };
 
   return (
-    <form className="register-form" onSubmit={handleSubmit(handleRegisterForm)}>
+    <form className="register__form" onSubmit={handleSubmit(handleRegisterForm)}>
       {loading ? (
         <Spinner />
       ) : (
         <>
           <TextInput
-            className="register-form--input"
+            className="register__form__input"
             name="email"
             textLabel="Email"
             type="email"
@@ -54,7 +54,7 @@ export const RegisterForm = ({ setIsLoginPage }) => {
             {...register('email', { required: true })}
           />
           <TextInput
-            className="register-form--input"
+            className="register__form__input"
             name="username"
             textLabel="Nazwa użytkownika"
             mediumSize
@@ -63,7 +63,7 @@ export const RegisterForm = ({ setIsLoginPage }) => {
             {...register('username', { required: true })}
           />
           <TextInput
-            className="register-form--input"
+            className="register__form__input"
             name="password"
             type="password"
             textLabel="Hasło"
@@ -73,7 +73,7 @@ export const RegisterForm = ({ setIsLoginPage }) => {
             {...register('password', { required: true })}
           />
           <TextInput
-            className="register-form--input"
+            className="register__form__input"
             name="firstName"
             textLabel="Imię"
             mediumSize
@@ -82,7 +82,7 @@ export const RegisterForm = ({ setIsLoginPage }) => {
             {...register('firstName', { required: true })}
           />
           <TextInput
-            className="register-form--input"
+            className="register__form__input"
             name="lastName"
             textLabel="Nazwisko"
             mediumSize
@@ -91,7 +91,7 @@ export const RegisterForm = ({ setIsLoginPage }) => {
             {...register('lastName', { required: true })}
           />
           <TextInput
-            className="register-form--input"
+            className="register__form__input"
             name="phone"
             textLabel="Telefon"
             type="tel"
@@ -102,13 +102,13 @@ export const RegisterForm = ({ setIsLoginPage }) => {
             errors={errors.phone}
             {...register('phone', { required: true })}
           />
-          <Button className="register-form--button" type="submit">
+          <Button className="register__form__button" type="submit">
             Zarejestruj
           </Button>
-          {error && <p className="login-form--error">{error}</p>}
-          <p className="register-form--p">
+          {error && <p className="register__form-error">{error}</p>}
+          <p className="register__form__p">
             Masz już konto?
-            <b onClick={() => setIsLoginPage(true)} className="register-form--link">
+            <b onClick={() => setIsLoginPage(true)} className="register__form__link">
               Zaloguj się
             </b>
           </p>

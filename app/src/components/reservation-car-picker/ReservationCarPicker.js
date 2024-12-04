@@ -13,7 +13,7 @@ export const ReservationCarPicker = () => {
   });
 
   return (
-    <div className="reservation-car-picker">
+    <div className="reservation__car__picker">
       {loading ? <Spinner /> : <TableOfCars carList={sortArray(data, 'pricePerDay')} />}
       {error && <p>{error.message}</p>}
     </div>

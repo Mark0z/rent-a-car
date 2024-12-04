@@ -27,13 +27,13 @@ export const Auth = () => {
 
   return (
     <div className="auth">
-      <Content className="auth-content">
+      <Content className="auth__content">
         {isLoginPage ? (
-          <ContentBox className="auth-content-box" title="Logowanie" center>
+          <ContentBox className="auth__content__box" title="Logowanie" center>
             <LoginForm setIsLoginPage={setIsLoginPage} />
           </ContentBox>
         ) : (
-          <ContentBox className="auth-content-box" title="Rejestracja" center>
+          <ContentBox className="auth__content__box" title="Rejestracja" center>
             <RegisterForm setIsLoginPage={setIsLoginPage} />
           </ContentBox>
         )}

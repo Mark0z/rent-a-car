@@ -1,11 +1,11 @@
 @import 'values/colors';
 @import 'values/mixins';
 
-.button{
+.button {
   text-align: center;
   margin: 8px;
 
-  &-input {
+  &__input {
     color: $COLOR-WHITE;
     border-radius: 5px;
     padding: 10px 20px;
@@ -21,7 +21,7 @@
       background: linear-gradient(0deg, $COLOR-SUNNY-COPPER 0%, $COLOR-ORANGE 100%);
     }
 
-    &--secondary {
+    &-secondary {
       color: $COLOR-ORANGE;
       font-weight: 600;
       @include styled-border;

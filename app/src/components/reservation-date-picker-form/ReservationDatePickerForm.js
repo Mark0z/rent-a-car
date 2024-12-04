@@ -39,18 +39,18 @@ export const ReservationDatePickerForm = () => {
   };
 
   return (
-    <form className="rent-a-car-form" onSubmit={handleSubmit(onSubmit)}>
+    <form className="rent__a__car__form" onSubmit={handleSubmit(onSubmit)}>
       <TextInput
         textLabel="Data odbioru:"
         name="startDate"
-        className="rent-a-car-form--input"
+        className="rent__a__car__form__input"
         type="datetime-local"
         min={new Date().toJSON().slice(0, 16)}
         errors={errors.startDate}
         {...register('startDate', { required: true, min: new Date().toJSON().slice(0, 16) })}
       />
       <SelectInput
-        className="rent-a-car-form--input"
+        className="rent__a__car__form__input"
         defaultValue="Wybierz miejsce odbioru"
         name="startAgencyName"
         errors={errors.startAgencyName}
@@ -73,7 +73,7 @@ export const ReservationDatePickerForm = () => {
         })}
       />
       <SelectInput
-        className="rent-a-car-form--input"
+        className="rent__a__car__form__input"
         defaultValue="Wybierz miejsce zwrotu"
         name="endAgencyName"
         errors={errors.endAgencyName}
@@ -82,7 +82,7 @@ export const ReservationDatePickerForm = () => {
         {...register('endAgencyName', { required: true })}
       />
 
-      <Button className="rent-a-car-form--submit" type="submit" value="rezerwuj">
+      <Button className="rent__a__car__form__submit" type="submit" value="rezerwuj">
         Rezerwuj
       </Button>
     </form>

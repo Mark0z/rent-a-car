@@ -1,15 +1,19 @@
 @import 'values/mixins';
 @import 'values/colors';
 
-.text-area {
+.text__area {
   display: flex;
   flex-direction: column;
 
-  &--label {
+  &-error {
+    color: $COLOR-RED;
+  }
+
+  &__label {
     margin: 4px 0;
   }
 
-  &--input {
+  &__input {
     @include styled-input;
     min-height: 100px;
     resize: vertical;

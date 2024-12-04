@@ -1,6 +1,6 @@
 @import "values/colors";
 
-.table-of-cars {
+.table__of__cars {
   display: flex;
   flex-direction: column;
   max-height: 500px;
@@ -8,44 +8,44 @@
   width: 100%;
 }
 
-.car-list-item {
+.car__list__item {
   display: flex;
   align-items: center;
   border: solid $COLOR-BEIGE;
   border-width: 2px 4px;
 
-  &--h3 {
+  &__h3 {
     color: $COLOR-ORANGE;
     font-size: 22px;
     margin: 8px 0;
   }
 
-  &--b {
+  &__b {
     font-size: large;
   }
 
-  &--p {
+  &__p {
     margin: 4px 0;
     font-size: small;
   }
 
-  &--left {
+  &-left {
     padding: 8px;
     flex-direction: column;
     text-align: center;
 
-    &--image {
-      max-width: 140px;
+    &__image {
+      max-width: 150px;
     }
   }
 
-  &--center {
+  &-center {
     padding-left: 16px;
     flex: 1;
     flex-direction: column;
   }
 
-  &--right {
+  &-right {
     text-align: center;
     flex: 1;
     flex-direction: column;

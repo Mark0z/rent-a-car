@@ -10,9 +10,9 @@ export const AdvantagesList = () => {
   ];
 
   return (
-    <div className="advantages-list">
+    <div className="advantages__list">
       {advantages.map((advantage, index) => (
-        <div className="advantages-list--item" key={index}>
+        <div className="advantages__list__item" key={index}>
           <FaRegCheckSquare /> {advantage}
         </div>
       ))}

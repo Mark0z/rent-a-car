@@ -1,21 +1,21 @@
 @import "values/colors";
 
 .cars {
-  &--content-box {
+  &__content__box {
     width: 100%;
   }
 
-  &--filters {
+  &__filters {
     display: inline-flex;
     align-items: center;
     justify-content: space-around;
     width: 100%;
 
-    &--container {
+    &__container {
       display: inline-flex;
     }
 
-    &--price {
+    &__price {
       background: none;
       color: $COLOR-BLACK;
       font-size: 16px;

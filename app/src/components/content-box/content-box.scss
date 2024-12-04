@@ -1,15 +1,15 @@
 @import "values/mixins";
 @import "values/colors";
 
-.content-box {
+.content__box {
   padding: 16px 16px;
   background-color: $COLOR-WHITE;
 
-  &--title {
+  &__title {
     @include styled-title;
   }
 
-  &--line {
+  &__line {
     display: block;
     height: 2px;
     border: 0;
@@ -18,12 +18,12 @@
     margin-bottom: 1em;
   }
 
-  &--data {
+  &__data {
     display: flex;
     gap: 16px;
     flex-wrap: wrap;
 
-    &__center {
+    &-center {
       justify-content: center;
       align-items: center;
     }

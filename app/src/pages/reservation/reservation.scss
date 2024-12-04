@@ -1,12 +1,11 @@
 @import "values/colors";
 
 .reservation {
-
-  &--form {
+  &__form {
     background-color: $COLOR-WHITE;
   }
 
-  &--captcha{
+  &__captcha {
     margin-top: 16px;
     display: inline-flex;
     flex-direction: column;
@@ -14,11 +13,13 @@
     align-items: center;
   }
 
-  &--content-left {
-    flex: 3;
-  }
+  &__content {
+    &-left {
+      flex: 3;
+    }
 
-  &--content-right {
-    min-width: 300px;
+    &-right {
+      min-width: 300px;
+    }
   }
 }

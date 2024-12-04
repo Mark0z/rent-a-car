@@ -32,13 +32,13 @@ export const LoginForm = ({ setIsLoginPage }) => {
   };
 
   return (
-    <form className="login-form" onSubmit={handleSubmit(handleLoginForm)}>
+    <form className="login__form" onSubmit={handleSubmit(handleLoginForm)}>
       {loading ? (
         <Spinner />
       ) : (
         <>
           <TextInput
-            className="login-form--input"
+            className="login__form__input"
             name="username"
             textLabel="Nazwa użytkownika"
             mediumSize
@@ -47,7 +47,7 @@ export const LoginForm = ({ setIsLoginPage }) => {
             {...register('username', { required: true })}
           />
           <TextInput
-            className="login-form--input"
+            className="login__form__input"
             name="password"
             textLabel="Hasło"
             type="password"
@@ -56,13 +56,13 @@ export const LoginForm = ({ setIsLoginPage }) => {
             mediumSize
             {...register('password', { required: true })}
           />
-          <Button className="login-form--button" type="submit">
+          <Button className="login__form__button" type="submit">
             Zaloguj
           </Button>
-          {error && <p className="login-form--error">{error.code}</p>}
-          <p className="login-form--p">
+          {error && <p className="login__form-error">{error.code}</p>}
+          <p className="login__form__p">
             Nie masz konta?
-            <b onClick={() => setIsLoginPage(false)} className="login-form--link">
+            <b onClick={() => setIsLoginPage(false)} className="login__form__link">
               Zarejestruj się
             </b>
           </p>

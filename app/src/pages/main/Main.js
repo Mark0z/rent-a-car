@@ -17,7 +17,7 @@ export const Main = () => {
   return (
     <div className="main">
       <Slider />
-      <Content isContentAbove={true} className="main-content">
+      <Content isContentAbove={true} className="main__content">
         <div className="main-left">
           <ContentBox title="Rezerwuj samochód">
             <ReservationDatePickerForm />

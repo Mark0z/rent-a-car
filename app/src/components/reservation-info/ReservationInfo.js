@@ -33,8 +33,8 @@ export const ReservationInfo = () => {
   };
 
   return (
-    <ContentBox title="Twoja rezerwacja" className="reservation--content-box" center>
-      <div className="reservation-info">
+    <ContentBox title="Twoja rezerwacja" className="reservation__content__box" center>
+      <div className="reservation__info">
         {storedState.userId && (
           <ReservationInfoItem
             title="Dane wynajmującego"
@@ -70,12 +70,12 @@ export const ReservationInfo = () => {
           </ReservationInfoItem>
         )}
         {storedState.carId && storedState.startDate && (
-          <div className="reservation-info--total">
-            <h2>{countTotalAmount()} PLN</h2>
-            <p>
+          <div className="reservation__info__total">
+            <h2 className="reservation__info__total__h2">{countTotalAmount()} PLN</h2>
+            <p className="reservation__info__total__p">
               <b>za czały okres wynajmu</b> ({storedState.pricePerDay} PLN / dzień)
             </p>
-            <p>Podane ceny są cenami brutto</p>
+            <p className="reservation__info__total__p">Podane ceny są cenami brutto</p>
           </div>
         )}
       </div>

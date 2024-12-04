@@ -80,7 +80,7 @@ export const Reservation = () => {
         return (
           <ContentBox
             title={`Krok: ${storedState.reservationFormStep} / Czas wynajmu`}
-            className="reservation--content-box"
+            className="reservation__content__box"
             center>
             <div>
               <ReservationDatePickerForm />
@@ -91,7 +91,7 @@ export const Reservation = () => {
         return (
           <ContentBox
             title={`Krok: ${storedState.reservationFormStep} / Wybierz pojazd`}
-            className="reservation--content-box"
+            className="reservation__content__box"
             center>
             <ReservationCarPicker />
           </ContentBox>
@@ -100,23 +100,23 @@ export const Reservation = () => {
         return (
           <ContentBox
             title={`Krok: ${storedState.reservationFormStep} / Autoryzacja`}
-            className="reservation--content-box"
+            className="reservation__content__box"
             center>
             <Auth />
           </ContentBox>
         );
       case 4:
         return (
-          <form onSubmit={handleSubmit(onSubmit)} className="reservation--form">
+          <form onSubmit={handleSubmit(onSubmit)} className="reservation__form">
             <ReservationInfo />
-            <div className="reservation--captcha">
+            <div className="reservation__captcha">
               <ReCAPTCHA sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY} ref={recaptchaRef} />
               {!isCaptchaSolved && (
-                <p className="contact-mail-form--captcha__error">
+                <p className="contact__mail__form__captcha-error">
                   Aby kontynuować, rozwiąż proszę CAPTCHA
                 </p>
               )}
-              {error && <p className="contact-mail-form--captcha__error">{error.response.data}</p>}
+              {error && <p className="contact__mail__form__captcha-error">{error.response.data}</p>}
               <Button type="submit">Rezerwuj</Button>
             </div>
           </form>
@@ -128,12 +128,12 @@ export const Reservation = () => {
 
   return (
     <div className="reservation">
-      <Content className="reservation--content">
-        <div className={clsx('reservation--content-left')}>
+      <Content className="reservation__content">
+        <div className={clsx('reservation__content-left')}>
           {!loading ? renderStep(storedState.reservationFormStep) : <Spinner />}
         </div>
         {storedState.reservationFormStep !== 4 && storedState.startDate !== '' && (
-          <div className="reservation--content-right">
+          <div className="reservation__content-right">
             <ReservationInfo />
           </div>
         )}

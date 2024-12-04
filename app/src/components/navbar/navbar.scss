@@ -1,9 +1,9 @@
 @import "values/colors";
 
-.navbar-menu {
+.navbar__menu {
   display: flex;
 
-  &--auth {
+  &__auth {
     padding: 0 8px;
   }
 }
@@ -12,7 +12,7 @@
   max-width: 100%;
   background-color: $COLOR-BEIGE;
 
-  &-content {
+  &__content {
     display: flex;
     justify-content: space-between;
     margin: 4px auto;
@@ -25,11 +25,11 @@
       display: inline-block;
     }
 
-    &--logged {
+    &__logged {
       display: inline-flex;
     }
 
-    &--link {
+    &__link {
       padding: 0 10px;
       text-align: center;
       line-height: 60px;

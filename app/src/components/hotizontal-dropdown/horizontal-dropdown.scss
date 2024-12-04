@@ -56,11 +56,11 @@ ol > li > ul > li:hover {
 }
 
 .checkbox {
-  &--label {
+  &__label {
     cursor: pointer;
   }
 
-  &--input {
+  &__input {
     cursor: pointer;
     accent-color: $COLOR-ORANGE;
     color: white;
