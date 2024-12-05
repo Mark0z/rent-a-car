@@ -1,14 +1,14 @@
-.contact-mail-form {
+.contact__mail__form {
   display: flex;
   flex-direction: column;
 
-  &--captcha {
+  &__captcha {
     margin-top: 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    &__error {
+    &-error {
       color: red;
     }
   }

@@ -6,19 +6,19 @@ import clsx from 'clsx';
 export const TextArea = React.forwardRef(
   ({ name, textLabel, className, errors, required = true, ...props }, ref) => {
     return (
-      <div className="text-area">
-        <label htmlFor={name} className="text-area--label">
+      <div className="text__area">
+        <label htmlFor={name} className="text__area__label">
           {textLabel}
         </label>
         <textarea
-          className={clsx('text-area--input', className)}
+          className={clsx('text__area__input', className)}
           name={name}
           id={name}
           required={required}
           ref={ref}
           {...props}
         />
-        {errors && <span className="text-area--error">{errors.message}</span>}
+        {errors && <span className="text__area-error">{errors.message}</span>}
       </div>
     );
   }

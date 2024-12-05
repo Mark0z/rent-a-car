@@ -9,14 +9,14 @@ export const SelectInput = React.forwardRef(
     ref
   ) => {
     return (
-      <div className="select-input">
-        <label htmlFor={name} className="select-input--label">
+      <div className="select__input">
+        <label htmlFor={name} className="select__input__label">
           {textLabel}
         </label>
         <select
           name={name}
           id={name}
-          className={clsx('select-input--select', className)}
+          className={clsx('select__input__select', className)}
           defaultValue={'default'}
           required={required}
           ref={ref}
@@ -30,7 +30,7 @@ export const SelectInput = React.forwardRef(
             </option>
           ))}
         </select>
-        {errors && <span className="select-input--error">{errors.message}</span>}
+        {errors && <span className="select__input-error">{errors.message}</span>}
       </div>
     );
   }

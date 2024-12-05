@@ -1,11 +1,11 @@
 @import "values/mixins";
 
-.rent-a-car-form {
+.rent__a__car__form {
   display: flex;
   flex-direction: column;
   width: 100%;
 
-  &--submit {
+  &__submit {
     margin-top: 16px;
     font-size: medium;
   }

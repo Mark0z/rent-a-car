@@ -1,0 +1,38 @@
+@import 'values/colors';
+
+.reservation__info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__total {
+    background: $COLOR-SUNNY-COPPER;
+    background: linear-gradient(0deg, $COLOR-SUNNY-COPPER 0%, $COLOR-ORANGE 100%);
+    color: white;
+    padding: 8px;
+
+    &__h2 {
+      margin: 4px 0;
+    }
+
+    &__p {
+      margin: 2px 0;
+      font-size: small;
+      font-style: italic;
+    }
+  }
+
+  &__h4 {
+    margin: 0;
+  }
+
+  &__p {
+    margin: 4px 0;
+  }
+
+  &__h5 {
+    margin: 2px 0 16px 0;
+    color: $COLOR-ORANGE;
+    cursor: pointer;
+  }
+}

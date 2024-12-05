@@ -6,12 +6,12 @@ import car from 'assets/mistery-car.jpg';
 // eslint-disable-next-line no-unused-vars
 export const CarItem = ({ brand, model, imageUrl, price }) => {
   return (
-    <div className="car-item">
-      <img className="car-item--image" src={car} alt="" />
-      <div className="car-item--title">
+    <div className="car__item">
+      <img className="car__item__image" src={car} alt="" />
+      <div className="car__item__title">
         {brand} {model}
       </div>
-      <p className="car-item--price">{price} zł / 1 dzień</p>
+      <p className="car__item__price">{price} zł / 1 dzień</p>
     </div>
   );
 };

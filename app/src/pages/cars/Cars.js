@@ -57,9 +57,9 @@ export const Cars = () => {
   return (
     <div className="cars">
       <Content>
-        <ContentBox title="Samochody" className="cars--content-box" center>
-          <div className="cars--filters">
-            <div className="cars--filters--container">
+        <ContentBox title="Samochody" className="cars__content__box" center>
+          <div className="cars__filters">
+            <div className="cars__filters__container">
               <HorizontalDropdown
                 array={filters.fuelTypes}
                 value="fuelTypes"
@@ -73,7 +73,7 @@ export const Cars = () => {
                 register={register}
               />
             </div>
-            <Button onClick={() => handSortByPrice()} className="cars--filters--price">
+            <Button onClick={() => handSortByPrice()} className="cars__filters__price">
               Cena {isSortByPrice ? <BiSolidUpArrow /> : <BiSolidDownArrow />}
             </Button>
           </div>

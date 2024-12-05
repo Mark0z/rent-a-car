@@ -6,8 +6,11 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { useState } from 'react';
 import { Spinner } from 'components/spinner/Spinner';
+import { useStateMachine } from 'little-state-machine';
+import { updateAction } from 'utils/updateAction';
 
 export const LoginForm = ({ setIsLoginPage }) => {
+  const { actions } = useStateMachine({ updateAction });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const {
@@ -21,21 +24,21 @@ export const LoginForm = ({ setIsLoginPage }) => {
     axios
       .post('http://localhost:8080/auth/login', data)
       .then((response) => {
-        console.log(response);
         setError(null);
+        actions.updateAction(response.data);
       })
-      .catch((error) => setError(error.message))
+      .catch((error) => setError(error))
       .finally(() => setLoading(false));
   };
 
   return (
-    <form className="login-form" onSubmit={handleSubmit(handleLoginForm)}>
+    <form className="login__form" onSubmit={handleSubmit(handleLoginForm)}>
       {loading ? (
         <Spinner />
       ) : (
         <>
           <TextInput
-            className="login-form--input"
+            className="login__form__input"
             name="username"
             textLabel="Nazwa użytkownika"
             mediumSize
@@ -44,22 +47,22 @@ export const LoginForm = ({ setIsLoginPage }) => {
             {...register('username', { required: true })}
           />
           <TextInput
-            className="login-form--input"
+            className="login__form__input"
             name="password"
             textLabel="Hasło"
-            type="current-password"
-            autoComplete="on"
+            type="password"
+            autoComplete="current-password"
             errors={errors.password}
             mediumSize
             {...register('password', { required: true })}
           />
-          <Button className="login-form--button" type="submit">
+          <Button className="login__form__button" type="submit">
             Zaloguj
           </Button>
-          {error && <p className="login-form--error">{error}</p>}
-          <p className="login-form--p">
+          {error && <p className="login__form-error">{error.code}</p>}
+          <p className="login__form__p">
             Nie masz konta?
-            <b onClick={() => setIsLoginPage(false)} className="login-form--link">
+            <b onClick={() => setIsLoginPage(false)} className="login__form__link">
               Zarejestruj się
             </b>
           </p>

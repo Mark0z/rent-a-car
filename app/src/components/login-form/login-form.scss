@@ -1,18 +1,18 @@
 @import "values/colors";
 
-.login-form {
-  &--p {
+.login__form {
+  &__p {
     text-align: center;
   }
 
-  &--link {
+  &__link {
     color: darkblue;
     font-style: italic;
     cursor: pointer;
     margin-left: 4px;
   }
 
-  &--error {
+  &-error {
     text-align: center;
     font-size: larger;
     font-weight: 600;

@@ -38,7 +38,6 @@ ol > li:hover > ul {
 }
 
 ol > li > ul {
-  cursor: pointer;
   display: none;
   list-style-type: none;
   padding: 0;
@@ -57,11 +56,11 @@ ol > li > ul > li:hover {
 }
 
 .checkbox {
-  &--label {
+  &__label {
     cursor: pointer;
   }
 
-  &--input {
+  &__input {
     cursor: pointer;
     accent-color: $COLOR-ORANGE;
     color: white;

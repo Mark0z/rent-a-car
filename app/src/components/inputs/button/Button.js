@@ -10,9 +10,9 @@ export const Button = React.forwardRef(
         <button
           type={type}
           className={clsx(
-            'button-input',
-            type === 'submit' && 'button-input__submit',
-            isSecondary && 'button-input--secondary',
+            'button__input',
+            type === 'submit' && 'button__input__submit',
+            isSecondary && 'button__input-secondary',
             className
           )}
           value={value}

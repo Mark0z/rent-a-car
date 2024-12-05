@@ -1,15 +1,15 @@
 @import 'values/mixins';
 @import 'values/colors';
 
-.text-input{
+.text__input {
   display: flex;
   flex-direction: column;
 
-  &--label {
+  &__label {
     margin: 4px 0;
   }
 
-  &--input {
+  &__input {
     @include styled-input;
 
     &:focus {
@@ -17,16 +17,16 @@
       border: 2px solid $COLOR-ORANGE;
     }
 
-    &__medium {
+    &-medium {
       font-size: x-large;
     }
 
-    &__error {
+    &-error {
       border: 2px solid $COLOR-RED;
     }
   }
 
-  &--error {
+  &-error {
     color: $COLOR-RED;
   }
 }

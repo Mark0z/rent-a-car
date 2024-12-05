@@ -9,16 +9,16 @@ export const TextInput = React.forwardRef(
     ref
   ) => {
     return (
-      <div className="text-input">
-        <label htmlFor={name} className="text-input--label">
+      <div className="text__input">
+        <label htmlFor={name} className="text__input__label">
           {textLabel}
         </label>
         <input
           className={clsx(
-            'text-input--input',
+            'text__input__input',
             className,
-            mediumSize && 'text-input--input__medium',
-            errors && 'text-input--input__error'
+            mediumSize && 'text__input__input-medium',
+            errors && 'text__input__input-error'
           )}
           type={type}
           name={name}
@@ -27,7 +27,7 @@ export const TextInput = React.forwardRef(
           ref={ref}
           {...props}
         />
-        {errors && <span className="text-input--error">{errors.message}</span>}
+        {errors && <span className="text--input-error">{errors.message}</span>}
       </div>
     );
   }

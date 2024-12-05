@@ -27,7 +27,7 @@ export const TableOfCars = ({ carList = mockedCar, ...props }) => {
 
   const handleOnCarSelect = ({ id, model, brand, pricePerDay }) => {
     actions.updateAction({
-      id: id,
+      carId: id,
       model: model,
       brand: brand,
       pricePerDay: pricePerDay,
@@ -36,23 +36,23 @@ export const TableOfCars = ({ carList = mockedCar, ...props }) => {
   };
 
   return (
-    <div className="table-of-cars" {...props}>
+    <div className="table__of__cars" {...props}>
       {carList.map((car) => (
-        <div className="car-list-item" key={car.id}>
-          <div className="car-list-item--left">
-            <img className="car-list-item--left--image" src={carImg} alt="" />
+        <div className="car__list__item" key={car.id}>
+          <div className="car__list__item-left">
+            <img className="car__list__item-left__image" src={carImg} alt="" />
             <Button
               onClick={() => handleOnCarSelect(car)}
-              className="car-list-item--left--button"
+              className="car__list__item-left__button"
               isSecondary={true}>
               wybieram
             </Button>
           </div>
-          <div className="car-list-item--center">
-            <b className="car-list-item--b">
+          <div className="car__list__item-center">
+            <b className="car__list__item__b">
               {car.brand} {car.model}
             </b>
-            <p className="car-list-item--p">
+            <p className="car__list__item__p">
               Silnik: - {car.fuelType}
               <br />
               Skrzynia biegów - {car.transmission}
@@ -62,11 +62,11 @@ export const TableOfCars = ({ carList = mockedCar, ...props }) => {
               Przebieg: {car.mileage}km
             </p>
           </div>
-          <div className="car-list-item--right">
-            <h3 className="car-list-item--h3">{useCountTotalAmount(car.pricePerDay)} PLN</h3>
-            <p className="car-list-item--p">za cały okres wynajmu</p>
-            <p className="car-list-item--p">{car.pricePerDay} PLN / dzień</p>
-            <p className="car-list-item--p">Podane ceny są cenami brutto</p>
+          <div className="car__list__item-right">
+            <h3 className="car__list__item__h3">{useCountTotalAmount(car.pricePerDay)} PLN</h3>
+            <p className="car__list__item__p">za cały okres wynajmu</p>
+            <p className="car__list__item__p">{car.pricePerDay} PLN / dzień</p>
+            <p className="car__list__item__p">Podane ceny są cenami brutto</p>
           </div>
         </div>
       ))}

@@ -7,39 +7,39 @@ import clsx from 'clsx';
 export const Header = () => {
   return (
     <header className="header">
-      <div className="header-content">
+      <div className="header__content">
         <a className="logo" href="/">
-          <img className="logo--img" src={logo || ''} alt="" />
+          <img className="logo__img" src={logo || ''} alt="" />
         </a>
-        <div className="header-contact">
-          <div className="header-contact-info">
-            <p className={clsx('header-contact-info--p', 'header-contact-info--p__title')}>
+        <div className="header__contact">
+          <div className="header__contact__info">
+            <p className={clsx('header__contact__info__p', 'header__contact__info__p-title')}>
               RentDrive
             </p>
-            <p className="header-contact-info--p">ul. Równa 13</p>
-            <p className="header-contact-info--p">80-067 Gdańsk</p>
+            <p className="header__contact__info__p">ul. Równa 13</p>
+            <p className="header__contact__info__p">80-067 Gdańsk</p>
             <p
               className={clsx(
-                'header-contact-info--p',
-                'header-contact-info--contact-info--p__small'
+                'header__contact__info__p',
+                'header__contact__info__contact__info__p-small'
               )}>
               PON - SOB 7 - 23
             </p>
             <p
               className={clsx(
-                'header-contact-info--p',
-                'header-contact-info--contact-info--p__small'
+                'header__contact__info__p',
+                'header__contact__info__contact__info__p-small'
               )}>
               NDZ 6 - 24
             </p>
           </div>
-          <div className="header-contact-banner">
-            <p className="header-contact-banner__email">
-              <CiMail className="header-contact-banner__svg" />
+          <div className="header__contact__banner">
+            <p className="header__contact__banner__email">
+              <CiMail className="header__contact__banner__svg" />
               rentdrive@rentdrive.pl
             </p>
-            <p className="header-contact-banner__phone">
-              <SlPhone className="header-contact-banner__svg" />
+            <p className="header__contact__banner__phone">
+              <SlPhone className="header__contact__banner__svg" />
               +48 123 66 55 88
             </p>
           </div>

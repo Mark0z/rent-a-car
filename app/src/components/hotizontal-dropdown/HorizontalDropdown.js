@@ -16,13 +16,13 @@ export const HorizontalDropdown = ({ array, value, title, register }) => {
               <div className="checkbox">
                 <input
                   type="checkbox"
-                  className="checkbox--input"
+                  className="checkbox__input"
                   id={type}
                   value={type}
                   name={type}
                   {...register(value)}
                 />
-                <label className="checkbox--label" htmlFor={type}>
+                <label className="checkbox__label" htmlFor={type}>
                   {type}
                 </label>
               </div>
