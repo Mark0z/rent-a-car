@@ -17,7 +17,7 @@ export const ReservationSuccess = () => {
   return (
     <Content>
       <ContentBox title="Szczegóły twojej rezerwacji" className="reservation__success" center>
-        <h4>Numer twojej rezrerwacji: {reservationId}</h4>
+        <h4>Numer twojej rezerwacji: {reservationId}</h4>
       </ContentBox>
     </Content>
   );

@@ -19,19 +19,25 @@ export const RegisterForm = ({ setIsLoginPage }) => {
     formState: { errors }
   } = useForm();
 
+  const saveResponseToState = ({ data }) => {
+    const payload = {
+      email: data.email,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      phone: data.phone,
+      userId: data.id.toString(),
+      username: data.username
+    };
+
+    actions.updateAction(payload);
+  };
+
   const handleRegisterForm = (data) => {
     setLoading(true);
     axios
       .post('http://localhost:8080/auth/register', data)
       .then((response) => {
-        actions.updateAction({
-          email: response.data.email,
-          firstName: response.data.firstName,
-          lastName: response.data.lastName,
-          phone: response.data.phone,
-          userId: response.data.id.toString(),
-          username: response.data.username
-        });
+        saveResponseToState(response);
       })
       .catch((error) => setError(error.message))
       .finally(() => setLoading(false));
