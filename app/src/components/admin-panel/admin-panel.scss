@@ -1,0 +1,11 @@
+.admin__panel{
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  &__options {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+}
