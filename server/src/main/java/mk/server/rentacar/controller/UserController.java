@@ -29,4 +29,10 @@ public class UserController {
         Optional<User> selectedUser = userService.getUserById(id);
         return selectedUser.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
+
+    @GetMapping("/role/{id}")
+    public ResponseEntity<String> getRoleById(@PathVariable Long id) {
+        String role = userService.getRoleById(id);
+        return ResponseEntity.ok(role);
+    }
 }
