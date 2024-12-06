@@ -9,15 +9,25 @@ import { Spinner } from 'components/spinner/Spinner';
 import { useStateMachine } from 'little-state-machine';
 import { updateAction } from 'utils/updateAction';
 
-export const RegisterForm = ({ setIsLoginPage }) => {
+export const RegisterForm = ({ setIsLoginPage, isEditMode }) => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { actions } = useStateMachine({ updateAction });
+  const { actions, state } = useStateMachine({ updateAction });
   const {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm();
+  } = useForm(
+    isEditMode && {
+      defaultValues: {
+        email: state.data.email,
+        username: state.data.username,
+        firstName: state.data.firstName,
+        lastName: state.data.lastName,
+        phone: state.data.phone
+      }
+    }
+  );
 
   const saveResponseToState = ({ data }) => {
     const payload = {
@@ -43,8 +53,21 @@ export const RegisterForm = ({ setIsLoginPage }) => {
       .finally(() => setLoading(false));
   };
 
+  function handleEditForm(data) {
+    setLoading(true);
+    axios
+      .put(`http://localhost:8080/auth/update/${state.data.userId}`, data)
+      .then((response) => {
+        saveResponseToState(response);
+      })
+      .catch((error) => setError(error.message))
+      .finally(() => setLoading(false));
+  }
+
   return (
-    <form className="register__form" onSubmit={handleSubmit(handleRegisterForm)}>
+    <form
+      className="register__form"
+      onSubmit={isEditMode ? handleSubmit(handleEditForm) : handleSubmit(handleRegisterForm)}>
       {loading ? (
         <Spinner />
       ) : (
@@ -68,16 +91,18 @@ export const RegisterForm = ({ setIsLoginPage }) => {
             errors={errors.username}
             {...register('username', { required: true })}
           />
-          <TextInput
-            className="register__form__input"
-            name="password"
-            type="password"
-            textLabel="Hasło"
-            mediumSize
-            autoComplete="new-password"
-            errors={errors.password}
-            {...register('password', { required: true })}
-          />
+          {!isEditMode && (
+            <TextInput
+              className="register__form__input"
+              name="password"
+              type="password"
+              textLabel="Hasło"
+              mediumSize
+              autoComplete="new-password"
+              errors={errors.password}
+              {...register('password', { required: true })}
+            />
+          )}
           <TextInput
             className="register__form__input"
             name="firstName"
@@ -109,15 +134,17 @@ export const RegisterForm = ({ setIsLoginPage }) => {
             {...register('phone', { required: true })}
           />
           <Button className="register__form__button" type="submit">
-            Zarejestruj
+            {isEditMode ? <>Edytuj</> : <>Zarejestruj</>}
           </Button>
           {error && <p className="register__form-error">{error}</p>}
-          <p className="register__form__p">
-            Masz już konto?
-            <b onClick={() => setIsLoginPage(true)} className="register__form__link">
-              Zaloguj się
-            </b>
-          </p>
+          {!isEditMode && (
+            <p className="register__form__p">
+              Masz już konto?
+              <b onClick={() => setIsLoginPage(true)} className="register__form__link">
+                Zaloguj się
+              </b>
+            </p>
+          )}
         </>
       )}
     </form>
@@ -125,5 +152,6 @@ export const RegisterForm = ({ setIsLoginPage }) => {
 };
 
 RegisterForm.propTypes = {
-  setIsLoginPage: PropTypes.func
+  setIsLoginPage: PropTypes.func,
+  isEditMode: PropTypes.bool
 };
