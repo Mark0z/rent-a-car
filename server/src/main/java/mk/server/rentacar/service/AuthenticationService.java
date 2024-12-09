@@ -62,7 +62,7 @@ public class AuthenticationService {
         return Optional.empty();
     }
 
-    public User changePassword(Long id, String oldPassword, String newPassword) {
+    public Optional<User> changePassword(Long id, String oldPassword, String newPassword) {
         Optional<User> optionalUser = userRepository.findById(id);
 
         if (optionalUser.isPresent()) {
@@ -70,9 +70,9 @@ public class AuthenticationService {
 
             if (passwordEncoder.matches(oldPassword, user.getPassword())) {
                 user.setPassword(passwordEncoder.encode(newPassword));
-                return userRepository.save(user);
+                return Optional.of(userRepository.save(user));
             }
         }
-        return null;
+        return Optional.empty();
     }
 }

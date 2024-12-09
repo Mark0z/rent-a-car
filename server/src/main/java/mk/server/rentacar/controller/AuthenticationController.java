@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Controller
 @CrossOrigin
@@ -59,8 +60,13 @@ public class AuthenticationController {
     }
 
     @PostMapping("/change-password/{id}/{oldPassword}/{newPassword}")
-    public ResponseEntity<User> changePassword(@PathVariable Long id, @PathVariable String oldPassword, @PathVariable String newPassword) {
-        User findUser = authenticationService.changePassword(id, oldPassword, newPassword);
-        return ResponseEntity.ok(findUser);
+    public ResponseEntity<?> changePassword(@PathVariable Long id, @PathVariable String oldPassword, @PathVariable String newPassword) {
+        Optional<User> findUser = authenticationService.changePassword(id, oldPassword, newPassword);
+
+        if (findUser.isPresent()) {
+            return ResponseEntity.ok(findUser.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid credentials");
+        }
     }
 }
