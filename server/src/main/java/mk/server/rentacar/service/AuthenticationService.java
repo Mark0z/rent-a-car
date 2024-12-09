@@ -37,6 +37,18 @@ public class AuthenticationService {
         return userRepository.save(user);
     }
 
+    public User updateUser(Long id, User user) {
+        Optional<User> optionalUser = userRepository.findById(id);
+
+        if (optionalUser.isPresent()) {
+            user.setId(id);
+            preprocessUser(user);
+            user.setPassword(optionalUser.get().getPassword());
+            return userRepository.save(user);
+        }
+        return null;
+    }
+
     public Optional<User> login(String username, String password) {
         Optional<User> optionalUser = userRepository.findByUsername(username);
 
@@ -48,5 +60,19 @@ public class AuthenticationService {
             }
         }
         return Optional.empty();
+    }
+
+    public User changePassword(Long id, String oldPassword, String newPassword) {
+        Optional<User> optionalUser = userRepository.findById(id);
+
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+
+            if (passwordEncoder.matches(oldPassword, user.getPassword())) {
+                user.setPassword(passwordEncoder.encode(newPassword));
+                return userRepository.save(user);
+            }
+        }
+        return null;
     }
 }

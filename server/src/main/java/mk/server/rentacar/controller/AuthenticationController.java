@@ -6,10 +6,7 @@ import mk.server.rentacar.service.AuthenticationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -53,5 +50,17 @@ public class AuthenticationController {
                     errorResponse.put("error", "Invalid credentials");
                     return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
                 });
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user) {
+        User findUser = authenticationService.updateUser(id, user);
+        return ResponseEntity.ok(findUser);
+    }
+
+    @PostMapping("/change-password/{id}/{oldPassword}/{newPassword}")
+    public ResponseEntity<User> changePassword(@PathVariable Long id, @PathVariable String oldPassword, @PathVariable String newPassword) {
+        User findUser = authenticationService.changePassword(id, oldPassword, newPassword);
+        return ResponseEntity.ok(findUser);
     }
 }
