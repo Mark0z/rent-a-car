@@ -18,4 +18,11 @@
     font-weight: 600;
     color: $COLOR-RED;
   }
+
+  &-success {
+    text-align: center;
+    font-size: larger;
+    font-weight: 600;
+    color: green;
+  }
 }
