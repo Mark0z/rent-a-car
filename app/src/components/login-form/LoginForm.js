@@ -20,11 +20,11 @@ export const LoginForm = ({ setIsLoginPage }) => {
   } = useForm();
 
   const handleLoginForm = (data) => {
+    setError(null);
     setLoading(true);
     axios
       .post('http://localhost:8080/auth/login', data)
       .then((response) => {
-        setError(null);
         actions.updateAction(response.data);
       })
       .catch((error) => setError(error))
@@ -33,41 +33,37 @@ export const LoginForm = ({ setIsLoginPage }) => {
 
   return (
     <form className="login__form" onSubmit={handleSubmit(handleLoginForm)}>
-      {loading ? (
-        <Spinner />
-      ) : (
-        <>
-          <TextInput
-            className="login__form__input"
-            name="username"
-            textLabel="Nazwa użytkownika"
-            mediumSize
-            autoComplete="username"
-            errors={errors.username}
-            {...register('username', { required: true })}
-          />
-          <TextInput
-            className="login__form__input"
-            name="password"
-            textLabel="Hasło"
-            type="password"
-            autoComplete="current-password"
-            errors={errors.password}
-            mediumSize
-            {...register('password', { required: true })}
-          />
-          <Button className="login__form__button" type="submit">
-            Zaloguj
-          </Button>
-          {error && <p className="login__form-error">{error.code}</p>}
-          <p className="login__form__p">
-            Nie masz konta?
-            <b onClick={() => setIsLoginPage(false)} className="login__form__link">
-              Zarejestruj się
-            </b>
-          </p>
-        </>
-      )}
+      <>
+        <TextInput
+          className="login__form__input"
+          name="username"
+          textLabel="Nazwa użytkownika"
+          mediumSize
+          autoComplete="username"
+          errors={errors.username}
+          {...register('username', { required: true })}
+        />
+        <TextInput
+          className="login__form__input"
+          name="password"
+          textLabel="Hasło"
+          type="password"
+          autoComplete="current-password"
+          errors={errors.password}
+          mediumSize
+          {...register('password', { required: true })}
+        />
+        <Button className="login__form__button" type="submit">
+          Zaloguj
+        </Button>
+        {loading ? <Spinner /> : <>{error && <p className="login__form-error">{error.code}</p>}</>}
+        <p className="login__form__p">
+          Nie masz konta?
+          <b onClick={() => setIsLoginPage(false)} className="login__form__link">
+            Zarejestruj się
+          </b>
+        </p>
+      </>
     </form>
   );
 };
