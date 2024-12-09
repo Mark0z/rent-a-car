@@ -8,8 +8,8 @@ import { useState } from 'react';
 import { Spinner } from 'components/spinner/Spinner';
 
 export const ChangePasswordForm = () => {
-  const [error, setError] = useState('');
-  const [message, setMessage] = useState('');
+  const [error, setError] = useState(null);
+  const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(false);
   const { state } = useStateMachine();
   const {
@@ -19,13 +19,13 @@ export const ChangePasswordForm = () => {
     formState: { errors }
   } = useForm();
 
-  function handlePasswordChanged(data) {
+  const handlePasswordChanged = (data) => {
     const userId = state.data.userId;
     const oldPassword = data.currentPassword;
     const newPassword = data.newPassword;
     reset();
-    setMessage('');
-    setError('');
+    setMessage(null);
+    setError(null);
 
     axios
       .post(`http://localhost:8080/auth/change-password/${userId}/${oldPassword}/${newPassword}`)
@@ -36,7 +36,7 @@ export const ChangePasswordForm = () => {
         setError(error.response.data);
       })
       .finally(() => setLoading(false));
-  }
+  };
 
   return (
     <form className="change__password__form" onSubmit={handleSubmit(handlePasswordChanged)}>

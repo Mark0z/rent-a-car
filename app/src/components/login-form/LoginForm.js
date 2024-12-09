@@ -11,7 +11,7 @@ import { updateAction } from 'utils/updateAction';
 
 export const LoginForm = ({ setIsLoginPage }) => {
   const { actions } = useStateMachine({ updateAction });
-  const [error, setError] = useState('');
+  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const {
     register,
@@ -53,10 +53,10 @@ export const LoginForm = ({ setIsLoginPage }) => {
           mediumSize
           {...register('password', { required: true })}
         />
+        {loading ? <Spinner /> : <>{error && <p className="login__form-error">{error.code}</p>}</>}
         <Button className="login__form__button" type="submit">
           Zaloguj
         </Button>
-        {loading ? <Spinner /> : <>{error && <p className="login__form-error">{error.code}</p>}</>}
         <p className="login__form__p">
           Nie masz konta?
           <b onClick={() => setIsLoginPage(false)} className="login__form__link">

@@ -10,8 +10,8 @@ import { updateAction } from 'utils/updateAction';
 import { Spinner } from 'components/spinner/Spinner';
 
 export const RegisterForm = ({ setIsLoginPage, isEditMode }) => {
-  const [error, setError] = useState('');
-  const [message, setMessage] = useState('');
+  const [error, setError] = useState(null);
+  const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(false);
   const { actions, state } = useStateMachine({ updateAction });
   const {
