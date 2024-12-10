@@ -36,6 +36,7 @@ export const ContactMailForm = () => {
           className="contact__mail__form__input"
           name="name"
           textLabel="Imię"
+          mediumSize
           errors={errors.name}
           {...register('name', { required: true })}
         />
@@ -43,6 +44,7 @@ export const ContactMailForm = () => {
           className="contact__mail__form__input"
           name="surname"
           textLabel="Nazwisko"
+          mediumSize
           errors={errors.surname}
           {...register('surname', { required: true })}
         />
@@ -55,6 +57,7 @@ export const ContactMailForm = () => {
           type="tel"
           placeholder="123456789"
           pattern="[0-9]{9,11}"
+          mediumSize
           errors={errors.telephone}
           {...register('telephone', { required: true })}
         />
@@ -64,6 +67,7 @@ export const ContactMailForm = () => {
           type="email"
           placeholder="email@email.com"
           textLabel="Adres email"
+          mediumSize
           errors={errors.email}
           {...register('email', { required: true })}
         />
@@ -72,6 +76,7 @@ export const ContactMailForm = () => {
         className="contact__mail__form__input"
         name="textarea"
         textLabel="Treść wiadomości"
+        mediumSize
         errors={errors.textarea}
         {...register('textarea', { required: true })}
       />

@@ -83,7 +83,7 @@ export const Reservation = () => {
             className="reservation__content__box"
             center>
             <div>
-              <ReservationDatePickerForm />
+              <ReservationDatePickerForm isMediumSize />
             </div>
           </ContentBox>
         );
