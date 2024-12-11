@@ -76,7 +76,6 @@ export const ContactMailForm = () => {
         className="contact__mail__form__input"
         name="textarea"
         textLabel="Treść wiadomości"
-        mediumSize
         errors={errors.textarea}
         {...register('textarea', { required: true })}
       />

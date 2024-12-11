@@ -20,7 +20,7 @@ export const Auth = () => {
       if (storedData.reservationFormStep === 3) {
         actions.updateAction({ reservationFormStep: 4 });
       } else {
-        navigate('/');
+        navigate('/profile');
       }
     }
   }, [state]);
