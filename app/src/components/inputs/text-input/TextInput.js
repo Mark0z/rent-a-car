@@ -10,7 +10,7 @@ export const TextInput = React.forwardRef(
       textLabel,
       className,
       type = 'text',
-      errors,
+      errors = '',
       hidden = false,
       required = true,
       mediumSize,

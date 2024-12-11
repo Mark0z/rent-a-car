@@ -4,15 +4,31 @@ import { MdManageAccounts } from 'react-icons/md';
 import { IoAnalytics, IoCarSportOutline } from 'react-icons/io5';
 import { IoIosNotificationsOutline } from 'react-icons/io';
 import { TbReportAnalytics } from 'react-icons/tb';
+import { UserManagement } from 'components/user-management/UserManagement';
+import { useState } from 'react';
+
+const renderStep = (option) => {
+  switch (option) {
+    case 1:
+      return <UserManagement />;
+  }
+};
 
 export const AdminPanel = () => {
+  const [selectedOption, setSelectedOption] = useState(0);
   return (
     <div className="admin__panel">
       <div className="admin__panel__options">
-        <PanelButton value="manageAccounts" icon={<MdManageAccounts />}>
+        <PanelButton
+          value="manageAccounts"
+          icon={<MdManageAccounts />}
+          onClick={() => setSelectedOption(1)}>
           Zarządzanie użytkownikami
         </PanelButton>
-        <PanelButton value="manageCars" icon={<IoCarSportOutline />}>
+        <PanelButton
+          value="manageCars"
+          icon={<IoCarSportOutline />}
+          onClick={() => setSelectedOption(2)}>
           Zarządzanie pojazdami
         </PanelButton>
         <PanelButton value="manageReservations" icon={<TbReportAnalytics />}>
@@ -25,6 +41,7 @@ export const AdminPanel = () => {
           Powiadomienia
         </PanelButton>
       </div>
+      {renderStep(selectedOption)}
     </div>
   );
 };

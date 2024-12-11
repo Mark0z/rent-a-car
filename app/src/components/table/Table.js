@@ -4,7 +4,7 @@ import { Spinner } from 'components/spinner/Spinner';
 
 export const Table = ({ headerArray, loading, children }) => {
   return (
-    <div>
+    <>
       {loading ? (
         <Spinner />
       ) : (
@@ -19,7 +19,7 @@ export const Table = ({ headerArray, loading, children }) => {
           <tbody>{children}</tbody>
         </table>
       )}
-    </div>
+    </>
   );
 };
 

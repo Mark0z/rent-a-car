@@ -28,9 +28,24 @@
       background: none;
 
       &:hover {
-        color: white;
-        background: $COLOR-SUNNY-COPPER;
-        background: linear-gradient(0deg, $COLOR-SUNNY-COPPER 0%, $COLOR-ORANGE 100%);
+        color: $COLOR-WHITE;
+        background: $COLOR-ORANGE;
+      }
+
+      &:active {
+        background-color: $COLOR-RUSTY-ORANGE;
+      }
+    }
+
+    &-danger {
+      border: 1px solid $COLOR-RED;
+      color: $COLOR-RED;
+      font-weight: 600;
+      background: none;
+
+      &:hover {
+        color: $COLOR-WHITE;
+        background: $COLOR-RED;
       }
     }
 

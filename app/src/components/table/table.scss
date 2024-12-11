@@ -1,16 +1,17 @@
 @import "values/colors";
 
 table {
-  font-family: arial, sans-serif;
+  display: inline-block;
   border-collapse: collapse;
-  width: 100%;
+  height: 600px;
+  overflow-y: auto;
 }
 
 td, th {
-  border: 1px solid #dddddd;
+  border: 1px solid $COLOR-SAGE;
   padding: 8px;
 }
 
 tr:nth-child(even) {
-  background-color: $COLOR-ORANGE-075;
+  background-color: $COLOR-ORANGE-05;
 }
