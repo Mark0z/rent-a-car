@@ -34,6 +34,12 @@ public class ReservationController {
         }
     }
 
+    @GetMapping("user/{id}")
+    public ResponseEntity<List<Reservation>> getListOfUserReservations(@PathVariable Long id) {
+        List<Reservation> reservationList = reservationService.getListOfUserReservations(id);
+        return ResponseEntity.ok(reservationList);
+    }
+
     @PostMapping("/")
     public ResponseEntity<?> addReservation(@RequestBody Reservation reservation) {
         try {
