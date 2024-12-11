@@ -1,5 +1,5 @@
 import './admin-panel.scss';
-import { ProfileButton } from 'components/inputs/profile-button/ProfileButton';
+import { PanelButton } from 'components/inputs/panel-button/PanelButton';
 import { MdManageAccounts } from 'react-icons/md';
 import { IoAnalytics, IoCarSportOutline } from 'react-icons/io5';
 import { IoIosNotificationsOutline } from 'react-icons/io';
@@ -9,21 +9,21 @@ export const AdminPanel = () => {
   return (
     <div className="admin__panel">
       <div className="admin__panel__options">
-        <ProfileButton value="manageAccounts" icon={<MdManageAccounts />}>
+        <PanelButton value="manageAccounts" icon={<MdManageAccounts />}>
           Zarządzanie użytkownikami
-        </ProfileButton>
-        <ProfileButton value="manageCars" icon={<IoCarSportOutline />}>
+        </PanelButton>
+        <PanelButton value="manageCars" icon={<IoCarSportOutline />}>
           Zarządzanie pojazdami
-        </ProfileButton>
-        <ProfileButton value="manageReservations" icon={<TbReportAnalytics />}>
+        </PanelButton>
+        <PanelButton value="manageReservations" icon={<TbReportAnalytics />}>
           Zarządzanie rezerwacjami
-        </ProfileButton>
-        <ProfileButton value="reports" icon={<IoAnalytics />}>
+        </PanelButton>
+        <PanelButton value="reports" icon={<IoAnalytics />}>
           Raporty i statystyki
-        </ProfileButton>
-        <ProfileButton value="notifications" icon={<IoIosNotificationsOutline />}>
+        </PanelButton>
+        <PanelButton value="notifications" icon={<IoIosNotificationsOutline />}>
           Powiadomienia
-        </ProfileButton>
+        </PanelButton>
       </div>
     </div>
   );

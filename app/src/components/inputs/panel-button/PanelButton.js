@@ -1,8 +1,8 @@
-import './profile-button.scss';
+import './panel-button.scss';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-export const ProfileButton = ({ className, value, icon, children, ...rest }) => {
+export const PanelButton = ({ className, value, icon, children, ...rest }) => {
   return (
     <button
       className={clsx('profile__button', className)}
@@ -16,7 +16,7 @@ export const ProfileButton = ({ className, value, icon, children, ...rest }) => 
   );
 };
 
-ProfileButton.propTypes = {
+PanelButton.propTypes = {
   className: PropTypes.string,
   value: PropTypes.string,
   icon: PropTypes.node,
