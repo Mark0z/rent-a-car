@@ -91,18 +91,17 @@ export const RegisterForm = ({ setIsLoginPage, isEditMode }) => {
         errors={errors.username}
         {...register('username', { required: true })}
       />
-      {!isEditMode && (
-        <TextInput
-          className="register__form__input"
-          name="password"
-          type="password"
-          textLabel="Hasło"
-          mediumSize
-          autoComplete="new-password"
-          errors={errors.password}
-          {...register('password', { required: true })}
-        />
-      )}
+      <TextInput
+        className="register__form__input"
+        name="password"
+        type="password"
+        textLabel="Hasło"
+        mediumSize
+        autoComplete="new-password"
+        hidden={isEditMode}
+        errors={errors.password}
+        {...register('password', { required: true })}
+      />
       <TextInput
         className="register__form__input"
         name="firstName"
