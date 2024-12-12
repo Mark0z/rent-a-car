@@ -38,7 +38,7 @@ export const TextInput = React.forwardRef(
           ref={ref}
           {...props}
         />
-        {errors && <span className="text--input-error">{errors.message}</span>}
+        {errors && <span className="text__input-error">{errors.message}</span>}
       </div>
     );
   }

@@ -1,21 +1,15 @@
 import './advantages-list.scss';
 import { FaRegCheckSquare } from 'react-icons/fa';
+import { advantagesList } from '../../data/advantagesData';
 
 export const AdvantagesList = () => {
-  const advantages = [
-    'Wygoda i dostępność',
-    'Różnorodność pojazdów',
-    'Brak długoterminowych zobowiązań',
-    'Ubezpieczenie i serwis w cenie'
-  ];
-
   return (
-    <div className="advantages__list">
-      {advantages.map((advantage, index) => (
-        <div className="advantages__list__item" key={index}>
+    <ul className="advantages__list">
+      {advantagesList.map((advantage, index) => (
+        <li className="advantages__list__item" key={index}>
           <FaRegCheckSquare /> {advantage}
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };

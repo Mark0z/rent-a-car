@@ -11,14 +11,18 @@
 
   &__select {
     @include styled-input;
+    transition: all 0.2s ease-in-out;
+    color: #333;
+    letter-spacing: 0.3px;
 
     &:focus {
       outline: none;
       border: 2px solid $COLOR-ORANGE;
+      box-shadow: 0 0 4px rgba($COLOR-ORANGE, 0.3);
     }
 
     &-medium {
-      font-size: x-large;
+      font-size: large;
     }
   }
 

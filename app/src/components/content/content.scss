@@ -1,4 +1,4 @@
-@import "values/colors";
+@import 'values/colors';
 
 .content {
   width: 80%;
@@ -6,6 +6,8 @@
   display: flex;
   gap: 4px;
   min-height: 500px;
+  position: relative;
+  z-index: 10;
 
   &__covered {
     margin: -40px auto -20px auto;

@@ -1,17 +1,19 @@
-@import "values/colors";
+@import 'values/colors';
 
 .advantages__list {
+  padding-left: 16px;
+
   &__item {
-    font-size: large;
+    font-size: 18px;
     font-style: italic;
     display: inline-flex;
-    gap: 4px;
+    gap: 8px;
     align-items: center;
+    margin-bottom: 12px;
 
     svg {
-      font-size: larger;
-      color: $COLOR-ORANGE;
+      font-size: 22px;
+      color: darken($COLOR-ORANGE, 10%);
     }
-
   }
 }

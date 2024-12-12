@@ -1,4 +1,4 @@
-@import "./colors";
+@import './colors';
 
 @mixin styled-border {
   border: 2px solid $COLOR-ORANGE;
@@ -15,4 +15,7 @@
 @mixin styled-input {
   border: 2px solid $COLOR-SAGE;
   border-radius: 4px;
+  background-color: white;
+  padding: 4px;
+  appearance: none;
 }
