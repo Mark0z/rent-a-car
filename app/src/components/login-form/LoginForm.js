@@ -17,7 +17,7 @@ export const LoginForm = ({ setIsLoginPage }) => {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm();
+  } = useForm({ mode: 'onBlur' });
 
   const handleLoginForm = (data) => {
     setError(null);
@@ -41,7 +41,13 @@ export const LoginForm = ({ setIsLoginPage }) => {
           mediumSize
           autoComplete="username"
           errors={errors.username}
-          {...register('username', { required: true })}
+          {...register('username', {
+            required: 'Nazwa użytkownika jest wymagana',
+            minLength: {
+              value: 3,
+              message: 'Nazwa użytkownika musi mieć minimum 3 znaki'
+            }
+          })}
         />
         <TextInput
           className="login__form__input"
@@ -51,7 +57,13 @@ export const LoginForm = ({ setIsLoginPage }) => {
           autoComplete="current-password"
           errors={errors.password}
           mediumSize
-          {...register('password', { required: true })}
+          {...register('password', {
+            required: 'Hasło jest wymagane',
+            minLength: {
+              value: 5,
+              message: 'Hasło musi mieć minimum 5 znaków'
+            }
+          })}
         />
         {loading ? <Spinner /> : <>{error && <p className="login__form-error">{error.code}</p>}</>}
         <Button className="login__form__button" type="submit">

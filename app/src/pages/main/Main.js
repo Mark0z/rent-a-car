@@ -30,15 +30,19 @@ export const Main = () => {
           <ContentBox title="Najpopularniejsze" center>
             {!loading ? (
               <>
-                {data.map((car, index) => (
-                  <CarItem
-                    key={index}
-                    price={car.pricePerDay}
-                    brand={car.brand}
-                    model={car.model}
-                    imageUrl={car.imageUrl}
-                  />
-                ))}
+                {data.length > 0 ? (
+                  data.map((car, index) => (
+                    <CarItem
+                      key={car.id || index}
+                      price={car.pricePerDay}
+                      brand={car.brand}
+                      model={car.model}
+                      imageUrl={car.imageUrl}
+                    />
+                  ))
+                ) : (
+                  <p>Brak dostępnych samochodów</p>
+                )}
               </>
             ) : (
               <Spinner />

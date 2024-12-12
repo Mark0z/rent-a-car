@@ -1,6 +1,6 @@
 import './advantages-list.scss';
 import { FaRegCheckSquare } from 'react-icons/fa';
-import { advantagesList } from '../../data/advantagesData';
+import { advantagesList } from 'data/advantagesData';
 
 export const AdvantagesList = () => {
   return (

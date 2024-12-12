@@ -18,18 +18,19 @@ export const RegisterForm = ({ setIsLoginPage, isEditMode }) => {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm(
-    isEditMode && {
-      defaultValues: {
-        email: state.data.email,
-        username: state.data.username,
-        password: '',
-        firstName: state.data.firstName,
-        lastName: state.data.lastName,
-        phone: state.data.phone
-      }
-    }
-  );
+  } = useForm({
+    defaultValues: isEditMode
+      ? {
+          email: state.data.email,
+          username: state.data.username,
+          password: '',
+          firstName: state.data.firstName,
+          lastName: state.data.lastName,
+          phone: state.data.phone
+        }
+      : {},
+    mode: 'onBlur'
+  });
 
   const saveResponseToState = ({ data }) => {
     const payload = {
@@ -49,25 +50,19 @@ export const RegisterForm = ({ setIsLoginPage, isEditMode }) => {
     setError(null);
     setLoading(true);
 
-    if (isEditMode) {
-      axios
-        .put(`http://localhost:8080/auth/update/${state.data.userId}`, data)
-        .then((response) => {
-          saveResponseToState(response);
-          setMessage('Edycja zakończona powodzeniem');
-        })
-        .catch((error) => setError(error.message))
-        .finally(() => setLoading(false));
-    } else {
-      axios
-        .post('http://localhost:8080/auth/register', data)
-        .then((response) => {
-          saveResponseToState(response);
-          setMessage('Użytkownik zarejestrowany');
-        })
-        .catch((error) => setError(error.message))
-        .finally(() => setLoading(false));
-    }
+    const url = isEditMode
+      ? `http://localhost:8080/auth/update/${state.data.userId}`
+      : `http://localhost:8080/auth/register`;
+
+    const method = isEditMode ? 'put' : 'post';
+
+    axios[method](url, data)
+      .then((response) => {
+        saveResponseToState(response);
+        setMessage(isEditMode ? 'Edycja zakończona powodzeniem' : 'Użytkownik zarejestrowany');
+      })
+      .catch((error) => setError(error.message))
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -80,7 +75,13 @@ export const RegisterForm = ({ setIsLoginPage, isEditMode }) => {
         mediumSize
         autoComplete="email"
         errors={errors.email}
-        {...register('email', { required: true })}
+        {...register('email', {
+          required: 'Email jest wymagany',
+          pattern: {
+            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+            message: 'Nieprawidłowy format email'
+          }
+        })}
       />
       <TextInput
         className="register__form__input"
@@ -89,7 +90,13 @@ export const RegisterForm = ({ setIsLoginPage, isEditMode }) => {
         mediumSize
         autoComplete="username"
         errors={errors.username}
-        {...register('username', { required: true })}
+        {...register('username', {
+          required: 'Nazwa użytkownika jest wymagana',
+          minLength: {
+            value: 3,
+            message: 'Nazwa użytkownika musi mieć minimum 3 znaki'
+          }
+        })}
       />
       <TextInput
         className="register__form__input"
@@ -100,7 +107,13 @@ export const RegisterForm = ({ setIsLoginPage, isEditMode }) => {
         autoComplete="new-password"
         hidden={isEditMode}
         errors={errors.password}
-        {...register('password', { required: true })}
+        {...register('password', {
+          required: 'Hasło jest wymagane',
+          minLength: {
+            value: 5,
+            message: 'Hasło musi mieć minimum 5 znaków'
+          }
+        })}
       />
       <TextInput
         className="register__form__input"
@@ -109,7 +122,9 @@ export const RegisterForm = ({ setIsLoginPage, isEditMode }) => {
         mediumSize
         autoComplete="given-name"
         errors={errors.firstName}
-        {...register('firstName', { required: true })}
+        {...register('firstName', {
+          required: 'Imię jest wymagane'
+        })}
       />
       <TextInput
         className="register__form__input"
@@ -118,7 +133,9 @@ export const RegisterForm = ({ setIsLoginPage, isEditMode }) => {
         mediumSize
         autoComplete="family-name"
         errors={errors.lastName}
-        {...register('lastName', { required: true })}
+        {...register('lastName', {
+          required: 'Nazwisko jest wymagane'
+        })}
       />
       <TextInput
         className="register__form__input"
@@ -130,7 +147,13 @@ export const RegisterForm = ({ setIsLoginPage, isEditMode }) => {
         mediumSize
         autoComplete="tel-local"
         errors={errors.phone}
-        {...register('phone', { required: true })}
+        {...register('phone', {
+          required: 'Telefon jest wymagany',
+          pattern: {
+            value: /^\+?[0-9]{9}(?:[0-9]{3})?$/,
+            message: 'Nieprawidłowy format numeru telefonu'
+          }
+        })}
       />
       {loading ? (
         <Spinner />

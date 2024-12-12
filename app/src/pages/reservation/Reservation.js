@@ -19,118 +19,106 @@ import { sendMail } from 'utils/sendMail';
 import { Spinner } from 'components/spinner/Spinner';
 
 export const Reservation = () => {
-  const [isCaptchaSolved, setIsCaptchaSolved] = useState(true);
-  const { state, actions } = useStateMachine({ clearAction, updateAction });
-  const { handleSubmit } = useForm();
+  const [isCaptchaSolved, setIsCaptchaSolved] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const { state, actions } = useStateMachine({ clearAction, updateAction });
+  const { handleSubmit } = useForm();
   const recaptchaRef = useRef(null);
   const navigate = useNavigate();
   const storedState = state.data;
 
   const sentMailToUser = () => {
-    const data = {
-      email: storedState.email,
-      reservationId: storedState.reservationId,
-      firstName: storedState.firstName,
-      startDate: storedState.startDate,
-      startAgencyName: storedState.startAgencyName,
-      endDate: storedState.endDate,
-      endAgencyName: storedState.endAgencyName
-    };
-
-    sendMail(data);
+    const { email, reservationId, firstName, startDate, startAgencyName, endDate, endAgencyName } =
+      storedState;
+    sendMail({
+      email,
+      reservationId,
+      firstName,
+      startDate,
+      startAgencyName,
+      endDate,
+      endAgencyName
+    });
   };
 
   const onSubmit = () => {
     setLoading(true);
     const captchaData = recaptchaRef.current.getValue();
+
+    if (!captchaData) {
+      setIsCaptchaSolved(false);
+      setLoading(false);
+      return;
+    }
+
     const { carId, userId, startDate, endDate } = state.data;
 
-    if (captchaData) {
-      setIsCaptchaSolved(true);
-
-      axios
-        .post('http://localhost:8080/reservations/', {
-          user: {
-            id: userId
-          },
-          car: {
-            id: carId
-          },
-          startDate: new Date(startDate).toISOString(),
-          endDate: new Date(endDate).toISOString()
-        })
-        .then((response) => {
-          setError(null);
-          actions.updateAction({ reservationId: response.data.id });
-          navigate('/reservation-success');
-          sentMailToUser();
-        })
-        .catch((error) => setError(error))
-        .finally(() => setLoading(false));
-    } else {
-      setIsCaptchaSolved(false);
-    }
+    axios
+      .post('http://localhost:8080/reservations/', {
+        user: { id: userId },
+        car: { id: carId },
+        startDate: new Date(startDate).toISOString(),
+        endDate: new Date(endDate).toISOString()
+      })
+      .then((response) => {
+        actions.updateAction({ reservationId: response.data.id });
+        navigate('/reservation-success');
+        sentMailToUser();
+      })
+      .catch(setError)
+      .finally(() => setLoading(false));
   };
 
-  const renderStep = (step) => {
-    switch (step) {
-      case 1:
-        return (
-          <ContentBox
-            title={`Krok: ${storedState.reservationFormStep} / Czas wynajmu`}
-            className="reservation__content__box"
-            center>
-            <div>
-              <ReservationDatePickerForm isMediumSize />
-            </div>
-          </ContentBox>
-        );
-      case 2:
-        return (
-          <ContentBox
-            title={`Krok: ${storedState.reservationFormStep} / Wybierz pojazd`}
-            className="reservation__content__box"
-            center>
-            <ReservationCarPicker />
-          </ContentBox>
-        );
-      case 3:
-        return (
-          <ContentBox
-            title={`Krok: ${storedState.reservationFormStep} / Autoryzacja`}
-            className="reservation__content__box"
-            center>
-            <Auth />
-          </ContentBox>
-        );
-      case 4:
-        return (
-          <form onSubmit={handleSubmit(onSubmit)} className="reservation__form">
-            <ReservationInfo />
-            <div className="reservation__captcha">
-              <ReCAPTCHA sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY} ref={recaptchaRef} />
-              {!isCaptchaSolved && (
-                <p className="contact__mail__form__captcha-error">
-                  Aby kontynuować, rozwiąż proszę CAPTCHA
-                </p>
-              )}
-              {error && <p className="contact__mail__form__captcha-error">{error.response.data}</p>}
-              <Button type="submit">Rezerwuj</Button>
-            </div>
-          </form>
-        );
-      default:
-        return null;
-    }
+  const steps = {
+    1: () => (
+      <ContentBox
+        title={`Krok: ${storedState.reservationFormStep} / Czas wynajmu`}
+        className="reservation__content__box"
+        center>
+        <div>
+          <ReservationDatePickerForm isMediumSize />
+        </div>
+      </ContentBox>
+    ),
+    2: () => (
+      <ContentBox
+        title={`Krok: ${storedState.reservationFormStep} / Wybierz pojazd`}
+        className="reservation__content__box"
+        center>
+        <ReservationCarPicker />
+      </ContentBox>
+    ),
+    3: () => (
+      <ContentBox
+        title={`Krok: ${storedState.reservationFormStep} / Autoryzacja`}
+        className="reservation__content__box"
+        center>
+        <Auth />
+      </ContentBox>
+    ),
+    4: () => (
+      <form onSubmit={handleSubmit(onSubmit)} className="reservation__form">
+        <ReservationInfo />
+        <div className="reservation__captcha">
+          <ReCAPTCHA sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY} ref={recaptchaRef} />
+          {!isCaptchaSolved && (
+            <p className="contact__mail__form__captcha-error">
+              Aby kontynuować, rozwiąż proszę CAPTCHA
+            </p>
+          )}
+          {error && <p className="contact__mail__form__captcha-error">{error.response?.data}</p>}
+          <Button type="submit">Rezerwuj</Button>
+        </div>
+      </form>
+    )
   };
 
   return (
     <div className="reservation">
       <Content className="reservation__content">
         <div className={clsx('reservation__content-left')}>
-          {!loading ? renderStep(storedState.reservationFormStep) : <Spinner />}
+          {!loading ? steps[storedState.reservationFormStep]() : <Spinner />}
         </div>
         {storedState.reservationFormStep !== 4 && storedState.startDate !== '' && (
           <div className="reservation__content-right">
