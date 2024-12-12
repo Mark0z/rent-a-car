@@ -41,7 +41,7 @@ export const Main = () => {
                     />
                   ))
                 ) : (
-                  <p>Brak dostępnych samochodów</p>
+                  <>{!error && <p>Brak dostępnych samochodów</p>}</>
                 )}
               </>
             ) : (
