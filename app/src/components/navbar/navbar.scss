@@ -1,14 +1,6 @@
 @import 'values/colors';
 @import 'values/breakpoints';
 
-.navbar__menu {
-  display: flex;
-
-  &__auth {
-    padding: 0 8px;
-  }
-}
-
 .navbar {
   max-width: 100%;
   background-color: $COLOR-BEIGE;

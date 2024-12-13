@@ -1,4 +1,5 @@
 @import 'values/breakpoints';
+@import 'values/mixins';
 
 .admin__panel {
   width: 100%;
@@ -8,18 +9,6 @@
   padding: 1rem;
 
   &__options {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 16px;
-    margin: 16px 0;
-
-    @include mobile {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-    }
+    @include styled-options;
   }
 }

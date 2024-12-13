@@ -1,4 +1,5 @@
 @import './colors';
+@import 'values/breakpoints';
 
 @mixin styled-border {
   border: 2px solid $COLOR-ORANGE;
@@ -18,4 +19,20 @@
   background-color: white;
   padding: 4px;
   appearance: none;
+}
+
+@mixin styled-options {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin: 16px 0;
+
+  @include mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
 }
