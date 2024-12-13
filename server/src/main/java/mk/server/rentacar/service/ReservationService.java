@@ -97,4 +97,8 @@ public class ReservationService {
     public List<Reservation> getAllReservations() {
         return reservationRepository.findAll();
     }
+
+    public List<Reservation> getListOfUserReservations(Long userId) {
+        return reservationRepository.getReservationsByUserId(userId);
+    }
 }
