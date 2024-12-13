@@ -33,35 +33,37 @@ export const UserManagement = () => {
       {loading ? (
         <Spinner />
       ) : (
-        <Table
-          loading={loading}
-          headerArray={[
-            'Email',
-            'Username',
-            'Name',
-            'Telefon',
-            'Rezerwacji',
-            'Data dołączenia',
-            'Info'
-          ]}>
-          {filteredData.map((user, index) => (
-            <tr key={index}>
-              <td>{user.email}</td>
-              <td>{user.username}</td>
-              <td>
-                {user.firstName} {user.lastName}
-              </td>
-              <td>{user.phone}</td>
-              <td>{user.reservations.length}</td>
-              <td>{user.dateJoined.slice(0, 10)}</td>
-              <td>
-                <Button onClick={() => setSelectedUser(user)} isSecondary>
-                  Info
-                </Button>
-              </td>
-            </tr>
-          ))}
-        </Table>
+        <div className="user__management__table__container">
+          <Table
+            loading={loading}
+            headerArray={[
+              'Email',
+              'Username',
+              'Name',
+              'Telefon',
+              'Rezerwacji',
+              'Data dołączenia',
+              'Info'
+            ]}>
+            {filteredData.map((user, index) => (
+              <tr key={index}>
+                <td>{user.email}</td>
+                <td>{user.username}</td>
+                <td>
+                  {user.firstName} {user.lastName}
+                </td>
+                <td>{user.phone}</td>
+                <td>{user.reservations.length}</td>
+                <td>{user.dateJoined.slice(0, 10)}</td>
+                <td>
+                  <Button onClick={() => setSelectedUser(user)} isSecondary>
+                    Info
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </Table>
+        </div>
       )}
       {error && <p>{error}</p>}
       {selectedUser && (

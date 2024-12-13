@@ -1,15 +1,44 @@
-@import "values/colors";
+@import 'values/colors';
+@import 'values/breakpoints';
 
-table {
-  display: inline-block;
-  border-collapse: collapse;
-  height: 600px;
-  overflow-y: auto;
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  margin: 0 auto;
+
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+  }
 }
 
-td, th {
+table {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+  max-height: 600px;
+  overflow-y: auto;
+
+  @include mobile {
+    font-size: 12px;
+  }
+}
+
+td,
+th {
   border: 1px solid $COLOR-SAGE;
   padding: 8px;
+  white-space: nowrap;
+
+  @include mobile {
+    padding: 6px;
+  }
 }
 
 tr:nth-child(even) {

@@ -6,17 +6,16 @@ import { sortArray } from 'utils/sortArray';
 
 export const UserReservationsTable = () => {
   const { state } = useStateMachine();
-  const userId = state.data.userId;
   const { error, loading, data } = useAxios({
     method: 'GET',
-    url: `http://localhost:8080/reservations/user/${userId}`
+    url: `http://localhost:8080/reservations/user/${state.data.userId}`
   });
   const sortedArrayByDate = sortArray(data, 'endDate', false);
 
   return (
-    <>
+    <div className="user-reservations">
       {error ? (
-        <p>{error}</p>
+        <p>{error.message}</p>
       ) : (
         <Table loading={loading} headerArray={['Od', 'Do', 'Status', 'Koszt', 'Samochód']}>
           {sortedArrayByDate.map((reservation, index) => (
@@ -32,6 +31,6 @@ export const UserReservationsTable = () => {
           ))}
         </Table>
       )}
-    </>
+    </div>
   );
 };

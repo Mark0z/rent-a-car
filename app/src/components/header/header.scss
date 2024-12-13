@@ -1,9 +1,14 @@
-@import "values/colors";
-@import "values/mixins";
+@import 'values/colors';
+@import 'values/mixins';
+@import 'values/breakpoints';
 
 .header {
   width: 100%;
   background-color: $COLOR-BEIGE;
+
+  @include mobile {
+    display: none;
+  }
 
   &__contact {
     display: flex;
@@ -45,6 +50,10 @@
         font-size: 18px;
         margin-right: 4px;
       }
+
+      @include tablet {
+        display: none;
+      }
     }
   }
 }
@@ -63,4 +72,3 @@
     height: 200px;
   }
 }
-

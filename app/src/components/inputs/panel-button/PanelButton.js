@@ -11,7 +11,7 @@ export const PanelButton = ({ className, value, icon, children, ...rest }) => {
       value={value}
       {...rest}>
       <div className="profile__button__svg">{icon}</div>
-      {children}
+      <div className="profile__button__text">{children}</div>
     </button>
   );
 };

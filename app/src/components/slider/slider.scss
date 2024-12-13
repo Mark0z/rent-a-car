@@ -1,4 +1,5 @@
 @import 'values/colors';
+@import 'values/breakpoints';
 
 .slider {
   width: auto;
@@ -52,5 +53,15 @@
     opacity: inherit;
     transition: all 0.8s ease-in-out;
     max-width: 50%;
+  }
+
+  @include mobile {
+    height: 250px;
+
+    &__text {
+      font-size: 24px;
+      left: 10%;
+      max-width: 80%;
+    }
   }
 }

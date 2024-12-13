@@ -8,16 +8,18 @@ export const Table = ({ headerArray, loading, children }) => {
       {loading ? (
         <Spinner />
       ) : (
-        <table>
-          <thead>
-            <tr>
-              {headerArray.map((item, index) => (
-                <th key={index}>{item}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>{children}</tbody>
-        </table>
+        <div className="table-container">
+          <table>
+            <thead>
+              <tr>
+                {headerArray.map((item, index) => (
+                  <th key={index}>{item}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>{children}</tbody>
+          </table>
+        </div>
       )}
     </>
   );

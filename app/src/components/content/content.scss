@@ -1,4 +1,5 @@
 @import 'values/colors';
+@import 'values/breakpoints';
 
 .content {
   width: 80%;
@@ -11,5 +12,10 @@
 
   &__covered {
     margin: -40px auto -20px auto;
+  }
+
+  @include tablet {
+    flex-direction: column;
+    width: 90%;
   }
 }
