@@ -47,6 +47,10 @@
         color: $COLOR-WHITE;
         background: $COLOR-RED;
       }
+
+      &:active {
+        background-color: $COLOR-RED-05;
+      }
     }
 
     &__submit {
