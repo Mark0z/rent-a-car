@@ -1,0 +1,39 @@
+@import 'values/colors';
+
+.user__profile {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+      margin: 0;
+    }
+  }
+
+  &__info {
+    background-color: $COLOR-ORANGE-05;
+    padding: 16px;
+    border-radius: 8px;
+    margin: 16px 0;
+  }
+
+  &__details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+
+    p {
+      margin: 8px 0;
+    }
+  }
+
+  &__reservations {
+    h3 {
+      margin: 16px 0 8px;
+    }
+  }
+}
