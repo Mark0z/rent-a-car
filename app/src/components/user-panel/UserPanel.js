@@ -14,8 +14,8 @@ export const UserPanel = () => {
     setSelectedOption(option);
   }
 
-  const renderStep = (option) => {
-    switch (option) {
+  const renderStep = () => {
+    switch (selectedOption) {
       case 1:
         return (
           <>
@@ -25,6 +25,8 @@ export const UserPanel = () => {
         );
       case 2:
         return <UserReservationsTable />;
+      default:
+        return null;
     }
   };
 

@@ -11,6 +11,8 @@ const renderStep = (option) => {
   switch (option) {
     case 1:
       return <UserManagement />;
+    default:
+      return null;
   }
 };
 

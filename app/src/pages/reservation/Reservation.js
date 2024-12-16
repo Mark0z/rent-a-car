@@ -70,7 +70,7 @@ export const Reservation = () => {
       .finally(() => setLoading(false));
   };
 
-  const steps = {
+  const renderStep = {
     1: () => (
       <ContentBox
         title={`Krok: ${storedState.reservationFormStep} / Czas wynajmu`}
@@ -118,7 +118,7 @@ export const Reservation = () => {
     <div className="reservation">
       <Content className="reservation__content">
         <div className={clsx('reservation__content-left')}>
-          {!loading ? steps[storedState.reservationFormStep]() : <Spinner />}
+          {!loading ? renderStep[storedState.reservationFormStep]() : <Spinner />}
         </div>
         {storedState.reservationFormStep !== 4 && storedState.startDate !== '' && (
           <div className="reservation__content-right">
