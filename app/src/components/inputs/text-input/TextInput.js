@@ -5,12 +5,22 @@ import React from 'react';
 
 export const TextInput = React.forwardRef(
   (
-    { name, textLabel, className, type = 'text', errors, required = true, mediumSize, ...props },
+    {
+      name,
+      textLabel,
+      className,
+      type = 'text',
+      errors = '',
+      hidden = false,
+      required = true,
+      mediumSize,
+      ...props
+    },
     ref
   ) => {
     return (
       <div className="text__input">
-        <label htmlFor={name} className="text__input__label">
+        <label hidden={hidden} htmlFor={name} className="text__input__label">
           {textLabel}
         </label>
         <input
@@ -23,11 +33,12 @@ export const TextInput = React.forwardRef(
           type={type}
           name={name}
           id={name}
+          hidden={hidden}
           required={required}
           ref={ref}
           {...props}
         />
-        {errors && <span className="text--input-error">{errors.message}</span>}
+        {errors && <span className="text__input-error">{errors.message}</span>}
       </div>
     );
   }
@@ -42,5 +53,6 @@ TextInput.propTypes = {
   type: PropTypes.string,
   errors: PropTypes.object,
   mediumSize: PropTypes.bool,
+  hidden: PropTypes.bool,
   required: PropTypes.bool
 };

@@ -9,8 +9,9 @@ import { updateAction } from 'utils/updateAction';
 import { useNavigate } from 'react-router-dom';
 import useFormPersist from 'react-hook-form-persist';
 import { pickedCarState } from 'data/little-state-machine-default-state';
+import PropTypes from 'prop-types';
 
-export const ReservationDatePickerForm = () => {
+export const ReservationDatePickerForm = ({ isMediumSize }) => {
   const { actions } = useStateMachine({ updateAction });
   const navigate = useNavigate();
   const {
@@ -46,6 +47,7 @@ export const ReservationDatePickerForm = () => {
         className="rent__a__car__form__input"
         type="datetime-local"
         min={new Date().toJSON().slice(0, 16)}
+        mediumSize={isMediumSize}
         errors={errors.startDate}
         {...register('startDate', { required: true, min: new Date().toJSON().slice(0, 16) })}
       />
@@ -56,6 +58,7 @@ export const ReservationDatePickerForm = () => {
         errors={errors.startAgencyName}
         textLabel="Miejsce odbioru:"
         optionList={BRANCHES_LIST}
+        mediumSize={isMediumSize}
         {...register('startAgencyName', { required: true })}
       />
       <TextInput
@@ -63,6 +66,7 @@ export const ReservationDatePickerForm = () => {
         type="datetime-local"
         name="endDate"
         min={validateEndDate(watch('startDate') || 0)}
+        mediumSize={isMediumSize}
         errors={errors.endDate}
         {...register('endDate', {
           required: true,
@@ -79,6 +83,7 @@ export const ReservationDatePickerForm = () => {
         errors={errors.endAgencyName}
         textLabel="Miejsce zwrotu:"
         optionList={BRANCHES_LIST}
+        mediumSize={isMediumSize}
         {...register('endAgencyName', { required: true })}
       />
 
@@ -88,3 +93,5 @@ export const ReservationDatePickerForm = () => {
     </form>
   );
 };
+
+ReservationDatePickerForm.propTypes = { isMediumSize: PropTypes.bool };

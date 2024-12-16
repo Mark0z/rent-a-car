@@ -7,7 +7,7 @@ import car from 'assets/mistery-car.jpg';
 export const CarItem = ({ brand, model, imageUrl, price }) => {
   return (
     <div className="car__item">
-      <img className="car__item__image" src={car} alt="" />
+      <img className="car__item__image" src={car || ''} alt="" />
       <div className="car__item__title">
         {brand} {model}
       </div>

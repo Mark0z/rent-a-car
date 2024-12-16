@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 export const Auth = () => {
   const [isLoginPage, setIsLoginPage] = useState(true);
   const { state, actions } = useStateMachine({ updateAction, clearAction });
-  const storedData = state.data;
+  const storedData = state.data || {};
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,24 +20,25 @@ export const Auth = () => {
       if (storedData.reservationFormStep === 3) {
         actions.updateAction({ reservationFormStep: 4 });
       } else {
-        navigate('/');
+        navigate('/profile');
       }
     }
-  }, [state]);
+  }, [storedData.userId, storedData.reservationFormStep, actions, navigate]);
+
+  const renderAuthForm = () =>
+    isLoginPage ? (
+      <ContentBox className="auth__content__box" title="Logowanie" center>
+        <LoginForm setIsLoginPage={setIsLoginPage} />
+      </ContentBox>
+    ) : (
+      <ContentBox className="auth__content__box" title="Rejestracja" center>
+        <RegisterForm setIsLoginPage={setIsLoginPage} />
+      </ContentBox>
+    );
 
   return (
     <div className="auth">
-      <Content className="auth__content">
-        {isLoginPage ? (
-          <ContentBox className="auth__content__box" title="Logowanie" center>
-            <LoginForm setIsLoginPage={setIsLoginPage} />
-          </ContentBox>
-        ) : (
-          <ContentBox className="auth__content__box" title="Rejestracja" center>
-            <RegisterForm setIsLoginPage={setIsLoginPage} />
-          </ContentBox>
-        )}
-      </Content>
+      <Content className="auth__content">{renderAuthForm()}</Content>
     </div>
   );
 };

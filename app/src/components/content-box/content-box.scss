@@ -1,9 +1,11 @@
-@import "values/mixins";
-@import "values/colors";
+@import 'values/mixins';
+@import 'values/colors';
+@import 'values/breakpoints';
 
 .content__box {
   padding: 16px 16px;
   background-color: $COLOR-WHITE;
+  width: 100%;
 
   &__title {
     @include styled-title;
@@ -27,5 +29,9 @@
       justify-content: center;
       align-items: center;
     }
+  }
+
+  @include tablet {
+    width: auto;
   }
 }

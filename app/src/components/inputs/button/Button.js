@@ -4,7 +4,18 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 
 export const Button = React.forwardRef(
-  ({ className, isSecondary = false, value, children, type = 'button', ...props }, ref) => {
+  (
+    {
+      className,
+      isSecondary = false,
+      isDanger = false,
+      value,
+      children,
+      type = 'button',
+      ...props
+    },
+    ref
+  ) => {
     return (
       <div className="button">
         <button
@@ -13,6 +24,7 @@ export const Button = React.forwardRef(
             'button__input',
             type === 'submit' && 'button__input__submit',
             isSecondary && 'button__input-secondary',
+            isDanger && 'button__input-danger',
             className
           )}
           value={value}
@@ -32,5 +44,6 @@ Button.propTypes = {
   value: PropTypes.string,
   type: PropTypes.string,
   isSecondary: PropTypes.bool,
+  isDanger: PropTypes.bool,
   children: PropTypes.node
 };

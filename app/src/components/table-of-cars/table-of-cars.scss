@@ -1,4 +1,5 @@
-@import "values/colors";
+@import 'values/colors';
+@import 'values/breakpoints';
 
 .table__of__cars {
   display: flex;
@@ -49,5 +50,16 @@
     text-align: center;
     flex: 1;
     flex-direction: column;
+  }
+
+  @include mobile {
+    flex-direction: column;
+
+    &-center,
+    &-right {
+      width: 100%;
+      padding: 10px;
+      text-align: center;
+    }
   }
 }

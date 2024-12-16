@@ -5,7 +5,17 @@ import clsx from 'clsx';
 
 export const SelectInput = React.forwardRef(
   (
-    { name, className, textLabel, defaultValue, required = true, errors, optionList, ...props },
+    {
+      name,
+      className,
+      textLabel,
+      defaultValue,
+      mediumSize = false,
+      required = true,
+      errors,
+      optionList,
+      ...props
+    },
     ref
   ) => {
     return (
@@ -16,7 +26,11 @@ export const SelectInput = React.forwardRef(
         <select
           name={name}
           id={name}
-          className={clsx('select__input__select', className)}
+          className={clsx(
+            'select__input__select',
+            className,
+            mediumSize && 'select__input__select-medium'
+          )}
           defaultValue={'default'}
           required={required}
           ref={ref}
@@ -46,5 +60,6 @@ SelectInput.propTypes = {
   errors: PropTypes.object,
   required: PropTypes.bool,
   optionList: PropTypes.array,
+  mediumSize: PropTypes.bool,
   defaultValue: PropTypes.string
 };

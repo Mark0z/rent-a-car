@@ -1,3 +1,6 @@
+@import "values/breakpoints";
+@import "values/colors";
+
 .contact__mail__form {
   display: flex;
   flex-direction: column;
@@ -9,7 +12,7 @@
     align-items: center;
 
     &-error {
-      color: red;
+      color: $COLOR-RED;
     }
   }
 
@@ -17,5 +20,11 @@
     justify-content: center;
     display: inherit;
     gap: 8px;
+
+    @include tablet {
+      display: flex;
+      flex-direction: column;
+    }
+
   }
 }

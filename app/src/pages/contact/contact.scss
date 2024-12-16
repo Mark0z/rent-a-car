@@ -1,9 +1,14 @@
 .contact {
   &__map {
-  }
+    position: relative;
 
-  &__content__box {
-    width: 100%;
+    .spinner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
   }
 
   &__iframe {

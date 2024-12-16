@@ -1,12 +1,5 @@
-@import "values/colors";
-
-.navbar__menu {
-  display: flex;
-
-  &__auth {
-    padding: 0 8px;
-  }
-}
+@import 'values/colors';
+@import 'values/breakpoints';
 
 .navbar {
   max-width: 100%;
@@ -19,6 +12,16 @@
     max-width: 80%;
     align-items: center;
 
+    @include mobile {
+      max-width: 95%;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    @include tablet {
+      max-width: 90%;
+    }
+
     a {
       color: $COLOR-BLACK;
       text-decoration: none;
@@ -30,28 +33,33 @@
     }
 
     &__link {
-      padding: 0 10px;
+      padding: 0 16px;
       text-align: center;
-      line-height: 60px;
-      font-size: 18px;
+      line-height: 45px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      border-radius: 6px;
+      margin: 0 4px;
+      font-weight: 500;
+      color: $COLOR-RUSTY-ORANGE;
 
       &:hover {
-        transition: all 0.3s ease;
-        background: $COLOR-SUNNY-COPPER;
-        background: linear-gradient(0deg, $COLOR-SUNNY-COPPER 0%, $COLOR-ORANGE 100%);
+        background-color: $COLOR-ORANGE;
         color: $COLOR-WHITE;
+        box-shadow: 0 2px 8px $COLOR-ORANGE-05;
+        transform: translateY(-1px);
       }
 
       &__icon {
-        width: 50px;
+        width: 45px;
         font-size: 18px;
         cursor: pointer;
       }
 
       &.active {
-        background: $COLOR-SUNNY-COPPER;
-        background: linear-gradient(0deg, $COLOR-SUNNY-COPPER 0%, $COLOR-ORANGE 100%);
+        background-color: $COLOR-ORANGE;
         color: $COLOR-WHITE;
+        box-shadow: 0 2px 8px $COLOR-ORANGE-05;
       }
     }
   }

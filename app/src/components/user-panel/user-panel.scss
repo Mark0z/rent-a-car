@@ -1,4 +1,6 @@
-@import "values/colors";
+@import 'values/colors';
+@import 'values/mixins';
+@import 'values/breakpoints';
 
 .user__panel {
   width: 100%;
@@ -8,8 +10,6 @@
   align-items: center;
 
   &__options {
-    width: 100%;
-    display: inline-flex;
-    justify-content: space-evenly;
+    @include styled-options;
   }
 }

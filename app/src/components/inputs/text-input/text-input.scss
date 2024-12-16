@@ -7,18 +7,28 @@
 
   &__label {
     margin: 4px 0;
+    font-size: 14px;
+    color: #555;
   }
 
   &__input {
     @include styled-input;
+    transition: all 0.2s ease-in-out;
+    color: #333;
+    letter-spacing: 0.3px;
+
+    &::placeholder {
+      color: #999;
+    }
 
     &:focus {
       outline: none;
       border: 2px solid $COLOR-ORANGE;
+      box-shadow: 0 0 4px rgba($COLOR-ORANGE, 0.3);
     }
 
     &-medium {
-      font-size: x-large;
+      font-size: large;
     }
 
     &-error {
