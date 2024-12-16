@@ -10,7 +10,6 @@ import { Button } from 'components/inputs/button/Button';
 export const UserManagement = () => {
   const { data, loading, error } = useAxios({ method: 'GET', url: 'http://localhost:8080/users/' });
   const [filteredData, setFilteredData] = useState([]);
-  const [selectedUser, setSelectedUser] = useState(null);
 
   useEffect(() => {
     setFilteredData(data);
@@ -21,22 +20,27 @@ export const UserManagement = () => {
     setFilteredData(array);
   };
 
+  const handleUserInfo = (userId) => {
+    window.open(`/user-profile/${userId}`, '_blank');
+  };
+
   return (
     <div className="user__management">
-      <TextInput
-        className="user__management__search__input"
-        name="search"
-        textLabel="Wyszukaj"
-        onChange={(e) => searchUser(e.target.value)}
-        mediumSize
-      />
       {loading ? (
         <Spinner />
       ) : (
         <div className="user__management__table__container">
+          <TextInput
+            className="user__management__search__input"
+            name="search"
+            textLabel="Wyszukaj"
+            onChange={(e) => searchUser(e.target.value)}
+            mediumSize
+          />
           <Table
             loading={loading}
             headerArray={[
+              'Id',
               'Email',
               'Username',
               'Name',
@@ -47,6 +51,7 @@ export const UserManagement = () => {
             ]}>
             {filteredData.map((user, index) => (
               <tr key={index}>
+                <td>{user.id}</td>
                 <td>{user.email}</td>
                 <td>{user.username}</td>
                 <td>
@@ -56,7 +61,7 @@ export const UserManagement = () => {
                 <td>{user.reservations.length}</td>
                 <td>{user.dateJoined.slice(0, 10)}</td>
                 <td>
-                  <Button onClick={() => setSelectedUser(user)} isSecondary>
+                  <Button onClick={() => handleUserInfo(user.id)} isSecondary>
                     Info
                   </Button>
                 </td>
@@ -66,11 +71,6 @@ export const UserManagement = () => {
         </div>
       )}
       {error && <p>{error}</p>}
-      {selectedUser && (
-        <>
-          <p>{selectedUser.id}</p>
-        </>
-      )}
     </div>
   );
 };
