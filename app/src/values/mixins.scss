@@ -16,7 +16,7 @@
 @mixin styled-input {
   border: 2px solid $COLOR-SAGE;
   border-radius: 4px;
-  background-color: white;
+  background-color: $COLOR-WHITE;
   padding: 4px;
   appearance: none;
 }
