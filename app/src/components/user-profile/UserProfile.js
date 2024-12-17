@@ -49,7 +49,6 @@ export const UserProfile = () => {
     reservationsData?.filter((res) => ['CONFIRMED', 'PENDING'].includes(res.status)) || [];
 
   if (userLoading || reservationsLoading) return <Spinner />;
-  if (userError || reservationsError) return <p>Wystąpił błąd podczas ładowania danych</p>;
 
   const handleReservationCancel = (id) => {
     setSelectedReservationId(id);
@@ -91,6 +90,7 @@ export const UserProfile = () => {
                 <b>Data dołączenia:</b> {userData.dateJoined.slice(0, 10)}
               </p>
             </div>
+            {userError && <p className="user__profile-error">{userError}</p>}
           </div>
 
           <div className="user-profile__reservations">
@@ -161,6 +161,8 @@ export const UserProfile = () => {
             ) : (
               <h3>Brak historii rezerwacji...</h3>
             )}
+
+            {reservationsError && <p className="user__profile-error">{reservationsError}</p>}
           </div>
         </div>
       </ContentBox>
