@@ -129,6 +129,10 @@ public class ReservationService {
         return reservationRepository.getReservationsByUserId(userId);
     }
 
+    public List<Reservation> getListOfCarReservations(Long carId) {
+        return reservationRepository.getReservationsByCarId(carId);
+    }
+
     public Reservation cancelReservation(Long id) {
         Reservation reservation = getReservationById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Reservation not found"));
