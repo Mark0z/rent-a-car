@@ -12,8 +12,10 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReservationService {
@@ -92,8 +94,7 @@ public class ReservationService {
     private boolean checkAvailability(Reservation reservationDto) {
         List<Reservation> reservationList = reservationRepository
                 .getReservationsByCarId(reservationDto.getCar().getId());
-        reservationList.stream().filter(reservation -> !Objects.equals(reservation.getStatus(), "CANCELLED"))
-                .collect(Collectors.toList());
+
         Date checkedStartDate = reservationDto.getStartDate();
         Date checkedEndDate = reservationDto.getEndDate();
 
