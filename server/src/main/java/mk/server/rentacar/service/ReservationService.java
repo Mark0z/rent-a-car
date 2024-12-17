@@ -1,15 +1,18 @@
 package mk.server.rentacar.service;
 
+import jakarta.annotation.PostConstruct;
 import mk.server.rentacar.model.Car;
 import mk.server.rentacar.model.Reservation;
 import mk.server.rentacar.model.User;
 import mk.server.rentacar.repository.ReservationRepository;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -20,10 +23,32 @@ public class ReservationService {
     private final CarService carService;
     private final UserService userService;
 
-    public ReservationService(ReservationRepository reservationRepository, CarService carService, UserService userService) {
+    public ReservationService(ReservationRepository reservationRepository, CarService carService,
+                              UserService userService) {
         this.reservationRepository = reservationRepository;
         this.carService = carService;
         this.userService = userService;
+    }
+
+    @PostConstruct
+    @Scheduled(fixedRate = 3600000)
+    public void updateReservationStatuses() {
+        List<Reservation> activeReservations = reservationRepository.getReservationsByStatus("ACTIVE");
+        List<Reservation> confirmedReservations = reservationRepository.getReservationsByStatus("CONFIRMED");
+        List<Reservation> allReservations = new ArrayList<>();
+        allReservations.addAll(activeReservations);
+        allReservations.addAll(confirmedReservations);
+
+        Date currentDate = new Date();
+
+        for (Reservation reservation : allReservations) {
+            if (reservation.getEndDate().before(currentDate)) {
+                reservation.setStatus("COMPLETED");
+            } else if (reservation.getStartDate().before(currentDate) && reservation.getEndDate().after(currentDate)) {
+                reservation.setStatus("ACTIVE");
+            }
+            reservationRepository.save(reservation);
+        }
     }
 
     private void preprocessReservation(Reservation reservation) {
@@ -34,8 +59,9 @@ public class ReservationService {
             throw new IllegalArgumentException("Car is not available.");
         }
 
-        reservation.setStatus("CREATED");
-        BigDecimal totalCost = calculateTotalCost(reservation.getStartDate(), reservation.getEndDate(), car.getPricePerDay());
+        reservation.setStatus("PENDING");
+        BigDecimal totalCost = calculateTotalCost(reservation.getStartDate(), reservation.getEndDate(),
+                car.getPricePerDay());
         reservation.setTotalPrice(totalCost);
     }
 
@@ -66,8 +92,9 @@ public class ReservationService {
     }
 
     private boolean checkAvailability(Reservation reservationDto) {
-        List<Reservation> reservationList =
-                reservationRepository.getReservationsByCarId(reservationDto.getCar().getId());
+        List<Reservation> reservationList = reservationRepository
+                .getReservationsByCarId(reservationDto.getCar().getId());
+
         Date checkedStartDate = reservationDto.getStartDate();
         Date checkedEndDate = reservationDto.getEndDate();
 
@@ -100,5 +127,12 @@ public class ReservationService {
 
     public List<Reservation> getListOfUserReservations(Long userId) {
         return reservationRepository.getReservationsByUserId(userId);
+    }
+
+    public Reservation cancelReservation(Long id) {
+        Reservation reservation = getReservationById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Reservation not found"));
+        reservation.setStatus("CANCELLED");
+        return reservationRepository.save(reservation);
     }
 }

@@ -21,10 +21,11 @@ public interface CarRepository extends JpaRepository<Car, Long> {
              WHERE c.id NOT IN (
                  SELECT r.car.id
                  FROM Reservation r
-                 WHERE (:startDate BETWEEN r.startDate AND r.endDate)
+                 WHERE ((r.status != 'CANCELLED')
+                    AND (:startDate BETWEEN r.startDate AND r.endDate)
                     OR (:endDate BETWEEN r.startDate AND r.endDate)
                     OR (:startDate <= r.startDate AND :endDate >= r.endDate)
-                    OR (:startDate >= r.startDate AND :endDate <= r.endDate)
+                    OR (:startDate >= r.startDate AND :endDate <= r.endDate))
              )
             """)
     List<Car> findAvailableCars(

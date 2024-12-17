@@ -50,8 +50,19 @@ public class ReservationController {
         }
     }
 
+    @PostMapping("/cancel/{id}")
+    public ResponseEntity<?> cancelReservation(@PathVariable Long id) {
+        try {
+            Reservation reservation = reservationService.cancelReservation(id);
+            return ResponseEntity.ok(reservation);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     @PostMapping("/collection")
-    public ResponseEntity<List<Reservation>> addReservationCollection(@RequestBody List<Reservation> reservationCollection) {
+    public ResponseEntity<List<Reservation>> addReservationCollection(
+            @RequestBody List<Reservation> reservationCollection) {
         List<Reservation> successfulReservations = new ArrayList<>();
 
         for (Reservation reservation : reservationCollection) {

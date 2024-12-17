@@ -42,6 +42,7 @@ public class AuthenticationController {
                     response.put("lastName", user.getLastName());
                     response.put("email", user.getEmail());
                     response.put("phone", user.getPhone());
+                    response.put("userType", user.getRole());
                     response.put("userId", String.valueOf(user.getId()));
 
                     return ResponseEntity.ok(response);
