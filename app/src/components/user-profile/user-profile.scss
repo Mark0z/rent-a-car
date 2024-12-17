@@ -1,0 +1,27 @@
+@import 'values/colors';
+
+.user__profile {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+
+  &-error {
+    color: $COLOR-RED;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+      margin: 0;
+    }
+  }
+
+  &__reservations {
+    h3 {
+      margin: 16px 0 8px;
+    }
+  }
+}

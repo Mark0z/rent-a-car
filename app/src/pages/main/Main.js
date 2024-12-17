@@ -19,15 +19,15 @@ export const Main = () => {
       <Slider />
       <Content isContentAbove={true} className="main__content">
         <div className="main-left">
-          <ContentBox title="Rezerwuj samochód">
+          <ContentBox title="Rezerwuj samochód" className="main__content__box">
             <ReservationDatePickerForm />
           </ContentBox>
-          <ContentBox title="Zalety RentDrive">
+          <ContentBox title="Zalety RentDrive" className="main__content__box">
             <AdvantagesList />
           </ContentBox>
         </div>
         <div className="main-right">
-          <ContentBox title="Najpopularniejsze" center>
+          <ContentBox title="Najpopularniejsze" center className="main__content__box">
             {!loading ? (
               <>
                 {data.length > 0 ? (

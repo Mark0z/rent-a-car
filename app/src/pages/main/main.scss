@@ -18,4 +18,8 @@
     flex: 2;
     background-color: $COLOR-WHITE;
   }
+
+  &__content__box {
+    width: auto !important;
+  }
 }

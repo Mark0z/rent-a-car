@@ -1,0 +1,55 @@
+@import 'values/colors';
+
+.alert-dialog {
+  &__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $COLOR-BLACK-05;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  background-color: $COLOR-WHITE;
+  border-radius: 8px;
+  padding: 24px;
+  width: 100%;
+  max-width: 400px;
+  margin: 20px;
+  box-shadow: 0 0 40px 9px $COLOR-RUSTY-ORANGE;
+  animation: slideIn 0.3s ease-out;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__message {
+    margin: 0;
+    text-align: center;
+    font-size: large;
+    color: $COLOR-BLACK;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

@@ -1,18 +1,22 @@
 import './navbar.scss';
 import { FaHome } from 'react-icons/fa';
 import { IoMdLogIn } from 'react-icons/io';
-import { NavLink } from 'react-router-dom';
-import clsx from 'clsx';
 import { useStateMachine } from 'little-state-machine';
 import { MdLogout } from 'react-icons/md';
 import { clearAction } from 'utils/clearAction';
 import { CgProfile } from 'react-icons/cg';
+import { useState } from 'react';
+import { AlertDialog } from 'components/alert-dialog/AlertDialog';
+import { NavLink } from 'react-router-dom';
+import clsx from 'clsx';
 
 export const Navbar = () => {
   const { state, actions } = useStateMachine({ clearAction });
+  const [showLogoutDialog, setShowLogoutDialog] = useState(false);
 
   const handleLogout = () => {
     actions.clearAction();
+    setShowLogoutDialog(false);
   };
 
   return (
@@ -49,13 +53,22 @@ export const Navbar = () => {
               <CgProfile />
             </NavLink>
             <div
-              onClick={() => handleLogout()}
+              onClick={() => setShowLogoutDialog(true)}
               className={clsx('navbar__content__link', 'navbar__content__link__icon')}>
               <MdLogout />
             </div>
           </div>
         )}
       </div>
+
+      <AlertDialog
+        isOpen={showLogoutDialog}
+        message="Czy na pewno chcesz się wylogować?"
+        onConfirm={handleLogout}
+        onCancel={() => setShowLogoutDialog(false)}
+        confirmText="Tak, wyloguj"
+        cancelText="Nie, zostań"
+      />
     </nav>
   );
 };

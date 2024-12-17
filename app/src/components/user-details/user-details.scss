@@ -1,0 +1,20 @@
+@import "values/colors";
+
+.user__details {
+  &__container {
+    background-color: $COLOR-ORANGE-05;
+    padding: 16px;
+    border-radius: 8px;
+    margin: 16px 0;
+  }
+
+  &__info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+
+    p {
+      margin: 8px 0;
+    }
+  }
+}
