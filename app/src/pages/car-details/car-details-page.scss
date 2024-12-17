@@ -1,0 +1,13 @@
+@import 'values/colors';
+@import 'values/breakpoints';
+
+.car-details-page {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+
+  @include mobile {
+    padding: 10px;
+  }
+}
