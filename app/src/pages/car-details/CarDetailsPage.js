@@ -31,8 +31,6 @@ export const CarDetailsPage = () => {
     url: `http://localhost:8080/reservations/car/${carId}`
   });
 
-  console.log(reservationsError);
-
   useEffect(() => {
     if (state.data?.userType !== 'ADMIN') {
       navigate('/');
@@ -40,12 +38,23 @@ export const CarDetailsPage = () => {
   }, [state.data, navigate]);
 
   if (carLoading || reservationsLoading) return <Spinner />;
-  if (carError) return <p>Wystąpił błąd podczas ładowania danych</p>;
 
   return (
     <Content>
       <ContentBox title={`${carData.brand} ${carData.model}`} center>
-        <CarDetails car={carData} reservations={reservationsData} />
+        {carLoading || reservationsLoading ? (
+          <Spinner />
+        ) : (
+          <>
+            <CarDetails car={carData} reservations={reservationsData} />
+            {(carError || reservationsError) && (
+              <p>
+                {carError}
+                {reservationsError}
+              </p>
+            )}
+          </>
+        )}
       </ContentBox>
     </Content>
   );
