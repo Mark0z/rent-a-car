@@ -5,12 +5,15 @@ import { IoAnalytics, IoCarSportOutline } from 'react-icons/io5';
 import { IoIosNotificationsOutline } from 'react-icons/io';
 import { TbReportAnalytics } from 'react-icons/tb';
 import { UserManagement } from 'components/user-management/UserManagement';
+import { CarManagement } from 'components/car-management/CarManagement';
 import { useState } from 'react';
 
 const renderStep = (option) => {
   switch (option) {
     case 1:
       return <UserManagement />;
+    case 2:
+      return <CarManagement />;
     default:
       return null;
   }

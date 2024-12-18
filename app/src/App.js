@@ -15,6 +15,7 @@ import { littleStateMachineDefaultState } from 'data/little-state-machine-defaul
 import { ReservationSuccess } from 'pages/reservation-success/ReservationSuccess';
 import { UserPanelPage } from 'pages/user-panel/UserPanelPage';
 import { UserProfile } from 'components/user-profile/UserProfile';
+import { CarDetailsPage } from 'pages/car-details/CarDetailsPage';
 
 createStore({ data: littleStateMachineDefaultState });
 
@@ -34,6 +35,7 @@ function App() {
             <Route path="/reservation-success" element={<ReservationSuccess />} />
             <Route path="/profile" element={<UserPanelPage />} />
             <Route path="/user-profile/:userId" element={<UserProfile />} />
+            <Route path="/car-details/:carId" element={<CarDetailsPage />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
