@@ -44,6 +44,7 @@ public class AuthenticationController {
                     response.put("phone", user.getPhone());
                     response.put("userType", user.getRole());
                     response.put("userId", String.valueOf(user.getId()));
+                    response.put("dateJoined", String.valueOf(user.getDateJoined()));
 
                     return ResponseEntity.ok(response);
                 })
