@@ -7,6 +7,7 @@ import { TbReportAnalytics } from 'react-icons/tb';
 import { UserManagement } from 'components/user-management/UserManagement';
 import { CarManagement } from 'components/car-management/CarManagement';
 import { ReservationManagement } from 'components/reservation-management/ReservationManagement';
+import { ReportsAndStatistics } from 'components/reports-and-statistics/ReportsAndStatistics';
 import { useState } from 'react';
 
 const renderStep = (option) => {
@@ -17,6 +18,8 @@ const renderStep = (option) => {
       return <CarManagement />;
     case 3:
       return <ReservationManagement />;
+    case 4:
+      return <ReportsAndStatistics />;
     default:
       return null;
   }
@@ -46,7 +49,7 @@ export const AdminPanel = () => {
           onClick={() => setSelectedOption(3)}>
           Zarządzanie rezerwacjami
         </PanelButton>
-        <PanelButton value="reports" icon={<IoAnalytics />}>
+        <PanelButton value="reports" icon={<IoAnalytics />} onClick={() => setSelectedOption(4)}>
           Raporty i statystyki
         </PanelButton>
         <PanelButton value="notifications" icon={<IoIosNotificationsOutline />}>
