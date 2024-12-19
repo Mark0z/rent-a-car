@@ -6,13 +6,25 @@ import { useState } from 'react';
 import { RegisterForm } from 'components/register-form/RegisterForm';
 import { ChangePasswordForm } from 'components/change-password-form/ChangePasswordForm';
 import { UserReservationsTable } from 'components/user-reservations-table/UserReservationsTable';
+import { UserDetails } from 'components/user-details/UserDetails';
+import { useStateMachine } from 'little-state-machine';
 
 export const UserPanel = () => {
   const [selectedOption, setSelectedOption] = useState(0);
+  const { state } = useStateMachine();
 
-  function handleOnClick(option) {
+  const loggedUser = {
+    email: state.data.email,
+    username: state.data.username,
+    firstName: state.data.firstName,
+    lastName: state.data.lastName,
+    phone: state.data.phone,
+    dateJoined: state.data.dateJoined
+  };
+
+  const handleOnClick = (option) => {
     setSelectedOption(option);
-  }
+  };
 
   const renderStep = () => {
     switch (selectedOption) {
@@ -32,6 +44,7 @@ export const UserPanel = () => {
 
   return (
     <div className="user__panel">
+      <UserDetails user={loggedUser} />
       <div className="user__panel__options">
         <PanelButton value="1" icon={<FaRegUser />} onClick={() => handleOnClick(1)}>
           Zmień dane użytkownika

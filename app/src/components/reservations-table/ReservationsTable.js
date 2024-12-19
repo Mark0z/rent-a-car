@@ -1,6 +1,7 @@
 import { Table } from 'components/table/Table';
 import { Button } from 'components/inputs/button/Button';
 import PropTypes from 'prop-types';
+import { sortArray } from 'utils/sortArray';
 
 export const ReservationsTable = ({ reservations, onCancel, showCancelButton = false, title }) => {
   return (
@@ -17,7 +18,7 @@ export const ReservationsTable = ({ reservations, onCancel, showCancelButton = f
               'Status',
               ...(showCancelButton === true ? [''] : [])
             ]}>
-            {reservations.map((reservation, index) => (
+            {sortArray(reservations, 'startDate').map((reservation, index) => (
               <tr key={index}>
                 <td>{reservation.startDate.slice(0, 10)}</td>
                 <td>{reservation.endDate.slice(0, 10)}</td>
