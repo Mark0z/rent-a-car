@@ -1,0 +1,19 @@
+@import "values/colors";
+
+.notification__icon {
+  display: flex;
+
+  &__ammount {
+    position: absolute;
+    margin-left: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    font-size: small;
+    background-color: $COLOR-ORANGE;
+    color: $COLOR-WHITE;
+    border-radius: 50%;
+  }
+}
