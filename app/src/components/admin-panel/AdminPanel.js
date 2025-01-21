@@ -12,11 +12,9 @@ import { useAxios } from 'hooks/useAxios';
 
 export const AdminPanel = () => {
   const [selectedOption, setSelectedOption] = useState(0);
-  const {
-    data,
-    loading,
-    setRefresh: refreshCounter
-  } = useAxios('http://localhost:8080/reservations/numberOfPendingReservations');
+  const { data, loading, setRefresh } = useAxios(
+    'http://localhost:8080/reservations/numberOfPendingReservations'
+  );
   const renderStep = (option) => {
     switch (option) {
       case 1:
@@ -24,7 +22,7 @@ export const AdminPanel = () => {
       case 2:
         return <CarManagement />;
       case 3:
-        return <ReservationManagement refreshCounter={refreshCounter} />;
+        return <ReservationManagement refreshCounter={setRefresh} />;
       case 4:
         return <ReportsAndStatistics />;
       default:
