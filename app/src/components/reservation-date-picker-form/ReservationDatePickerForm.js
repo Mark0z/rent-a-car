@@ -87,7 +87,7 @@ export const ReservationDatePickerForm = ({ isMediumSize }) => {
         {...register('endAgencyName', { required: true })}
       />
 
-      <Button className="rent__a__car__form__submit" type="submit" value="rezerwuj">
+      <Button className="rent__a__car__form__submit" isSecondary type="submit" value="rezerwuj">
         Rezerwuj
       </Button>
     </form>

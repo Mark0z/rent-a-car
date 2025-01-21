@@ -17,19 +17,13 @@ export const CarDetailsPage = () => {
     data: carData,
     loading: carLoading,
     error: carError
-  } = useAxios({
-    method: 'GET',
-    url: `http://localhost:8080/cars/${carId}`
-  });
+  } = useAxios(`http://localhost:8080/cars/${carId}`);
 
   const {
     data: reservationsData,
     loading: reservationsLoading,
     error: reservationsError
-  } = useAxios({
-    method: 'GET',
-    url: `http://localhost:8080/reservations/car/${carId}`
-  });
+  } = useAxios(`http://localhost:8080/reservations/car/${carId}`);
 
   useEffect(() => {
     if (state.data?.userType !== 'ADMIN') {

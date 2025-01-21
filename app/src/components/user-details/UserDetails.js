@@ -19,7 +19,7 @@ export const UserDetails = ({ user }) => (
         <b>Telefon:</b> {user.phone}
       </p>
       <p>
-        <b>Data dołączenia:</b> {user.dateJoined.slice(0, 10)}
+        <b>Data dołączenia:</b> {user.dateJoined?.slice(0, 10)}
       </p>
     </div>
   </div>

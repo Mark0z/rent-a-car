@@ -6,10 +6,9 @@ import { sortArray } from 'utils/sortArray';
 
 export const UserReservationsTable = () => {
   const { state } = useStateMachine();
-  const { error, loading, data } = useAxios({
-    method: 'GET',
-    url: `http://localhost:8080/reservations/user/${state.data.userId}`
-  });
+  const { error, loading, data } = useAxios(
+    `http://localhost:8080/reservations/user/${state.data.userId}`
+  );
   const sortedArrayByDate = sortArray(data, 'endDate', false);
 
   return (

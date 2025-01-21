@@ -2,6 +2,7 @@ import './car-details.scss';
 import PropTypes from 'prop-types';
 import { Table } from 'components/table/Table';
 import { Link } from 'react-router-dom';
+import { sortArray } from 'utils/sortArray';
 
 export const CarDetails = ({ car, reservations }) => {
   return (
@@ -34,13 +35,13 @@ export const CarDetails = ({ car, reservations }) => {
           <>
             <h3>Historia rezerwacji</h3>
             <Table headerArray={['Od', 'Do', 'Koszt', 'Użytkownik', 'Status']}>
-              {reservations.map((reservation, index) => (
+              {sortArray(reservations, 'startDate').map((reservation, index) => (
                 <tr key={index}>
                   <td>{reservation.startDate.slice(0, 10)}</td>
                   <td>{reservation.endDate.slice(0, 10)}</td>
-                  <td>{reservation.totalPrice}</td>
+                  <td>{reservation.totalPrice} zł</td>
                   <td>
-                    <Link to={`/user-profile/${reservation.user.id}`} target="_blank">
+                    <Link to={`/user-profile/${reservation.user.id}`}>
                       {reservation.user.firstName} {reservation.user.lastName}
                     </Link>
                   </td>

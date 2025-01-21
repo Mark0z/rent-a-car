@@ -1,0 +1,45 @@
+@import 'values/colors';
+@import 'values/mixins';
+
+.reports__and__statistics {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  h2 {
+    color: $COLOR-ORANGE;
+  }
+
+  .statistics__content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 18px;
+    padding: 18px;
+  }
+
+  .statistics__item {
+    padding: 18px;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+    cursor: default;
+    @include styled-border;
+
+    h4 {
+      color: $COLOR-BLACK-05;
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+
+    p {
+      color: #212529;
+      font-size: x-large;
+      font-weight: bold;
+      margin: 0;
+    }
+  }
+}

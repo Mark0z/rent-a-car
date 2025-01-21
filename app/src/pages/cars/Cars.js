@@ -19,10 +19,7 @@ const filters = {
 export const Cars = () => {
   const [isSortByPrice, setIsSortByPrice] = useState(true);
   const [filteredCars, setFilteredCars] = useState([]);
-  const { loading, data, error } = useAxios({
-    url: 'http://localhost:8080/cars/',
-    method: 'GET'
-  });
+  const { loading, data, error } = useAxios('http://localhost:8080/cars/');
   const { register, watch, getValues } = useForm({
     defaultValues: {
       transmissionTypes: [],

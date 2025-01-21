@@ -7,10 +7,9 @@ import { sortArray } from 'utils/sortArray';
 
 export const ReservationCarPicker = () => {
   const { state } = useStateMachine();
-  const { loading, data, error } = useAxios({
-    url: `http://localhost:8080/cars/available?startDate=${state.data.startDate}&endDate=${state.data.endDate}`,
-    method: 'GET'
-  });
+  const { loading, data, error } = useAxios(
+    `http://localhost:8080/cars/available?startDate=${state.data.startDate}&endDate=${state.data.endDate}`
+  );
 
   return (
     <div className="reservation__car__picker">

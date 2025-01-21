@@ -8,7 +8,7 @@ import { Spinner } from 'components/spinner/Spinner';
 import { Button } from 'components/inputs/button/Button';
 
 export const CarManagement = () => {
-  const { data, loading, error } = useAxios({ method: 'GET', url: 'http://localhost:8080/cars/' });
+  const { data, loading, error } = useAxios('http://localhost:8080/cars/');
   const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {

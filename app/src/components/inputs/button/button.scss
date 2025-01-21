@@ -38,7 +38,7 @@
     }
 
     &-danger {
-      border: 1px solid $COLOR-RED;
+      border: 2px solid $COLOR-RED;
       color: $COLOR-RED;
       font-weight: 600;
       background: none;
@@ -50,6 +50,22 @@
 
       &:active {
         background-color: $COLOR-RED-05;
+      }
+    }
+
+    &-success {
+      border: 2px solid $COLOR-GREEN;
+      color: $COLOR-GREEN;
+      font-weight: 600;
+      background: none;
+
+      &:hover {
+        color: $COLOR-WHITE;
+        background: $COLOR-GREEN;
+      }
+
+      &:active {
+        background-color: $COLOR-GREEN-05;
       }
     }
 

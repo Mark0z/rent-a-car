@@ -9,6 +9,7 @@ export const Button = React.forwardRef(
       className,
       isSecondary = false,
       isDanger = false,
+      isSuccess = false,
       value,
       children,
       type = 'button',
@@ -24,6 +25,7 @@ export const Button = React.forwardRef(
             'button__input',
             type === 'submit' && 'button__input__submit',
             isSecondary && 'button__input-secondary',
+            isSuccess && 'button__input-success',
             isDanger && 'button__input-danger',
             className
           )}
@@ -45,5 +47,6 @@ Button.propTypes = {
   type: PropTypes.string,
   isSecondary: PropTypes.bool,
   isDanger: PropTypes.bool,
+  isSuccess: PropTypes.bool,
   children: PropTypes.node
 };

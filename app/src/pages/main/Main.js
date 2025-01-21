@@ -9,10 +9,7 @@ import { useAxios } from 'hooks/useAxios';
 import { Slider } from 'components/slider/Slider';
 
 export const Main = () => {
-  const { loading, data, error } = useAxios({
-    url: 'http://localhost:8080/cars/top/12',
-    method: 'GET'
-  });
+  const { loading, data, error } = useAxios('http://localhost:8080/cars/top/12');
 
   return (
     <div className="main">

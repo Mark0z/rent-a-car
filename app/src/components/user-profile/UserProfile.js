@@ -23,19 +23,13 @@ export const UserProfile = () => {
     data: userData,
     loading: userLoading,
     error: userError
-  } = useAxios({
-    method: 'GET',
-    url: `http://localhost:8080/users/${userId}`
-  });
+  } = useAxios(`http://localhost:8080/users/${userId}`);
 
   const {
     data: reservationsData,
     loading: reservationsLoading,
     error: reservationsError
-  } = useAxios({
-    method: 'GET',
-    url: `http://localhost:8080/reservations/user/${userId}`
-  });
+  } = useAxios(`http://localhost:8080/reservations/user/${userId}`);
 
   useEffect(() => {
     if (state.data?.userType !== 'ADMIN') {
