@@ -34,16 +34,21 @@ public class ReservationController {
         }
     }
 
-    @GetMapping("user/{id}")
+    @GetMapping("/user/{id}")
     public ResponseEntity<List<Reservation>> getListOfUserReservations(@PathVariable Long id) {
         List<Reservation> reservationList = reservationService.getListOfUserReservations(id);
         return ResponseEntity.ok(reservationList);
     }
 
-    @GetMapping("car/{id}")
+    @GetMapping("/car/{id}")
     public ResponseEntity<List<Reservation>> getListOfCarReservations(@PathVariable Long id) {
         List<Reservation> reservationList = reservationService.getListOfCarReservations(id);
         return ResponseEntity.ok(reservationList);
+    }
+
+    @GetMapping("/numberOfPendingReservations")
+    public ResponseEntity<Integer> getNumberOfPendingReservations() {
+        return ResponseEntity.ok(reservationService.getNumberOfPendingReservations());
     }
 
     @PostMapping("/")
@@ -51,6 +56,16 @@ public class ReservationController {
         try {
             Reservation reservationReservation = reservationService.addReservation(reservation);
             return ResponseEntity.ok(reservationReservation);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PostMapping("/confirm/{id}")
+    public ResponseEntity<?> confirmReservation(@PathVariable Long id) {
+        try {
+            Reservation reservation = reservationService.confirmReservation(id);
+            return ResponseEntity.ok(reservation);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
