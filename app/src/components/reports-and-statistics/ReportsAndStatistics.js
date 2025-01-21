@@ -8,20 +8,13 @@ import { getMostPopularCar } from 'data/getMostPopularCar';
 import { getMostActiveUser } from 'data/getMostActiveUser';
 
 export const ReportsAndStatistics = () => {
-  const { data: reservationsData, loading: reservationsLoading } = useAxios({
-    method: 'GET',
-    url: 'http://localhost:8080/reservations/'
-  });
+  const { data: reservationsData, loading: reservationsLoading } = useAxios(
+    'http://localhost:8080/reservations/'
+  );
 
-  const { data: carsData, loading: carsLoading } = useAxios({
-    method: 'GET',
-    url: 'http://localhost:8080/cars/'
-  });
+  const { data: carsData, loading: carsLoading } = useAxios('http://localhost:8080/cars/');
 
-  const { data: usersData, loading: usersLoading } = useAxios({
-    method: 'GET',
-    url: 'http://localhost:8080/users/'
-  });
+  const { data: usersData, loading: usersLoading } = useAxios('http://localhost:8080/users/');
 
   if (reservationsLoading || carsLoading || usersLoading) {
     return <Spinner />;
