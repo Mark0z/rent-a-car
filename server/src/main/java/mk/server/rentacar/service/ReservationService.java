@@ -133,6 +133,17 @@ public class ReservationService {
         return reservationRepository.getReservationsByCarId(carId);
     }
 
+    public Integer getNumberOfPendingReservations() {
+        return reservationRepository.getReservationsByStatus("PENDING").size();
+    }
+
+    public Reservation confirmReservation(Long id) {
+        Reservation reservation = getReservationById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Reservation not found"));
+        reservation.setStatus("CONFIRMED");
+        return reservationRepository.save(reservation);
+    }
+
     public Reservation cancelReservation(Long id) {
         Reservation reservation = getReservationById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Reservation not found"));
