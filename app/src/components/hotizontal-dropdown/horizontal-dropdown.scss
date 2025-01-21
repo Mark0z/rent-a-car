@@ -10,6 +10,7 @@ ol {
     align-items: center;
     justify-content: center;
     text-align: center;
+
   }
 }
 
@@ -19,10 +20,11 @@ ol > li {
   display: inline-block;
   width: 150px;
   margin-left: 1px;
-  color: $COLOR-BLACK;
   font-weight: 500;
   height: 2em;
   line-height: 2em;
+
+
 }
 
 ol > li:hover > ul {

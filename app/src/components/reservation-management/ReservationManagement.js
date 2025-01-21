@@ -10,16 +10,15 @@ import { Table } from 'components/table/Table';
 import { Link } from 'react-router-dom';
 import { HorizontalDropdown } from 'components/hotizontal-dropdown/HorizontalDropdown';
 import { useForm } from 'react-hook-form';
+import PropTypes from 'prop-types';
 
 const typesOfStatus = ['COMPLETED', 'ACTIVE', 'PENDING', 'CONFIRMED', 'CANCELLED'];
-export const ReservationManagement = () => {
-  const { data, loading, error } = useAxios({
-    method: 'GET',
-    url: 'http://localhost:8080/reservations/'
-  });
+export const ReservationManagement = ({ refreshCounter }) => {
+  const { data, loading, error, setRefresh } = useAxios('http://localhost:8080/reservations/');
   const { register, watch, getValues } = useForm();
   const [filteredData, setFilteredData] = useState([]);
   const [showCancelDialog, setShowCancelDialog] = useState(false);
+  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
   const [selectedReservationId, setSelectedReservationId] = useState(null);
 
   useEffect(() => {
@@ -41,17 +40,37 @@ export const ReservationManagement = () => {
     setShowCancelDialog(true);
   };
 
+  const handleReservationConfirm = (id) => {
+    setSelectedReservationId(id);
+    setShowSuccessDialog(true);
+  };
+
   const confirmCancelReservation = () => {
     axios
       .post(`http://localhost:8080/reservations/cancel/${selectedReservationId}`)
       .then(() => {
-        window.location.reload();
-        alert('Rezerwacja została anulowana');
+        const randNumber = Math.random();
+        setRefresh(randNumber);
+        refreshCounter(randNumber);
       })
       .catch(() => {
         alert('Wystąpił błąd podczas anulowania rezerwacji');
       });
     setShowCancelDialog(false);
+  };
+
+  const confirmSuccessReservation = () => {
+    axios
+      .post(`http://localhost:8080/reservations/confirm/${selectedReservationId}`)
+      .then(() => {
+        const randNumber = Math.random();
+        setRefresh(randNumber);
+        refreshCounter(randNumber);
+      })
+      .catch(() => {
+        alert('Wystąpił błąd podczas potwierdzania rezerwacji');
+      });
+    setShowSuccessDialog(false);
   };
 
   return (
@@ -86,9 +105,16 @@ export const ReservationManagement = () => {
                 <td>{reservation.status}</td>
                 <td>
                   {['ACTIVE', 'PENDING', 'CONFIRMED'].includes(reservation.status) ? (
-                    <Button isDanger onClick={() => handleReservationCancel(reservation.id)}>
-                      Anuluj
-                    </Button>
+                    <HorizontalDropdown title="Opcje">
+                      {reservation.status === 'PENDING' && (
+                        <Button isSuccess onClick={() => handleReservationConfirm(reservation.id)}>
+                          Potwierdź
+                        </Button>
+                      )}
+                      <Button isDanger onClick={() => handleReservationCancel(reservation.id)}>
+                        Anuluj
+                      </Button>
+                    </HorizontalDropdown>
                   ) : null}
                 </td>
               </tr>
@@ -105,7 +131,21 @@ export const ReservationManagement = () => {
         onCancel={() => setShowCancelDialog(false)}
         confirmText="Tak, anuluj"
         cancelText="Nie, zachowaj"
+        isDanger
+      />
+      <AlertDialog
+        isOpen={showSuccessDialog}
+        message="Czy na pewno chcesz potwierdzić tę rezerwację?"
+        onConfirm={confirmSuccessReservation}
+        onCancel={() => setShowSuccessDialog(false)}
+        confirmText="Potwierdź"
+        cancelText="Anuluj"
+        isSuccess
       />
     </div>
   );
+};
+
+ReservationManagement.propTypes = {
+  refreshCounter: PropTypes.func
 };

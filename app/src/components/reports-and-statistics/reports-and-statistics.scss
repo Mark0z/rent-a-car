@@ -1,4 +1,5 @@
 @import 'values/colors';
+@import 'values/mixins';
 
 .reports__and__statistics {
   display: flex;
@@ -25,10 +26,8 @@
     border-radius: 8px;
     text-align: center;
     transition: transform 0.2s ease-in-out;
-
-    &:hover {
-      transform: translateY(-5px);
-    }
+    cursor: default;
+    @include styled-border;
 
     h4 {
       color: $COLOR-BLACK-05;
