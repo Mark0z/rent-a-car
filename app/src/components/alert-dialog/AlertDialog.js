@@ -7,6 +7,8 @@ export const AlertDialog = ({
   message,
   onConfirm,
   onCancel,
+  isDanger,
+  isSuccess,
   confirmText = 'Tak',
   cancelText = 'Nie'
 }) => {
@@ -18,7 +20,7 @@ export const AlertDialog = ({
         <div className="alert-dialog__content">
           <p className="alert-dialog__message">{message}</p>
           <div className="alert-dialog__buttons">
-            <Button onClick={onConfirm} isDanger>
+            <Button onClick={onConfirm} isDanger={isDanger} isSuccess={isSuccess}>
               {confirmText}
             </Button>
             <Button onClick={onCancel} isSecondary>
@@ -36,6 +38,8 @@ AlertDialog.propTypes = {
   message: PropTypes.string,
   onConfirm: PropTypes.func,
   onCancel: PropTypes.func,
+  isDanger: PropTypes.bool,
+  isSuccess: PropTypes.bool,
   confirmText: PropTypes.string,
   cancelText: PropTypes.string
 };
