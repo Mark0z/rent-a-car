@@ -17,7 +17,7 @@ export const ChangePasswordForm = () => {
     handleSubmit,
     reset,
     formState: { errors }
-  } = useForm();
+  } = useForm({ mode: 'onBlur' });
 
   const handlePasswordChanged = (data) => {
     const userId = state.data.userId;
@@ -48,8 +48,8 @@ export const ChangePasswordForm = () => {
           textLabel="Obecne hasło"
           mediumSize
           autoComplete="current-password"
-          errors={errors.password}
-          {...register('currentPassword', { required: true })}
+          errors={errors.currentPassword}
+          {...register('currentPassword', { required: 'Obecne hasło jest wymagane' })}
         />
         <TextInput
           className="change__password__form__input"
@@ -58,8 +58,8 @@ export const ChangePasswordForm = () => {
           textLabel="Nowe hasło"
           mediumSize
           autoComplete="new-password"
-          errors={errors.password}
-          {...register('newPassword', { required: true })}
+          errors={errors.newPassword}
+          {...register('newPassword', { required: 'Nowe hasło jest wymagane' })}
         />
         {loading ? (
           <Spinner />

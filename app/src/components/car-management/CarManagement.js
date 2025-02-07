@@ -21,7 +21,7 @@ export const CarManagement = () => {
   };
 
   const handleCarInfo = (carId) => {
-    window.open(`/car-details/${carId}`);
+    window.open(`/car-details/${carId}`, '_blank');
   };
 
   return (

@@ -2,7 +2,7 @@ import './notification-icon.scss';
 import { TbReportAnalytics } from 'react-icons/tb';
 import PropTypes from 'prop-types';
 
-export const NotificationIcon = ({ number }) => {
+export const NotificationIcon = ({ number = 0 }) => {
   return (
     <div className="notification__icon">
       <TbReportAnalytics />
@@ -12,5 +12,5 @@ export const NotificationIcon = ({ number }) => {
 };
 
 NotificationIcon.propTypes = {
-  number: PropTypes.number.isRequired
+  number: PropTypes.number
 };
