@@ -63,7 +63,7 @@ export const ReservationInfo = () => {
           <ReservationInfoItem
             title="Wybór samochodu"
             buttonFunc={handleClearCarDetails}
-            buttonText="Zamina samochodu">
+            buttonText="Zmiana samochodu...">
             {storedState.brand} {storedState.model}
             <br />
             {storedState.pricePerDay} PLN / dzień
@@ -73,7 +73,7 @@ export const ReservationInfo = () => {
           <div className="reservation__info__total">
             <h2 className="reservation__info__total__h2">{countTotalAmount()} PLN</h2>
             <p className="reservation__info__total__p">
-              <b>za czały okres wynajmu</b> ({storedState.pricePerDay} PLN / dzień)
+              <b>za czały okres wynajmu</b>
             </p>
             <p className="reservation__info__total__p">Podane ceny są cenami brutto</p>
           </div>

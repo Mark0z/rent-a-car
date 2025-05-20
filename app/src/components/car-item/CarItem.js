@@ -2,12 +2,10 @@ import './car-item.scss';
 import PropTypes from 'prop-types';
 import car from 'assets/mistery-car.jpg';
 
-// Prevent external links from refreshing too often
-// eslint-disable-next-line no-unused-vars
 export const CarItem = ({ brand, model, imageUrl, price }) => {
   return (
     <div className="car__item">
-      <img className="car__item__image" src={car || ''} alt="" />
+      <img className="car__item__image" src={imageUrl || car} alt="car photo" />
       <div className="car__item__title">
         {brand} {model}
       </div>

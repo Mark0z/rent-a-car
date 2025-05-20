@@ -15,7 +15,7 @@ export const ContactMailForm = () => {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm();
+  } = useForm({ mode: 'onBlur' });
 
   const onSubmit = () => {
     const captchaData = recaptchaRef.current.getValue();
@@ -38,7 +38,7 @@ export const ContactMailForm = () => {
           textLabel="Imię"
           mediumSize
           errors={errors.name}
-          {...register('name', { required: true })}
+          {...register('name', { required: 'Imię jest wymagane' })}
         />
         <TextInput
           className="contact__mail__form__input"
@@ -46,7 +46,7 @@ export const ContactMailForm = () => {
           textLabel="Nazwisko"
           mediumSize
           errors={errors.surname}
-          {...register('surname', { required: true })}
+          {...register('surname', { required: 'Nazwisko jest wymagane' })}
         />
       </div>
       <div className="contact__mail__form__row">
@@ -59,7 +59,7 @@ export const ContactMailForm = () => {
           pattern="[0-9]{9,11}"
           mediumSize
           errors={errors.telephone}
-          {...register('telephone', { required: true })}
+          {...register('telephone', { required: 'Telefon jest wymagany' })}
         />
         <TextInput
           className="contact__mail__form__input"
@@ -69,7 +69,7 @@ export const ContactMailForm = () => {
           textLabel="Adres email"
           mediumSize
           errors={errors.email}
-          {...register('email', { required: true })}
+          {...register('email', { required: 'Email jest wymagany' })}
         />
       </div>
       <TextArea
@@ -77,7 +77,7 @@ export const ContactMailForm = () => {
         name="textarea"
         textLabel="Treść wiadomości"
         errors={errors.textarea}
-        {...register('textarea', { required: true })}
+        {...register('textarea', { required: 'Treść jest wymagany' })}
       />
       <div className="contact__mail__form__captcha">
         <ReCAPTCHA sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY} ref={recaptchaRef} />
